@@ -49,7 +49,7 @@ public class Cliente extends DatosBasicos{
     }
 
     public void registrarCompra() {
-        this.cantidadCompras++;
+        this.cantidadCompras += 1;
     }
     
     @Override

@@ -19,7 +19,7 @@ public class Proveedor extends DatosBasicos {
         super(nombre, direccion, telefono, correo, ciudad, departamento, tipoDocumento, nroDocumento);
         this.idProveedor = idProveedor;
     }
-
+       
     //Se crean los get y los set
     public int getIdProveedor() {
         return idProveedor;

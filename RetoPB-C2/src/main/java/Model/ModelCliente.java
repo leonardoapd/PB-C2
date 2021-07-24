@@ -34,4 +34,21 @@ public class ModelCliente {
         }
         return null;
     }
+
+    public boolean actualizar(Cliente clienteActualizado, List<Cliente> listaClientes) {
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getIdCliente() == clienteActualizado.getIdCliente()) {
+                cliente.setNombre(clienteActualizado.getNombre());
+                cliente.setDireccion(clienteActualizado.getDireccion());
+                cliente.setCorreo(clienteActualizado.getCorreo());
+                cliente.setCiudad(clienteActualizado.getCiudad());
+                cliente.setDepartamento(clienteActualizado.getDepartamento());
+                cliente.setFechaNacimiento(clienteActualizado.getFechaNacimiento());
+                cliente.setNroDocumento(clienteActualizado.getNroDocumento());
+                
+                return true;
+            }
+        }
+        return false;
+    }
 }

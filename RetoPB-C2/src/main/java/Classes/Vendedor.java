@@ -13,7 +13,7 @@ public class Vendedor extends DatosBasicos{
     
     //Se crean los atributos de la clase
     private int cantidadVentas, idVendedor;
-    //private Venta venta = new Venta();
+    private Venta venta;
     
     //Se crea el constructor de la clase
     public Vendedor(String nombre, String direccion, String telefono, String correo,
@@ -30,8 +30,10 @@ public class Vendedor extends DatosBasicos{
         Bonificacion que brinda un 5% del valor total de sus ventas
         realizadas en el mes.
         */
-        //TODO
+        venta = new Venta();
         
+        float totalVentas = venta.getValorTotal() * getCantidadVentas();
+        System.out.printf("Se ha dado una bonificacion de %f a %s", (totalVentas*0.05), getNombre());
     }
     
     public void registrarVenta() {

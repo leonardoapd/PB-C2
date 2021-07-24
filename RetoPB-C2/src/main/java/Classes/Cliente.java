@@ -23,9 +23,8 @@ public class Cliente extends DatosBasicos{
     private boolean fidelizacion, estadoCliente;
     
     //Se crea el constructor de la clase
-    public Cliente(String fechaNacimiento, int idCliente, int cantidadCompras, 
-            String nombre, String direccion, String telefono, String correo,
-            String ciudad, String departamento, String tipoDocumento, int nroDocumento) {
+    public Cliente(String nombre, String direccion, String telefono, String correo,
+            String ciudad, String departamento, String tipoDocumento, int nroDocumento , String fechaNacimiento,int idCliente, int cantidadCompras) {
         super(nombre, direccion, telefono, correo, ciudad, departamento, tipoDocumento, nroDocumento);
         this.fechaNacimiento = fechaNacimiento;
         this.idCliente = idCliente;
@@ -55,6 +54,19 @@ public class Cliente extends DatosBasicos{
     @Override
     public void eliminar() {
         this.estadoCliente = false;
+    }
+    
+    @Override
+    public String toString() {
+        return "Nombre: " + getNombre() + " - " +
+                "Direccion: " + getDireccion() + " - " + 
+                "Telefono: " + getTelefono() + " - " + 
+                "Correo: " + getCorreo() + " - " +
+                "Ciudad: " + getCiudad() + " - " +
+                "Departamento: " + getDepartamento() + " - " +
+                "Id: " + getIdCliente() + " - " +
+                "Documento: " + getNroDocumento() + " - " + 
+                "Fecha de Nacimiento: " + getFechaNacimiento();
     }
 
     //Se crean los get y set de los atributos
@@ -97,5 +109,7 @@ public class Cliente extends DatosBasicos{
     public void setEstadoCliente(boolean estadoCliente) {
         this.estadoCliente = estadoCliente;
     }
+    
+    
     
 }

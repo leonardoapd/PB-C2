@@ -15,7 +15,9 @@ public class Proveedor extends DatosBasicos {
     private int idProveedor;
 
     //Se crea el constructor
-    public Proveedor(String nombre, String direccion, String telefono, String correo, String ciudad, String departamento, String tipoDocumento, int nroDocumento, int idProveedor) {
+    public Proveedor(String nombre, String direccion, String telefono,
+            String correo, String ciudad, String departamento,
+            String tipoDocumento, int nroDocumento, int idProveedor) {
         super(nombre, direccion, telefono, correo, ciudad, departamento, tipoDocumento, nroDocumento);
         this.idProveedor = idProveedor;
     }

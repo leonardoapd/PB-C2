@@ -23,6 +23,10 @@ public class Venta {
         this.pedido = pedido;
     }
     
+    public Venta() {
+        //Constructor vacio
+    }
+    
     //get y set
     public int getValorTotal() {
         return valorTotal;

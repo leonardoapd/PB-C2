@@ -5,20 +5,22 @@
  */
 package Classes;
 
+import java.util.List;
+
 /**
  *
  * @author Leonardo Perdomo
  */
 public class Paquete {
     //Atributos
-    private int [] idProducto;
+    private List<Integer> idProducto;
     private int idPaquete, precio;
     private String nombre, descripcion;
     private float descuento;
     
     //Constructor
 
-    public Paquete(int[] idProducto, int idPaquete, int precio, String nombre, String descripcion, float descuento) {
+    public Paquete(List<Integer> idProducto, int idPaquete, int precio, String nombre, String descripcion, float descuento) {
         this.idProducto = idProducto;
         this.idPaquete = idPaquete;
         this.precio = precio;

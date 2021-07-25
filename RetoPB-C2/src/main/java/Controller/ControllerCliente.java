@@ -23,11 +23,11 @@ public class ControllerCliente {
 
     public boolean crear(String nombre, String direccion, String telefono, String correo,
             String ciudad, String departamento, String tipoDocumento, int nroDocumento,
-            String fechaNacimiento, int idCliente, int cantidadCompras, List<Cliente> listaClientes) {
+            String fechaNacimiento, int idCliente, List<Cliente> listaClientes) {
 
         Cliente cliente = new Cliente(nombre, direccion, telefono, correo,
                 ciudad, departamento, tipoDocumento, nroDocumento,
-                fechaNacimiento, idCliente, cantidadCompras);
+                fechaNacimiento, idCliente);
         return modeloCliente.crear(cliente, listaClientes);
     }
 
@@ -41,10 +41,10 @@ public class ControllerCliente {
     
     public boolean actualizar(String nombre, String direccion, String telefono, String correo,
             String ciudad, String departamento, String tipoDocumento, int nroDocumento,
-            String fechaNacimiento, int idCliente, int cantidadCompras, List<Cliente> listaClientes) {
+            String fechaNacimiento, int idCliente, List<Cliente> listaClientes) {
         Cliente cliente = new Cliente(nombre, direccion, telefono, correo,
                 ciudad, departamento, tipoDocumento, nroDocumento,
-                fechaNacimiento, idCliente, cantidadCompras);
+                fechaNacimiento, idCliente);
         return modeloCliente.actualizar(cliente, listaClientes);
     }
 }

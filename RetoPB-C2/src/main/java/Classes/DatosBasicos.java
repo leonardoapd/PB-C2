@@ -8,8 +8,10 @@ package Classes;
 /**
  *
  * @author Leonardo Perdomo
+ * Clase abstracta, no puedo instaciar objetos de esta clase
  */
-public class DatosBasicos {
+public abstract class DatosBasicos {
+
     //Se crean los atributos de la clase
     private String nombre, direccion, telefono, correo,
             ciudad, departamento, tipoDocumento;
@@ -17,7 +19,7 @@ public class DatosBasicos {
     private int nroDocumento;
 
     //Se crea el constructor de la clase
-    public DatosBasicos(String nombre, String direccion, String telefono, 
+    public DatosBasicos(String nombre, String direccion, String telefono,
             String correo, String ciudad, String departamento,
             String tipoDocumento, int nroDocumento) {
         this.nombre = nombre;
@@ -29,12 +31,24 @@ public class DatosBasicos {
         this.tipoDocumento = tipoDocumento;
         this.nroDocumento = nroDocumento;
     }
-    
+
     //Se crean los metodos
-    public void crear(String nombre, String direccion, String telefono,
+    protected void crear(String nombre, String direccion, String telefono,
             String correo, String ciudad, String departamento, String tipoDocumento,
-            String fechaNacimiento, int nroDocumento, int idCliente,
-            int cantidadCompras, boolean fidelizacion) {
+            int nroDocumento) {
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.ciudad = ciudad;
+        this.departamento = departamento;
+        this.tipoDocumento = tipoDocumento;
+        this.nroDocumento = nroDocumento; 
+    } 
+
+    protected void actualizar(String nombre, String direccion, String telefono,
+            String correo, String ciudad, String departamento, String tipoDocumento,
+            int nroDocumento) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -43,25 +57,13 @@ public class DatosBasicos {
         this.departamento = departamento;
         this.tipoDocumento = tipoDocumento;
         this.nroDocumento = nroDocumento;
-    }
-
-    public void modificar(String nombre, String direccion, String telefono,
-            String correo, String ciudad, String departamento, String tipoDocumento,
-            String fechaNacimiento, int nroDocumento, int idCliente,
-            int cantidadCompras, boolean fidelizacion) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.correo = correo;
-        this.ciudad = ciudad;
-        this.departamento = departamento;
-        this.tipoDocumento = tipoDocumento;
-        this.nroDocumento = nroDocumento;
 
     }
 
-    public void eliminar() {
-    }
+    //Metodos Abstractos
+    public abstract void eliminar();
+
+    public abstract void cambiarMes();
 
     public String getNombre() {
         return nombre;
@@ -126,5 +128,5 @@ public class DatosBasicos {
     public void setNroDocumento(int nroDocumento) {
         this.nroDocumento = nroDocumento;
     }
-        
+
 }

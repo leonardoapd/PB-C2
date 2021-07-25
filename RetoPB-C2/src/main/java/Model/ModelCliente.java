@@ -28,7 +28,7 @@ public class ModelCliente {
                 Cliente clienteEncontrado = new Cliente(cliente.getNombre(), cliente.getDireccion(),
                         cliente.getTelefono(), cliente.getCorreo(), cliente.getCiudad(),
                         cliente.getDepartamento(), cliente.getTipoDocumento(), cliente.getNroDocumento(),
-                        cliente.getFechaNacimiento(), cliente.getIdCliente(), cliente.getCantidadCompras());
+                        cliente.getFechaNacimiento(), cliente.getIdCliente());
                 return clienteEncontrado;
             }
         }

@@ -9,35 +9,62 @@ package Classes;
  *
  * @author Leonardo Perdomo
  */
-public class Vendedor extends DatosBasicos{
-    
+public class Vendedor extends DatosBasicos {
+
     //Se crean los atributos de la clase
     private int cantidadVentas, idVendedor;
+    private double totalVenta;
     private Venta venta;
-    
+
     //Se crea el constructor de la clase
     public Vendedor(String nombre, String direccion, String telefono, String correo,
             String ciudad, String departamento, String tipoDocumento, int nroDocumento,
-            int cantidadVentas, int idVendedor) {
+            int idVendedor) {
         super(nombre, direccion, telefono, correo, ciudad, departamento, tipoDocumento, nroDocumento);
         this.cantidadVentas = cantidadVentas;
         this.idVendedor = idVendedor;
+        this.totalVenta = 0;
+    }
+
+    
+    public void crear(String nombre, String direccion, String telefono, String correo, 
+            String ciudad, String departamento, String tipoDocumento, int nroDocumento, int idVendedor) {
+        this.crear(nombre, direccion, telefono, correo, ciudad, departamento,
+                tipoDocumento, nroDocumento);
+        this.idVendedor = idVendedor;
+    }
+
+    
+    public void actualizar(String nombre, String direccion, String telefono, String correo,
+            String ciudad, String departamento, String tipoDocumento, int nroDocumento, int idVendedor) {
+        this.actualizar(nombre, direccion, telefono, correo, ciudad, departamento, 
+                tipoDocumento, nroDocumento);
+        this.idVendedor = idVendedor;
     }
     
+    @Override
+    public void eliminar() {
+    }
+
     //Se crean los metodos de la clase
     public void darBonificacion() {
         /*
         Bonificacion que brinda un 5% del valor total de sus ventas
         realizadas en el mes.
-        */
-        venta = new Venta();
-        
-        float totalVentas = venta.getValorTotal() * getCantidadVentas();
-        System.out.printf("Se ha dado una bonificacion de %f a %s", (totalVentas*0.05), getNombre());
+         */
+        this.venta = new Venta();
+
+        this.totalVenta = ((venta.getValorTotal() * getCantidadVentas()) * 0.05);
+        System.out.printf("Se ha dado una bonificacion de %f a %s", (totalVenta * 0.05), getNombre());
     }
-    
+
     public void registrarVenta() {
         this.cantidadVentas += 1;
+    }
+
+    @Override
+    public void cambiarMes() {
+        this.totalVenta = 0;
     }
 
     //Se crean los get y los set
@@ -56,5 +83,8 @@ public class Vendedor extends DatosBasicos{
     public void setIdVendedor(int idVendedor) {
         this.idVendedor = idVendedor;
     }
-   
+
+    
+    
+
 }

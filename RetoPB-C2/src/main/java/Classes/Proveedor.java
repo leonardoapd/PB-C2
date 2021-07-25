@@ -30,6 +30,12 @@ public class Proveedor extends DatosBasicos {
     public void setIdProveedor(int idProveedor) {
         this.idProveedor = idProveedor;
     }
-    
-    
+
+    @Override
+    public void eliminar() {
+    }
+
+    @Override
+    public void cambiarMes() {
+    }    
 }

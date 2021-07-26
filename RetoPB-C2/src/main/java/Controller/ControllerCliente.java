@@ -7,6 +7,7 @@ package Controller;
 
 import Classes.*;
 import Model.ModelCliente;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ public class ControllerCliente {
 
     public boolean crear(String nombre, String direccion, String telefono, String correo,
             String ciudad, String departamento, String tipoDocumento, int nroDocumento,
-            String fechaNacimiento, int idCliente, List<Cliente> listaClientes) {
+            String fechaNacimiento, int idCliente, ArrayList<Cliente> listaClientes) {
 
         Cliente cliente = new Cliente(nombre, direccion, telefono, correo,
                 ciudad, departamento, tipoDocumento, nroDocumento,

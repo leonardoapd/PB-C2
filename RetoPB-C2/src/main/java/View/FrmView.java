@@ -12,6 +12,7 @@ import java.util.*;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,8 +24,10 @@ public class FrmView extends javax.swing.JFrame {
     private ControllerVendedor controlVendedor;
     private List<Cliente> listaClientes = new ArrayList<>();
     private List<Vendedor> listaVendedores = new ArrayList<>();
+    private ArrayList<Cliente> tablaClientes = new ArrayList<>();
     private Cliente cliente = null;
     private Vendedor vendedor = null;
+    DefaultTableModel modeloTabla = new DefaultTableModel();
 
     /**
      * Creates new form FrmView
@@ -38,8 +41,10 @@ public class FrmView extends javax.swing.JFrame {
         } catch (Exception e) {
 
         }*/
-        this.setLocationRelativeTo(null);
+        
+        //this.setLocation(0,0);
         initComponents();
+        setModeloTablaCliente();
     }
 
     //Metodo para cambiar la fuente del jFrame
@@ -64,6 +69,9 @@ public class FrmView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroupTDocCliente = new javax.swing.ButtonGroup();
+        buttonGroupTDocVendedor = new javax.swing.ButtonGroup();
+        buttonGroupTDocProveedor = new javax.swing.ButtonGroup();
         tabbedPanelGestor = new javax.swing.JTabbedPane();
         panelPedidos = new javax.swing.JPanel();
         panelClientes = new javax.swing.JPanel();
@@ -89,13 +97,13 @@ public class FrmView extends javax.swing.JFrame {
         leerClienteBtn = new javax.swing.JButton();
         actualizarClienteBtn = new javax.swing.JButton();
         borrarClienteBtn = new javax.swing.JButton();
-        tipoDocClienteCBox = new javax.swing.JComboBox<>();
         TipoDocCliente = new javax.swing.JLabel();
-        clienteFielCBox = new javax.swing.JComboBox<>();
-        ClienteFielCliente = new javax.swing.JLabel();
         panelListaCliente = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listCliente = new javax.swing.JList<>();
+        radioButtonCCCliente = new javax.swing.JRadioButton();
+        radioButtonNITCliente = new javax.swing.JRadioButton();
+        radioButtonOtroCliente = new javax.swing.JRadioButton();
         panelVendedor = new javax.swing.JPanel();
         NombreVendedor = new javax.swing.JLabel();
         DireccionVendedor = new javax.swing.JLabel();
@@ -114,7 +122,6 @@ public class FrmView extends javax.swing.JFrame {
         textFieldNroDocVendedor = new javax.swing.JTextField();
         textFieldCorreoVendedor = new javax.swing.JTextField();
         textFieldDptoVendedor = new javax.swing.JTextField();
-        tipoDocCboxVendedor = new javax.swing.JComboBox<>();
         crearVendedorBtn = new javax.swing.JButton();
         leerVendedorBtn = new javax.swing.JButton();
         actulizarVendedorBtn = new javax.swing.JButton();
@@ -122,6 +129,39 @@ public class FrmView extends javax.swing.JFrame {
         panelListaVendedor = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listVendedor = new javax.swing.JList<>();
+        radioButtonCCVendedor = new javax.swing.JRadioButton();
+        radioButtonNITVendedor = new javax.swing.JRadioButton();
+        radioButtonOtroVendedor = new javax.swing.JRadioButton();
+        panelClientes1 = new javax.swing.JPanel();
+        NombreCliente1 = new javax.swing.JLabel();
+        DireccionCliente1 = new javax.swing.JLabel();
+        TelefonoCliente1 = new javax.swing.JLabel();
+        CorreoCliente1 = new javax.swing.JLabel();
+        CiudadCliente1 = new javax.swing.JLabel();
+        DepartamentoCliente1 = new javax.swing.JLabel();
+        NroDocumentoCliente1 = new javax.swing.JLabel();
+        textFieldNombreCliente1 = new javax.swing.JTextField();
+        textFieldDireccionCliente1 = new javax.swing.JTextField();
+        textFieldTelefonoCliente1 = new javax.swing.JTextField();
+        textFieldCorreoCliente1 = new javax.swing.JTextField();
+        textFieldCiudadCliente1 = new javax.swing.JTextField();
+        textFieldDepartamentoCliente1 = new javax.swing.JTextField();
+        textFieldNroDocumentoCliente1 = new javax.swing.JTextField();
+        FechaNacimientoCliente1 = new javax.swing.JLabel();
+        textFieldIdCliente1 = new javax.swing.JTextField();
+        IdCliente1 = new javax.swing.JLabel();
+        textFieldFechaCliente1 = new javax.swing.JTextField();
+        crearClienteBtn1 = new javax.swing.JButton();
+        leerClienteBtn1 = new javax.swing.JButton();
+        actualizarClienteBtn1 = new javax.swing.JButton();
+        borrarClienteBtn1 = new javax.swing.JButton();
+        TipoDocCliente1 = new javax.swing.JLabel();
+        panelListaCliente1 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        radioButtonCCCliente1 = new javax.swing.JRadioButton();
+        radioButtonNITCliente1 = new javax.swing.JRadioButton();
+        radioButtonOtroCliente1 = new javax.swing.JRadioButton();
         panelProveedor = new javax.swing.JPanel();
         NombreProveedor = new javax.swing.JLabel();
         DireccionProveedor = new javax.swing.JLabel();
@@ -140,7 +180,6 @@ public class FrmView extends javax.swing.JFrame {
         textFieldNroDocProveedor = new javax.swing.JTextField();
         textFieldCorreoProveedor = new javax.swing.JTextField();
         textFieldDptoProveedor = new javax.swing.JTextField();
-        tipoDocCBoxProveedor = new javax.swing.JComboBox<>();
         crearProveedorBtn = new javax.swing.JButton();
         leerProveedorBtn = new javax.swing.JButton();
         actualizarProveedorBtn = new javax.swing.JButton();
@@ -148,6 +187,9 @@ public class FrmView extends javax.swing.JFrame {
         panelListaProveedor = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         listProveedor = new javax.swing.JList<>();
+        radioButtonCCProveedor = new javax.swing.JRadioButton();
+        radioButtonNITProveedor = new javax.swing.JRadioButton();
+        radioButtonOtroProveedor = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestor");
@@ -212,13 +254,7 @@ public class FrmView extends javax.swing.JFrame {
 
         borrarClienteBtn.setText("Borrar");
 
-        tipoDocClienteCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "NIT", "Otro" }));
-
         TipoDocCliente.setText("Tipo Doc:");
-
-        clienteFielCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Si", "No" }));
-
-        ClienteFielCliente.setText("Cliente Fiel:");
 
         panelListaCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Clientes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         panelListaCliente.setPreferredSize(new java.awt.Dimension(540, 180));
@@ -243,6 +279,15 @@ public class FrmView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        buttonGroupTDocCliente.add(radioButtonCCCliente);
+        radioButtonCCCliente.setText("C.C");
+
+        buttonGroupTDocCliente.add(radioButtonNITCliente);
+        radioButtonNITCliente.setText("NIT");
+
+        buttonGroupTDocCliente.add(radioButtonOtroCliente);
+        radioButtonOtroCliente.setText("Otro");
+
         javax.swing.GroupLayout panelClientesLayout = new javax.swing.GroupLayout(panelClientes);
         panelClientes.setLayout(panelClientesLayout);
         panelClientesLayout.setHorizontalGroup(
@@ -266,21 +311,21 @@ public class FrmView extends javax.swing.JFrame {
                             .addComponent(textFieldTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NroDocumentoCliente)
+                            .addComponent(CorreoCliente)
+                            .addComponent(DepartamentoCliente)
+                            .addComponent(FechaNacimientoCliente)
+                            .addComponent(TipoDocCliente))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelClientesLayout.createSequentialGroup()
-                                .addComponent(TipoDocCliente)
-                                .addGap(18, 18, 18)
-                                .addComponent(tipoDocClienteCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(ClienteFielCliente)
+                                .addComponent(radioButtonCCCliente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clienteFielCBox, 0, 63, Short.MAX_VALUE))
+                                .addComponent(radioButtonNITCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioButtonOtroCliente)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panelClientesLayout.createSequentialGroup()
-                                .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(NroDocumentoCliente)
-                                    .addComponent(CorreoCliente)
-                                    .addComponent(DepartamentoCliente)
-                                    .addComponent(FechaNacimientoCliente))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(textFieldNroDocumentoCliente, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(textFieldCorreoCliente, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -304,14 +349,19 @@ public class FrmView extends javax.swing.JFrame {
         panelClientesLayout.setVerticalGroup(
             panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelClientesLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NombreCliente)
-                    .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipoDocClienteCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TipoDocCliente)
-                    .addComponent(clienteFielCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ClienteFielCliente))
+                .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelClientesLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NombreCliente)
+                            .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TipoDocCliente)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClientesLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioButtonCCCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(radioButtonNITCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(radioButtonOtroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelClientesLayout.createSequentialGroup()
@@ -350,7 +400,7 @@ public class FrmView extends javax.swing.JFrame {
                     .addComponent(leerClienteBtn)
                     .addComponent(actualizarClienteBtn)
                     .addComponent(borrarClienteBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
 
         tabbedPanelGestor.addTab("Cliente", panelClientes);
@@ -372,8 +422,6 @@ public class FrmView extends javax.swing.JFrame {
         CorreoVendedor.setText("Correo:");
 
         DepartamentoVendedor.setText("Departamento:");
-
-        tipoDocCboxVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "NIT", "Otro" }));
 
         crearVendedorBtn.setLabel("Crear");
         crearVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -420,6 +468,16 @@ public class FrmView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        buttonGroupTDocVendedor.add(radioButtonCCVendedor);
+        radioButtonCCVendedor.setSelected(true);
+        radioButtonCCVendedor.setText("C.C");
+
+        buttonGroupTDocVendedor.add(radioButtonNITVendedor);
+        radioButtonNITVendedor.setText("NIT");
+
+        buttonGroupTDocVendedor.add(radioButtonOtroVendedor);
+        radioButtonOtroVendedor.setText("Otro");
+
         javax.swing.GroupLayout panelVendedorLayout = new javax.swing.GroupLayout(panelVendedor);
         panelVendedor.setLayout(panelVendedorLayout);
         panelVendedorLayout.setHorizontalGroup(
@@ -445,20 +503,22 @@ public class FrmView extends javax.swing.JFrame {
                                     .addComponent(textFieldNombreVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NroDocumentoVendedor)
+                                    .addComponent(CorreoVendedor)
+                                    .addComponent(DepartamentoVendedor)
+                                    .addComponent(TipoDocVendedor))
+                                .addGap(35, 35, 35)
+                                .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelVendedorLayout.createSequentialGroup()
-                                        .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(NroDocumentoVendedor)
-                                            .addComponent(CorreoVendedor)
-                                            .addComponent(DepartamentoVendedor))
-                                        .addGap(35, 35, 35)
-                                        .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldCorreoVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                            .addComponent(textFieldNroDocVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                            .addComponent(textFieldDptoVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
-                                    .addGroup(panelVendedorLayout.createSequentialGroup()
-                                        .addComponent(TipoDocVendedor)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tipoDocCboxVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(radioButtonCCVendedor)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioButtonNITVendedor)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioButtonOtroVendedor)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(textFieldCorreoVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                    .addComponent(textFieldNroDocVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                    .addComponent(textFieldDptoVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
                             .addGroup(panelVendedorLayout.createSequentialGroup()
                                 .addGap(45, 45, 45)
                                 .addComponent(crearVendedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -482,7 +542,12 @@ public class FrmView extends javax.swing.JFrame {
                     .addComponent(NombreVendedor)
                     .addComponent(TipoDocVendedor)
                     .addComponent(textFieldNombreVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipoDocCboxVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelVendedorLayout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(radioButtonCCVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(radioButtonNITVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(radioButtonOtroVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DireccionVendedor)
@@ -513,10 +578,209 @@ public class FrmView extends javax.swing.JFrame {
                     .addComponent(leerVendedorBtn)
                     .addComponent(actulizarVendedorBtn)
                     .addComponent(borrarVendedorBtn))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(52, 52, 52))
         );
 
         tabbedPanelGestor.addTab("Vendedor", panelVendedor);
+
+        panelClientes1.setPreferredSize(new java.awt.Dimension(596, 490));
+
+        NombreCliente1.setText("Nombre:");
+
+        DireccionCliente1.setText("Direccion:");
+
+        TelefonoCliente1.setText("Telefono:");
+
+        CorreoCliente1.setText("Correo:");
+
+        CiudadCliente1.setText("Ciudad: ");
+
+        DepartamentoCliente1.setText("Departamento:");
+
+        NroDocumentoCliente1.setText("Nro Documento:");
+
+        FechaNacimientoCliente1.setText("Fecha de Nacimiento:");
+
+        IdCliente1.setText("Id:");
+
+        crearClienteBtn1.setText("Crear");
+        crearClienteBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearClienteBtn1ActionPerformed(evt);
+            }
+        });
+
+        leerClienteBtn1.setText("Leer");
+        leerClienteBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leerClienteBtn1ActionPerformed(evt);
+            }
+        });
+
+        actualizarClienteBtn1.setText("Actualizar");
+        actualizarClienteBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarClienteBtn1ActionPerformed(evt);
+            }
+        });
+
+        borrarClienteBtn1.setText("Borrar");
+
+        TipoDocCliente1.setText("Tipo Doc:");
+
+        panelListaCliente1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Clientes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        panelListaCliente.setPreferredSize(new java.awt.Dimension(540, 180));
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(jTable2);
+
+        javax.swing.GroupLayout panelListaCliente1Layout = new javax.swing.GroupLayout(panelListaCliente1);
+        panelListaCliente1.setLayout(panelListaCliente1Layout);
+        panelListaCliente1Layout.setHorizontalGroup(
+            panelListaCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelListaCliente1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5)
+                .addContainerGap())
+        );
+        panelListaCliente1Layout.setVerticalGroup(
+            panelListaCliente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelListaCliente1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(11, Short.MAX_VALUE))
+        );
+
+        buttonGroupTDocCliente.add(radioButtonCCCliente1);
+        radioButtonCCCliente1.setSelected(true);
+        radioButtonCCCliente1.setText("C.C");
+
+        buttonGroupTDocCliente.add(radioButtonNITCliente1);
+        radioButtonNITCliente1.setText("NIT");
+
+        buttonGroupTDocCliente.add(radioButtonOtroCliente1);
+        radioButtonOtroCliente1.setText("Otro");
+
+        javax.swing.GroupLayout panelClientes1Layout = new javax.swing.GroupLayout(panelClientes1);
+        panelClientes1.setLayout(panelClientes1Layout);
+        panelClientes1Layout.setHorizontalGroup(
+            panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelClientes1Layout.createSequentialGroup()
+                .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelClientes1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IdCliente1)
+                            .addComponent(DireccionCliente1)
+                            .addComponent(NombreCliente1)
+                            .addComponent(CiudadCliente1)
+                            .addComponent(TelefonoCliente1))
+                        .addGap(14, 14, 14)
+                        .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(textFieldNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDireccionCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldIdCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldCiudadCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldTelefonoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NroDocumentoCliente1)
+                            .addComponent(CorreoCliente1)
+                            .addComponent(DepartamentoCliente1)
+                            .addComponent(FechaNacimientoCliente1)
+                            .addComponent(TipoDocCliente1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelClientes1Layout.createSequentialGroup()
+                                .addComponent(radioButtonCCCliente1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioButtonNITCliente1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(radioButtonOtroCliente1)
+                                .addGap(0, 19, Short.MAX_VALUE))
+                            .addGroup(panelClientes1Layout.createSequentialGroup()
+                                .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldNroDocumentoCliente1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textFieldCorreoCliente1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textFieldDepartamentoCliente1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textFieldFechaCliente1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(1, 1, 1))))
+                    .addGroup(panelClientes1Layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(crearClienteBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(leerClienteBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(actualizarClienteBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(borrarClienteBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClientes1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelListaCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelClientes1Layout.setVerticalGroup(
+            panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelClientes1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NombreCliente1)
+                        .addComponent(textFieldNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TipoDocCliente1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(radioButtonCCCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(radioButtonNITCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(radioButtonOtroCliente1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelClientes1Layout.createSequentialGroup()
+                        .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(DireccionCliente1)
+                            .addComponent(textFieldDireccionCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(NroDocumentoCliente1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(CorreoCliente1)
+                            .addComponent(textFieldIdCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(IdCliente1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textFieldCiudadCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CiudadCliente1)
+                            .addComponent(DepartamentoCliente1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(FechaNacimientoCliente1)
+                            .addComponent(textFieldTelefonoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TelefonoCliente1)))
+                    .addGroup(panelClientes1Layout.createSequentialGroup()
+                        .addComponent(textFieldNroDocumentoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldCorreoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldDepartamentoCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldFechaCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(panelListaCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(panelClientes1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(crearClienteBtn1)
+                    .addComponent(leerClienteBtn1)
+                    .addComponent(actualizarClienteBtn1)
+                    .addComponent(borrarClienteBtn1))
+                .addGap(52, 52, 52))
+        );
+
+        tabbedPanelGestor.addTab("Cliente", panelClientes1);
 
         NombreProveedor.setText("Nombre:");
 
@@ -535,8 +799,6 @@ public class FrmView extends javax.swing.JFrame {
         CorreoProveedor.setText("Correo:");
 
         DepartamentoProveedor.setText("Departamento:");
-
-        tipoDocCBoxProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "NIT", "Otro" }));
 
         crearProveedorBtn.setLabel("Crear");
 
@@ -568,6 +830,16 @@ public class FrmView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        buttonGroupTDocProveedor.add(radioButtonCCProveedor);
+        radioButtonCCProveedor.setSelected(true);
+        radioButtonCCProveedor.setText("C.C");
+
+        buttonGroupTDocProveedor.add(radioButtonNITProveedor);
+        radioButtonNITProveedor.setText("NIT");
+
+        buttonGroupTDocProveedor.add(radioButtonOtroProveedor);
+        radioButtonOtroProveedor.setText("Otro");
+
         javax.swing.GroupLayout panelProveedorLayout = new javax.swing.GroupLayout(panelProveedor);
         panelProveedor.setLayout(panelProveedorLayout);
         panelProveedorLayout.setHorizontalGroup(
@@ -593,20 +865,22 @@ public class FrmView extends javax.swing.JFrame {
                                     .addComponent(textFieldNombreProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NroDocumentoProveedor)
+                                    .addComponent(CorreoProveedor)
+                                    .addComponent(DepartamentoProveedor)
+                                    .addComponent(TipoDocProveedor))
+                                .addGap(35, 35, 35)
+                                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelProveedorLayout.createSequentialGroup()
-                                        .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(NroDocumentoProveedor)
-                                            .addComponent(CorreoProveedor)
-                                            .addComponent(DepartamentoProveedor))
-                                        .addGap(35, 35, 35)
-                                        .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldCorreoProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                            .addComponent(textFieldNroDocProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                                            .addComponent(textFieldDptoProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
-                                    .addGroup(panelProveedorLayout.createSequentialGroup()
-                                        .addComponent(TipoDocProveedor)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tipoDocCBoxProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(radioButtonCCProveedor)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioButtonNITProveedor)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(radioButtonOtroProveedor)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(textFieldCorreoProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                    .addComponent(textFieldNroDocProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                    .addComponent(textFieldDptoProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
                             .addGroup(panelProveedorLayout.createSequentialGroup()
                                 .addGap(45, 45, 45)
                                 .addComponent(crearProveedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -626,11 +900,14 @@ public class FrmView extends javax.swing.JFrame {
             panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelProveedorLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NombreProveedor)
-                    .addComponent(TipoDocProveedor)
-                    .addComponent(textFieldNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipoDocCBoxProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NombreProveedor)
+                        .addComponent(TipoDocProveedor)
+                        .addComponent(textFieldNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(radioButtonCCProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(radioButtonNITProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(radioButtonOtroProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DireccionProveedor)
@@ -697,11 +974,6 @@ public class FrmView extends javax.swing.JFrame {
         String nroDocumento = textFieldNroDocumentoCliente.getText();
         String fechaNacimiento = textFieldFechaCliente.getText();
         String id = textFieldIdCliente.getText();
-
-        String fidelizacion = clienteFielCBox.getSelectedItem().toString();
-
-        boolean fidelidad = false;
-        fidelidad = fidelizacion.equals("Si");
 
         boolean clienteCreado = false;
         try {
@@ -832,7 +1104,7 @@ public class FrmView extends javax.swing.JFrame {
 
     private void actulizarVendedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actulizarVendedorBtnActionPerformed
         try {
-            int id = Integer.parseInt(textFieldIdVendedor.getText());
+            String id = textFieldIdVendedor.getText();
             String nombre = textFieldNombreVendedor.getText();
             String direccion = textFieldDireccionVendedor.getText();
             String telefono = textFieldTelefonoVendedor.getText();
@@ -840,13 +1112,12 @@ public class FrmView extends javax.swing.JFrame {
             String ciudad = textFieldCiudadVendedor.getText();
             String departamento = textFieldDptoVendedor.getText();
             String tipoDocumento = "";
-            int nroDocumento = Integer.parseInt(textFieldNroDocVendedor.getText());
-
-            controlVendedor.procesar(nombre, direccion, telefono, correo, ciudad, departamento,
-                    tipoDocumento, nroDocumento, id);
+            String nroDocumento = textFieldNroDocVendedor.getText();
 
             boolean vendedorActualizado = false;
             try {
+                controlVendedor.procesar(nombre, direccion, telefono, correo, ciudad, departamento,
+                    tipoDocumento, Integer.parseInt(nroDocumento), Integer.parseInt(id));
                 vendedorActualizado = controlVendedor.actualizar(listaVendedores);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Vendedor no existe.");
@@ -861,6 +1132,45 @@ public class FrmView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
         }
     }//GEN-LAST:event_actulizarVendedorBtnActionPerformed
+
+    private void crearClienteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearClienteBtn1ActionPerformed
+        // TODO add your handling code here:
+        String nombre = textFieldNombreCliente1.getText();
+        String direccion = textFieldDireccionCliente1.getText();
+        String telefono = textFieldTelefonoCliente1.getText();
+        String correo = textFieldCorreoCliente1.getText();
+        String ciudad = textFieldCiudadCliente1.getText();
+        String departamento = textFieldDepartamentoCliente1.getText();
+        String tipoDocumento = "";
+        String nroDocumento = textFieldNroDocumentoCliente1.getText();
+        String fechaNacimiento = textFieldFechaCliente1.getText();
+        String id = textFieldIdCliente1.getText();
+
+        boolean clienteCreado = false;
+        try {
+            clienteCreado = controlCliente.crear(nombre, direccion, telefono, correo,
+                    ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
+                    Integer.parseInt(id), tablaClientes);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
+        }
+
+        if (clienteCreado) {
+            JOptionPane.showMessageDialog(this, "El cliente ha sido creado exitosamente.");
+        }
+
+        limpiarCampos(1);
+        refrescarTabla(1);
+    }//GEN-LAST:event_crearClienteBtn1ActionPerformed
+
+    private void leerClienteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerClienteBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_leerClienteBtn1ActionPerformed
+
+    private void actualizarClienteBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarClienteBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_actualizarClienteBtn1ActionPerformed
 
     public void limpiarCampos(int opcion) {
         //Se limpian los textField
@@ -891,10 +1201,10 @@ public class FrmView extends javax.swing.JFrame {
 
     }
 
-    //Método que se encarga de actualizar la lista del tab lista de Agentes
+    //Método que se encarga de actualizar las lista
     public void refrescarListas(int opcion) {
 
-        //Se define un modelo de lista para almacenar los datos a listar en el tab lista de clientes
+        //Se define un modelo de lista para almacenar los datos a listar
         DefaultListModel model = new DefaultListModel();
 
         switch (opcion) {
@@ -913,7 +1223,31 @@ public class FrmView extends javax.swing.JFrame {
                 listVendedor.setModel(model);
         }
     }
+    
+    public void setModeloTablaCliente() {
+        
+        String [] cabecera = {"Id","Nombre", "Direccion", "Telefono", "Ciudad", "Departamento",
+            "Tipo Documento", "No. Documento", "Fecha de Nacimiento"};
+        modeloTabla.setColumnIdentifiers(cabecera);
+        jTable2.setModel(modeloTabla);
+    }
 
+    public void refrescarTabla(int opcion) {
+        Object [] datos = new Object[modeloTabla.getColumnCount()];
+        for (Cliente cliente : tablaClientes) {
+            datos [0] = cliente.getIdCliente();
+            datos [1] = cliente.getNombre();
+            datos [2] = cliente.getDireccion();
+            datos [3] = cliente.getTelefono();
+            datos [4] = cliente.getCiudad();
+            datos [5] = cliente.getDepartamento();
+            datos [6] = cliente.getTipoDocumento();
+            datos [7] = cliente.getNroDocumento();
+            datos [8] = cliente.getFechaNacimiento();
+            modeloTabla.addRow(datos);
+        }
+        jTable2.setModel(modeloTabla);
+    }
     /**
      * @param args the command line arguments
      */
@@ -951,88 +1285,125 @@ public class FrmView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CiudadCliente;
+    private javax.swing.JLabel CiudadCliente1;
     private javax.swing.JLabel CiudadProveedor;
     private javax.swing.JLabel CiudadVendedor;
-    private javax.swing.JLabel ClienteFielCliente;
     private javax.swing.JLabel CorreoCliente;
+    private javax.swing.JLabel CorreoCliente1;
     private javax.swing.JLabel CorreoProveedor;
     private javax.swing.JLabel CorreoVendedor;
     private javax.swing.JLabel DepartamentoCliente;
+    private javax.swing.JLabel DepartamentoCliente1;
     private javax.swing.JLabel DepartamentoProveedor;
     private javax.swing.JLabel DepartamentoVendedor;
     private javax.swing.JLabel DireccionCliente;
+    private javax.swing.JLabel DireccionCliente1;
     private javax.swing.JLabel DireccionProveedor;
     private javax.swing.JLabel DireccionVendedor;
     private javax.swing.JLabel FechaNacimientoCliente;
+    private javax.swing.JLabel FechaNacimientoCliente1;
     private javax.swing.JLabel IdCliente;
+    private javax.swing.JLabel IdCliente1;
     private javax.swing.JLabel IdProveedor;
     private javax.swing.JLabel IdVendedor;
     private javax.swing.JLabel NombreCliente;
+    private javax.swing.JLabel NombreCliente1;
     private javax.swing.JLabel NombreProveedor;
     private javax.swing.JLabel NombreVendedor;
     private javax.swing.JLabel NroDocumentoCliente;
+    private javax.swing.JLabel NroDocumentoCliente1;
     private javax.swing.JLabel NroDocumentoProveedor;
     private javax.swing.JLabel NroDocumentoVendedor;
     private javax.swing.JLabel TelefonoCliente;
+    private javax.swing.JLabel TelefonoCliente1;
     private javax.swing.JLabel TelefonoProveedor;
     private javax.swing.JLabel TelefonoVendedor;
     private javax.swing.JLabel TipoDocCliente;
+    private javax.swing.JLabel TipoDocCliente1;
     private javax.swing.JLabel TipoDocProveedor;
     private javax.swing.JLabel TipoDocVendedor;
     private javax.swing.JButton actualizarClienteBtn;
+    private javax.swing.JButton actualizarClienteBtn1;
     private javax.swing.JButton actualizarProveedorBtn;
     private javax.swing.JButton actulizarVendedorBtn;
     private javax.swing.JButton borrarClienteBtn;
+    private javax.swing.JButton borrarClienteBtn1;
     private javax.swing.JButton borrarProveedorBtn;
     private javax.swing.JButton borrarVendedorBtn;
-    private javax.swing.JComboBox<String> clienteFielCBox;
+    private javax.swing.ButtonGroup buttonGroupTDocCliente;
+    private javax.swing.ButtonGroup buttonGroupTDocProveedor;
+    private javax.swing.ButtonGroup buttonGroupTDocVendedor;
     private javax.swing.JButton crearClienteBtn;
+    private javax.swing.JButton crearClienteBtn1;
     private javax.swing.JButton crearProveedorBtn;
     private javax.swing.JButton crearVendedorBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable jTable2;
     private javax.swing.JButton leerClienteBtn;
+    private javax.swing.JButton leerClienteBtn1;
     private javax.swing.JButton leerProveedorBtn;
     private javax.swing.JButton leerVendedorBtn;
     private javax.swing.JList<String> listCliente;
     private javax.swing.JList<String> listProveedor;
     private javax.swing.JList<String> listVendedor;
     private javax.swing.JPanel panelClientes;
+    private javax.swing.JPanel panelClientes1;
     private javax.swing.JPanel panelListaCliente;
+    private javax.swing.JPanel panelListaCliente1;
     private javax.swing.JPanel panelListaProveedor;
     private javax.swing.JPanel panelListaVendedor;
     private javax.swing.JPanel panelPedidos;
     private javax.swing.JPanel panelProveedor;
     private javax.swing.JPanel panelVendedor;
+    private javax.swing.JRadioButton radioButtonCCCliente;
+    private javax.swing.JRadioButton radioButtonCCCliente1;
+    private javax.swing.JRadioButton radioButtonCCProveedor;
+    private javax.swing.JRadioButton radioButtonCCVendedor;
+    private javax.swing.JRadioButton radioButtonNITCliente;
+    private javax.swing.JRadioButton radioButtonNITCliente1;
+    private javax.swing.JRadioButton radioButtonNITProveedor;
+    private javax.swing.JRadioButton radioButtonNITVendedor;
+    private javax.swing.JRadioButton radioButtonOtroCliente;
+    private javax.swing.JRadioButton radioButtonOtroCliente1;
+    private javax.swing.JRadioButton radioButtonOtroProveedor;
+    private javax.swing.JRadioButton radioButtonOtroVendedor;
     private javax.swing.JTabbedPane tabbedPanelGestor;
     private javax.swing.JTextField textFieldCiudadCliente;
+    private javax.swing.JTextField textFieldCiudadCliente1;
     private javax.swing.JTextField textFieldCiudadProveedor;
     private javax.swing.JTextField textFieldCiudadVendedor;
     private javax.swing.JTextField textFieldCorreoCliente;
+    private javax.swing.JTextField textFieldCorreoCliente1;
     private javax.swing.JTextField textFieldCorreoProveedor;
     private javax.swing.JTextField textFieldCorreoVendedor;
     private javax.swing.JTextField textFieldDepartamentoCliente;
+    private javax.swing.JTextField textFieldDepartamentoCliente1;
     private javax.swing.JTextField textFieldDireccionCliente;
+    private javax.swing.JTextField textFieldDireccionCliente1;
     private javax.swing.JTextField textFieldDireccionProveedor;
     private javax.swing.JTextField textFieldDireccionVendedor;
     private javax.swing.JTextField textFieldDptoProveedor;
     private javax.swing.JTextField textFieldDptoVendedor;
     private javax.swing.JTextField textFieldFechaCliente;
+    private javax.swing.JTextField textFieldFechaCliente1;
     private javax.swing.JTextField textFieldIdCliente;
+    private javax.swing.JTextField textFieldIdCliente1;
     private javax.swing.JTextField textFieldIdProveedor;
     private javax.swing.JTextField textFieldIdVendedor;
     private javax.swing.JTextField textFieldNombreCliente;
+    private javax.swing.JTextField textFieldNombreCliente1;
     private javax.swing.JTextField textFieldNombreProveedor;
     private javax.swing.JTextField textFieldNombreVendedor;
     private javax.swing.JTextField textFieldNroDocProveedor;
     private javax.swing.JTextField textFieldNroDocVendedor;
     private javax.swing.JTextField textFieldNroDocumentoCliente;
+    private javax.swing.JTextField textFieldNroDocumentoCliente1;
     private javax.swing.JTextField textFieldTelefonoCliente;
+    private javax.swing.JTextField textFieldTelefonoCliente1;
     private javax.swing.JTextField textFieldTelefonoProveedor;
     private javax.swing.JTextField textFieldTelefonoVendedor;
-    private javax.swing.JComboBox<String> tipoDocCBoxProveedor;
-    private javax.swing.JComboBox<String> tipoDocCboxVendedor;
-    private javax.swing.JComboBox<String> tipoDocClienteCBox;
     // End of variables declaration//GEN-END:variables
 }

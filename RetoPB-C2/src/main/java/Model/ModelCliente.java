@@ -6,6 +6,7 @@
 package Model;
 
 import Classes.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public class ModelCliente {
     public ModelCliente() {
     }
 
-    public boolean crear(Cliente cliente, List<Cliente> listaClientes) {
+    public boolean crear(Cliente cliente, ArrayList<Cliente> listaClientes) {
         listaClientes.add(cliente);
         return true;
     }

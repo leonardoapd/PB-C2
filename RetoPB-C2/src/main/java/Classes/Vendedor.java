@@ -67,6 +67,17 @@ public class Vendedor extends DatosBasicos {
         this.totalVenta = 0;
     }
 
+    @Override
+    public String toString() {
+        return "Nombre: " + getNombre() + " - "
+                + "Direccion: " + getDireccion() + " - "
+                + "Telefono: " + getTelefono() + " - "
+                + "Correo: " + getCorreo() + " - "
+                + "Ciudad: " + getCiudad() + " - "
+                + "Departamento: " + getDepartamento() + " - "
+                + "Id: " + getIdVendedor()+ " - "
+                + "Documento: " + getNroDocumento();
+    }
     //Se crean los get y los set
     public int getCantidadVentas() {
         return cantidadVentas;

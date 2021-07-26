@@ -42,6 +42,16 @@ public class Cliente extends DatosBasicos {
         this.fechaNacimiento = fechaNacimiento;
         this.idCliente = idCliente;
     }
+    
+    public void actualizar(String nombre, String direccion, String telefono,
+            String correo, String ciudad, String departamento, String tipoDocumento,
+            int nroDocumento, String fechaNacimiento, int idCliente) {
+        this.crear(nombre, direccion, telefono, correo, ciudad, departamento,
+                tipoDocumento, nroDocumento);
+        this.fechaNacimiento = fechaNacimiento;
+        this.idCliente = idCliente;
+    }
+    
 
     //Se crean los metodos de la clase
     public void aplicarFidelizacion() {

@@ -19,20 +19,26 @@ import javax.swing.UIManager;
  */
 public class FrmView extends javax.swing.JFrame {
 
-    ControllerCliente controlCliente;
-    List<Cliente> listaClientes = new ArrayList<>();
+    private ControllerCliente controlCliente;
+    private ControllerVendedor controlVendedor;
+    private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Vendedor> listaVendedores = new ArrayList<>();
+    private Cliente cliente = null;
+    private Vendedor vendedor = null;
 
     /**
      * Creates new form FrmView
      */
     public FrmView() {
         controlCliente = new ControllerCliente();
+        controlVendedor = new ControllerVendedor();
         /*
         try {
             setUIFont(new javax.swing.plaf.FontUIResource("Helvetica", Font.PLAIN, 18));
         } catch (Exception e) {
 
         }*/
+        this.setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -100,24 +106,48 @@ public class FrmView extends javax.swing.JFrame {
         NroDocumentoVendedor = new javax.swing.JLabel();
         CorreoVendedor = new javax.swing.JLabel();
         DepartamentoVendedor = new javax.swing.JLabel();
-        FechaNacimientoVendedor = new javax.swing.JLabel();
         textFieldNombreVendedor = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        textFieldDireccionVendedor = new javax.swing.JTextField();
+        textFieldIdVendedor = new javax.swing.JTextField();
+        textFieldCiudadVendedor = new javax.swing.JTextField();
+        textFieldTelefonoVendedor = new javax.swing.JTextField();
+        textFieldNroDocVendedor = new javax.swing.JTextField();
+        textFieldCorreoVendedor = new javax.swing.JTextField();
+        textFieldDptoVendedor = new javax.swing.JTextField();
+        tipoDocCboxVendedor = new javax.swing.JComboBox<>();
+        crearVendedorBtn = new javax.swing.JButton();
+        leerVendedorBtn = new javax.swing.JButton();
+        actulizarVendedorBtn = new javax.swing.JButton();
+        borrarVendedorBtn = new javax.swing.JButton();
         panelListaVendedor = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         listVendedor = new javax.swing.JList<>();
+        panelProveedor = new javax.swing.JPanel();
+        NombreProveedor = new javax.swing.JLabel();
+        DireccionProveedor = new javax.swing.JLabel();
+        IdProveedor = new javax.swing.JLabel();
+        CiudadProveedor = new javax.swing.JLabel();
+        TelefonoProveedor = new javax.swing.JLabel();
+        TipoDocProveedor = new javax.swing.JLabel();
+        NroDocumentoProveedor = new javax.swing.JLabel();
+        CorreoProveedor = new javax.swing.JLabel();
+        DepartamentoProveedor = new javax.swing.JLabel();
+        textFieldNombreProveedor = new javax.swing.JTextField();
+        textFieldDireccionProveedor = new javax.swing.JTextField();
+        textFieldIdProveedor = new javax.swing.JTextField();
+        textFieldCiudadProveedor = new javax.swing.JTextField();
+        textFieldTelefonoProveedor = new javax.swing.JTextField();
+        textFieldNroDocProveedor = new javax.swing.JTextField();
+        textFieldCorreoProveedor = new javax.swing.JTextField();
+        textFieldDptoProveedor = new javax.swing.JTextField();
+        tipoDocCBoxProveedor = new javax.swing.JComboBox<>();
+        crearProveedorBtn = new javax.swing.JButton();
+        leerProveedorBtn = new javax.swing.JButton();
+        actualizarProveedorBtn = new javax.swing.JButton();
+        borrarProveedorBtn = new javax.swing.JButton();
+        panelListaProveedor = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        listProveedor = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestor");
@@ -134,7 +164,7 @@ public class FrmView extends javax.swing.JFrame {
         );
         panelPedidosLayout.setVerticalGroup(
             panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 506, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
 
         tabbedPanelGestor.addTab("Pedidos", panelPedidos);
@@ -193,6 +223,7 @@ public class FrmView extends javax.swing.JFrame {
         panelListaCliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Clientes", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         panelListaCliente.setPreferredSize(new java.awt.Dimension(540, 180));
 
+        listCliente.setEnabled(false);
         jScrollPane1.setViewportView(listCliente);
 
         javax.swing.GroupLayout panelListaClienteLayout = new javax.swing.GroupLayout(panelListaCliente);
@@ -202,7 +233,7 @@ public class FrmView extends javax.swing.JFrame {
             .addGroup(panelListaClienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGap(9, 9, 9))
         );
         panelListaClienteLayout.setVerticalGroup(
             panelListaClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,54 +250,52 @@ public class FrmView extends javax.swing.JFrame {
             .addGroup(panelClientesLayout.createSequentialGroup()
                 .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelClientesLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IdCliente)
+                            .addComponent(DireccionCliente)
+                            .addComponent(NombreCliente)
+                            .addComponent(CiudadCliente)
+                            .addComponent(TelefonoCliente))
+                        .addGap(14, 14, 14)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldCiudadCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelClientesLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(IdCliente)
-                                    .addComponent(DireccionCliente)
-                                    .addComponent(NombreCliente)
-                                    .addComponent(CiudadCliente)
-                                    .addComponent(TelefonoCliente))
-                                .addGap(14, 14, 14)
-                                .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                                    .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldCiudadCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textFieldTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelClientesLayout.createSequentialGroup()
-                                        .addComponent(TipoDocCliente)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(tipoDocClienteCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ClienteFielCliente)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(clienteFielCBox, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(panelClientesLayout.createSequentialGroup()
-                                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(NroDocumentoCliente)
-                                            .addComponent(CorreoCliente)
-                                            .addComponent(DepartamentoCliente)
-                                            .addComponent(FechaNacimientoCliente))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldNroDocumentoCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(textFieldDepartamentoCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(textFieldFechaCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(textFieldCorreoCliente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(TipoDocCliente)
+                                .addGap(18, 18, 18)
+                                .addComponent(tipoDocClienteCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ClienteFielCliente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clienteFielCBox, 0, 63, Short.MAX_VALUE))
                             .addGroup(panelClientesLayout.createSequentialGroup()
-                                .addGap(45, 45, 45)
-                                .addComponent(crearClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(leerClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(actualizarClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(borrarClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NroDocumentoCliente)
+                                    .addComponent(CorreoCliente)
+                                    .addComponent(DepartamentoCliente)
+                                    .addComponent(FechaNacimientoCliente))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldNroDocumentoCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textFieldCorreoCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textFieldDepartamentoCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textFieldFechaCliente, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(1, 1, 1))))
+                    .addGroup(panelClientesLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(crearClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(leerClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(actualizarClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(borrarClienteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClientesLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(panelListaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -344,17 +373,30 @@ public class FrmView extends javax.swing.JFrame {
 
         DepartamentoVendedor.setText("Departamento:");
 
-        FechaNacimientoVendedor.setText("Fecha de Nacimiento:");
+        tipoDocCboxVendedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "NIT", "Otro" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "NIT", "Otro" }));
+        crearVendedorBtn.setLabel("Crear");
+        crearVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearVendedorBtnActionPerformed(evt);
+            }
+        });
 
-        jButton1.setLabel("Crear");
+        leerVendedorBtn.setText("Leer");
+        leerVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leerVendedorBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Leer");
+        actulizarVendedorBtn.setText("Actualizar");
+        actulizarVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actulizarVendedorBtnActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Actualizar");
-
-        jButton4.setText("Borrar");
+        borrarVendedorBtn.setText("Borrar");
 
         panelListaVendedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Vendedores", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         panelListaVendedor.setPreferredSize(new java.awt.Dimension(540, 180));
@@ -367,7 +409,7 @@ public class FrmView extends javax.swing.JFrame {
             panelListaVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelListaVendedorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addGap(9, 9, 9))
         );
         panelListaVendedorLayout.setVerticalGroup(
@@ -396,41 +438,40 @@ public class FrmView extends javax.swing.JFrame {
                                     .addComponent(TelefonoVendedor))
                                 .addGap(14, 14, 14)
                                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldDireccionVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldIdVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldCiudadVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldTelefonoVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(textFieldNombreVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(panelVendedorLayout.createSequentialGroup()
                                         .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(FechaNacimientoVendedor)
                                             .addComponent(NroDocumentoVendedor)
                                             .addComponent(CorreoVendedor)
                                             .addComponent(DepartamentoVendedor))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(35, 35, 35)
                                         .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jTextField8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(textFieldCorreoVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                            .addComponent(textFieldNroDocVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                            .addComponent(textFieldDptoVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
                                     .addGroup(panelVendedorLayout.createSequentialGroup()
                                         .addComponent(TipoDocVendedor)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(tipoDocCboxVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panelVendedorLayout.createSequentialGroup()
                                 .addGap(45, 45, 45)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(crearVendedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(leerVendedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(actulizarVendedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(34, 34, 34)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(panelListaVendedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(borrarVendedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(1, 1, 1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVendedorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelListaVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelVendedorLayout.setVerticalGroup(
@@ -441,43 +482,189 @@ public class FrmView extends javax.swing.JFrame {
                     .addComponent(NombreVendedor)
                     .addComponent(TipoDocVendedor)
                     .addComponent(textFieldNombreVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoDocCboxVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DireccionVendedor)
                     .addComponent(NroDocumentoVendedor)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldDireccionVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldNroDocVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(IdVendedor)
                     .addComponent(CorreoVendedor)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldIdVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldCorreoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CiudadVendedor)
                     .addComponent(DepartamentoVendedor)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldCiudadVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldDptoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TelefonoVendedor)
-                    .addComponent(FechaNacimientoVendedor)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textFieldTelefonoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(panelListaVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(crearVendedorBtn)
+                    .addComponent(leerVendedorBtn)
+                    .addComponent(actulizarVendedorBtn)
+                    .addComponent(borrarVendedorBtn))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         tabbedPanelGestor.addTab("Vendedor", panelVendedor);
+
+        NombreProveedor.setText("Nombre:");
+
+        DireccionProveedor.setText("Direccion:");
+
+        IdProveedor.setText("Id:");
+
+        CiudadProveedor.setText("Ciudad:");
+
+        TelefonoProveedor.setText("Telefono:");
+
+        TipoDocProveedor.setText("Tipo Doc:");
+
+        NroDocumentoProveedor.setText("Nro Documento:");
+
+        CorreoProveedor.setText("Correo:");
+
+        DepartamentoProveedor.setText("Departamento:");
+
+        tipoDocCBoxProveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CC", "NIT", "Otro" }));
+
+        crearProveedorBtn.setLabel("Crear");
+
+        leerProveedorBtn.setText("Leer");
+
+        actualizarProveedorBtn.setText("Actualizar");
+
+        borrarProveedorBtn.setText("Borrar");
+
+        panelListaProveedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Proveedores", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        panelListaProveedor.setPreferredSize(new java.awt.Dimension(540, 180));
+
+        jScrollPane3.setViewportView(listProveedor);
+
+        javax.swing.GroupLayout panelListaProveedorLayout = new javax.swing.GroupLayout(panelListaProveedor);
+        panelListaProveedor.setLayout(panelListaProveedorLayout);
+        panelListaProveedorLayout.setHorizontalGroup(
+            panelListaProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelListaProveedorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3)
+                .addGap(9, 9, 9))
+        );
+        panelListaProveedorLayout.setVerticalGroup(
+            panelListaProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListaProveedorLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout panelProveedorLayout = new javax.swing.GroupLayout(panelProveedor);
+        panelProveedor.setLayout(panelProveedorLayout);
+        panelProveedorLayout.setHorizontalGroup(
+            panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProveedorLayout.createSequentialGroup()
+                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelProveedorLayout.createSequentialGroup()
+                        .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelProveedorLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(DireccionProveedor)
+                                    .addComponent(NombreProveedor)
+                                    .addComponent(IdProveedor)
+                                    .addComponent(CiudadProveedor)
+                                    .addComponent(TelefonoProveedor))
+                                .addGap(14, 14, 14)
+                                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldDireccionProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldIdProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldCiudadProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldTelefonoProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textFieldNombreProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelProveedorLayout.createSequentialGroup()
+                                        .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(NroDocumentoProveedor)
+                                            .addComponent(CorreoProveedor)
+                                            .addComponent(DepartamentoProveedor))
+                                        .addGap(35, 35, 35)
+                                        .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textFieldCorreoProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                            .addComponent(textFieldNroDocProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                            .addComponent(textFieldDptoProveedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
+                                    .addGroup(panelProveedorLayout.createSequentialGroup()
+                                        .addComponent(TipoDocProveedor)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(tipoDocCBoxProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(panelProveedorLayout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(crearProveedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(leerProveedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(actualizarProveedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(borrarProveedorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(1, 1, 1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelProveedorLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelListaProveedor, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        panelProveedorLayout.setVerticalGroup(
+            panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelProveedorLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NombreProveedor)
+                    .addComponent(TipoDocProveedor)
+                    .addComponent(textFieldNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipoDocCBoxProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DireccionProveedor)
+                    .addComponent(NroDocumentoProveedor)
+                    .addComponent(textFieldDireccionProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldNroDocProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(IdProveedor)
+                    .addComponent(CorreoProveedor)
+                    .addComponent(textFieldIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldCorreoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CiudadProveedor)
+                    .addComponent(DepartamentoProveedor)
+                    .addComponent(textFieldCiudadProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldDptoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(TelefonoProveedor)
+                    .addComponent(textFieldTelefonoProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(panelListaProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(panelProveedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(crearProveedorBtn)
+                    .addComponent(leerProveedorBtn)
+                    .addComponent(actualizarProveedorBtn)
+                    .addComponent(borrarProveedorBtn))
+                .addContainerGap(52, Short.MAX_VALUE))
+        );
+
+        tabbedPanelGestor.addTab("Proveedor", panelProveedor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -492,7 +679,7 @@ public class FrmView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPanelGestor, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
+                .addComponent(tabbedPanelGestor, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -511,12 +698,17 @@ public class FrmView extends javax.swing.JFrame {
         String fechaNacimiento = textFieldFechaCliente.getText();
         String id = textFieldIdCliente.getText();
 
-        boolean fidelizacion = true;
+        String fidelizacion = clienteFielCBox.getSelectedItem().toString();
+
+        boolean fidelidad = false;
+        fidelidad = fidelizacion.equals("Si");
+
         boolean clienteCreado = false;
         try {
             clienteCreado = controlCliente.crear(nombre, direccion, telefono, correo,
                     ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
                     Integer.parseInt(id), listaClientes);
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
         }
@@ -525,13 +717,12 @@ public class FrmView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El cliente ha sido creado exitosamente.");
         }
 
-        limpiarCamposCliente();
-        refrescarListaCliente();
+        limpiarCampos(1);
+        refrescarListas(1);
 
     }//GEN-LAST:event_crearClienteBtnActionPerformed
 
     private void leerClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerClienteBtnActionPerformed
-        Cliente cliente = null;
         try {
             int id = Integer.parseInt(textFieldIdCliente.getText());
             cliente = controlCliente.leer(id, listaClientes);
@@ -546,6 +737,7 @@ public class FrmView extends javax.swing.JFrame {
                 textFieldFechaCliente.setText(cliente.getFechaNacimiento());
             } else {
                 JOptionPane.showMessageDialog(this, "No se ha encontrado el cliente.");
+                limpiarCampos(1);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Rellene el campo ID.");
@@ -578,47 +770,148 @@ public class FrmView extends javax.swing.JFrame {
             if (clienteActualizado) {
                 JOptionPane.showMessageDialog(this, "El cliente ha sido actualizado exitosamente.");
             }
-            limpiarCamposCliente();
-            refrescarListaCliente();
+            limpiarCampos(1);
+            refrescarListas(1);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
         }
 
     }//GEN-LAST:event_actualizarClienteBtnActionPerformed
 
-    public void limpiarCamposCliente() {
+    private void crearVendedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearVendedorBtnActionPerformed
+        String nombre = textFieldNombreVendedor.getText();
+        String direccion = textFieldDireccionVendedor.getText();
+        String telefono = textFieldTelefonoVendedor.getText();
+        String correo = textFieldCorreoVendedor.getText();
+        String ciudad = textFieldCiudadVendedor.getText();
+        String departamento = textFieldDptoVendedor.getText();
+        String tipoDocumento = "";
+        String nroDocumento = textFieldNroDocVendedor.getText();
+        String id = textFieldIdVendedor.getText();
+
+        
+
+        try {
+            controlVendedor.procesar(nombre, direccion, telefono, correo, ciudad, departamento,
+                tipoDocumento, Integer.parseInt(nroDocumento), Integer.parseInt(id));
+            boolean vendedorCreado = controlVendedor.crear(listaVendedores);
+
+            if (vendedorCreado) {
+                JOptionPane.showMessageDialog(this, "El vendedor ha sido creado exitosamente.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
+        }
+
+        limpiarCampos(2);
+        refrescarListas(2);
+
+    }//GEN-LAST:event_crearVendedorBtnActionPerformed
+
+    private void leerVendedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerVendedorBtnActionPerformed
+
+        try {
+            int idVendedor = Integer.parseInt(textFieldIdVendedor.getText());
+            vendedor = controlVendedor.leer(idVendedor, listaVendedores);
+            if (vendedor != null) {
+                textFieldNombreVendedor.setText(vendedor.getNombre());
+                textFieldDireccionVendedor.setText(vendedor.getDireccion());
+                textFieldTelefonoVendedor.setText(vendedor.getTelefono());
+                textFieldCorreoVendedor.setText(vendedor.getCorreo());
+                textFieldCiudadVendedor.setText(vendedor.getCiudad());
+                textFieldDptoVendedor.setText(vendedor.getDepartamento());
+                textFieldNroDocVendedor.setText(Integer.toString(vendedor.getNroDocumento()));
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha encontrado el vendedor.");
+                limpiarCampos(2);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Rellene el campo ID.");
+        }
+    }//GEN-LAST:event_leerVendedorBtnActionPerformed
+
+    private void actulizarVendedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actulizarVendedorBtnActionPerformed
+        try {
+            int id = Integer.parseInt(textFieldIdVendedor.getText());
+            String nombre = textFieldNombreVendedor.getText();
+            String direccion = textFieldDireccionVendedor.getText();
+            String telefono = textFieldTelefonoVendedor.getText();
+            String correo = textFieldCorreoVendedor.getText();
+            String ciudad = textFieldCiudadVendedor.getText();
+            String departamento = textFieldDptoVendedor.getText();
+            String tipoDocumento = "";
+            int nroDocumento = Integer.parseInt(textFieldNroDocVendedor.getText());
+
+            controlVendedor.procesar(nombre, direccion, telefono, correo, ciudad, departamento,
+                    tipoDocumento, nroDocumento, id);
+
+            boolean vendedorActualizado = false;
+            try {
+                vendedorActualizado = controlVendedor.actualizar(listaVendedores);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Vendedor no existe.");
+            }
+
+            if (vendedorActualizado) {
+                JOptionPane.showMessageDialog(this, "El vendedor ha sido actualizado exitosamente.");
+            }
+            limpiarCampos(2);
+            refrescarListas(2);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
+        }
+    }//GEN-LAST:event_actulizarVendedorBtnActionPerformed
+
+    public void limpiarCampos(int opcion) {
         //Se limpian los textField
-        textFieldNombreCliente.setText("");
-        textFieldDireccionCliente.setText("");
-        textFieldTelefonoCliente.setText("");
-        textFieldCorreoCliente.setText("");
-        textFieldCiudadCliente.setText("");
-        textFieldDepartamentoCliente.setText("");
-        textFieldNroDocumentoCliente.setText("");
-        textFieldIdCliente.setText("");
-        textFieldFechaCliente.setText("");
+
+        switch (opcion) {
+            case 1:
+                textFieldNombreCliente.setText("");
+                textFieldDireccionCliente.setText("");
+                textFieldTelefonoCliente.setText("");
+                textFieldCorreoCliente.setText("");
+                textFieldCiudadCliente.setText("");
+                textFieldDepartamentoCliente.setText("");
+                textFieldNroDocumentoCliente.setText("");
+                textFieldIdCliente.setText("");
+                textFieldFechaCliente.setText("");
+                break;
+            case 2:
+                textFieldNombreVendedor.setText("");
+                textFieldDireccionVendedor.setText("");
+                textFieldTelefonoVendedor.setText("");
+                textFieldCorreoVendedor.setText("");
+                textFieldCiudadVendedor.setText("");
+                textFieldDptoVendedor.setText("");
+                textFieldNroDocVendedor.setText("");
+                textFieldIdVendedor.setText("");
+                break;
+        }
 
     }
 
     //Método que se encarga de actualizar la lista del tab lista de Agentes
-    public void refrescarListaCliente() {
+    public void refrescarListas(int opcion) {
+
         //Se define un modelo de lista para almacenar los datos a listar en el tab lista de clientes
         DefaultListModel model = new DefaultListModel();
 
-        //Ciclo que recorre los elementos existentes en la lista de estudiantes para ir agregándolos en el tab lista estudiantes
-        for (int i = 0; i < listaClientes.size(); i++) {
-            /*
-            * listaEstudiantes.get(i): Significa que accedo al elemento de la lista en posición 'i'.
-            * Al ser una lista de objetos de tipo Estudiante, en cada iteración del ciclo se accede a cada estudiante
-             */
-            Cliente cliente = listaClientes.get(i);
-
-            //Se agrega la información requerida al modelo de lista
-            model.add(i, cliente.toString());
+        switch (opcion) {
+            case 1:
+                for (int i = 0; i < listaClientes.size(); i++) {
+                    Cliente cliente = listaClientes.get(i);
+                    model.add(i, cliente.toString());
+                }
+                listCliente.setModel(model);
+                break;
+            case 2:
+                for (int i = 0; i < listaVendedores.size(); i++) {
+                    Vendedor vendedor = listaVendedores.get(i);
+                    model.add(i, vendedor.toString());
+                }
+                listVendedor.setModel(model);
         }
-
-        //El modelo es enviado al tab lista de vuelos en el elemento de tipo jList 'lstFlight'
-        listCliente.setModel(model);
     }
 
     /**
@@ -658,64 +951,88 @@ public class FrmView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel CiudadCliente;
+    private javax.swing.JLabel CiudadProveedor;
     private javax.swing.JLabel CiudadVendedor;
     private javax.swing.JLabel ClienteFielCliente;
     private javax.swing.JLabel CorreoCliente;
+    private javax.swing.JLabel CorreoProveedor;
     private javax.swing.JLabel CorreoVendedor;
     private javax.swing.JLabel DepartamentoCliente;
+    private javax.swing.JLabel DepartamentoProveedor;
     private javax.swing.JLabel DepartamentoVendedor;
     private javax.swing.JLabel DireccionCliente;
+    private javax.swing.JLabel DireccionProveedor;
     private javax.swing.JLabel DireccionVendedor;
     private javax.swing.JLabel FechaNacimientoCliente;
-    private javax.swing.JLabel FechaNacimientoVendedor;
     private javax.swing.JLabel IdCliente;
+    private javax.swing.JLabel IdProveedor;
     private javax.swing.JLabel IdVendedor;
     private javax.swing.JLabel NombreCliente;
+    private javax.swing.JLabel NombreProveedor;
     private javax.swing.JLabel NombreVendedor;
     private javax.swing.JLabel NroDocumentoCliente;
+    private javax.swing.JLabel NroDocumentoProveedor;
     private javax.swing.JLabel NroDocumentoVendedor;
     private javax.swing.JLabel TelefonoCliente;
+    private javax.swing.JLabel TelefonoProveedor;
     private javax.swing.JLabel TelefonoVendedor;
     private javax.swing.JLabel TipoDocCliente;
+    private javax.swing.JLabel TipoDocProveedor;
     private javax.swing.JLabel TipoDocVendedor;
     private javax.swing.JButton actualizarClienteBtn;
+    private javax.swing.JButton actualizarProveedorBtn;
+    private javax.swing.JButton actulizarVendedorBtn;
     private javax.swing.JButton borrarClienteBtn;
+    private javax.swing.JButton borrarProveedorBtn;
+    private javax.swing.JButton borrarVendedorBtn;
     private javax.swing.JComboBox<String> clienteFielCBox;
     private javax.swing.JButton crearClienteBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton crearProveedorBtn;
+    private javax.swing.JButton crearVendedorBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton leerClienteBtn;
+    private javax.swing.JButton leerProveedorBtn;
+    private javax.swing.JButton leerVendedorBtn;
     private javax.swing.JList<String> listCliente;
+    private javax.swing.JList<String> listProveedor;
     private javax.swing.JList<String> listVendedor;
     private javax.swing.JPanel panelClientes;
     private javax.swing.JPanel panelListaCliente;
+    private javax.swing.JPanel panelListaProveedor;
     private javax.swing.JPanel panelListaVendedor;
     private javax.swing.JPanel panelPedidos;
+    private javax.swing.JPanel panelProveedor;
     private javax.swing.JPanel panelVendedor;
     private javax.swing.JTabbedPane tabbedPanelGestor;
     private javax.swing.JTextField textFieldCiudadCliente;
+    private javax.swing.JTextField textFieldCiudadProveedor;
+    private javax.swing.JTextField textFieldCiudadVendedor;
     private javax.swing.JTextField textFieldCorreoCliente;
+    private javax.swing.JTextField textFieldCorreoProveedor;
+    private javax.swing.JTextField textFieldCorreoVendedor;
     private javax.swing.JTextField textFieldDepartamentoCliente;
     private javax.swing.JTextField textFieldDireccionCliente;
+    private javax.swing.JTextField textFieldDireccionProveedor;
+    private javax.swing.JTextField textFieldDireccionVendedor;
+    private javax.swing.JTextField textFieldDptoProveedor;
+    private javax.swing.JTextField textFieldDptoVendedor;
     private javax.swing.JTextField textFieldFechaCliente;
     private javax.swing.JTextField textFieldIdCliente;
+    private javax.swing.JTextField textFieldIdProveedor;
+    private javax.swing.JTextField textFieldIdVendedor;
     private javax.swing.JTextField textFieldNombreCliente;
+    private javax.swing.JTextField textFieldNombreProveedor;
     private javax.swing.JTextField textFieldNombreVendedor;
+    private javax.swing.JTextField textFieldNroDocProveedor;
+    private javax.swing.JTextField textFieldNroDocVendedor;
     private javax.swing.JTextField textFieldNroDocumentoCliente;
     private javax.swing.JTextField textFieldTelefonoCliente;
+    private javax.swing.JTextField textFieldTelefonoProveedor;
+    private javax.swing.JTextField textFieldTelefonoVendedor;
+    private javax.swing.JComboBox<String> tipoDocCBoxProveedor;
+    private javax.swing.JComboBox<String> tipoDocCboxVendedor;
     private javax.swing.JComboBox<String> tipoDocClienteCBox;
     // End of variables declaration//GEN-END:variables
 }

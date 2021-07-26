@@ -7,8 +7,7 @@ package Controller;
 
 import Classes.*;
 import Model.ModelCliente;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  *
@@ -17,35 +16,35 @@ import java.util.List;
 public class ControllerCliente {
 
     ModelCliente modeloCliente;
-
+   
     public ControllerCliente() {
         modeloCliente = new ModelCliente();
     }
 
     public boolean crear(String nombre, String direccion, String telefono, String correo,
             String ciudad, String departamento, String tipoDocumento, int nroDocumento,
-            String fechaNacimiento, int idCliente, ArrayList<Cliente> listaClientes) {
+            String fechaNacimiento, int idCliente, ArrayList<Cliente> tablaClientes) {
 
         Cliente cliente = new Cliente(nombre, direccion, telefono, correo,
                 ciudad, departamento, tipoDocumento, nroDocumento,
                 fechaNacimiento, idCliente);
-        return modeloCliente.crear(cliente, listaClientes);
+        return modeloCliente.crear(cliente, tablaClientes);
     }
 
-    public Cliente leer(int idCliente, List<Cliente> listaClientes) {
+    public Cliente leer(int idCliente, ArrayList<Cliente> tablaClientes) {
         try {
-            return modeloCliente.leer(idCliente, listaClientes);
+            return modeloCliente.leer(idCliente, tablaClientes);
         } catch (Exception e) {
             return null;
         }
     }
-    
+
     public boolean actualizar(String nombre, String direccion, String telefono, String correo,
             String ciudad, String departamento, String tipoDocumento, int nroDocumento,
-            String fechaNacimiento, int idCliente, List<Cliente> listaClientes) {
+            String fechaNacimiento, int idCliente, ArrayList<Cliente> tablaClientes) {
         Cliente cliente = new Cliente(nombre, direccion, telefono, correo,
                 ciudad, departamento, tipoDocumento, nroDocumento,
                 fechaNacimiento, idCliente);
-        return modeloCliente.actualizar(cliente, listaClientes);
+        return modeloCliente.actualizar(cliente, tablaClientes);
     }
 }

@@ -31,7 +31,7 @@ public class ControllerVendedor {
 
     }
 
-    public boolean crear(List<Vendedor> listaVendedores) {
+    public boolean crear(ArrayList<Vendedor> listaVendedores) {
         vendedor.crear(vendedor.getNombre(), vendedor.getDireccion(), vendedor.getTelefono(),
                 vendedor.getCorreo(), vendedor.getCiudad(), vendedor.getDepartamento(),
                 vendedor.getTipoDocumento(), vendedor.getNroDocumento(), vendedor.getIdVendedor());
@@ -39,7 +39,7 @@ public class ControllerVendedor {
         return true;
     }
 
-    public Vendedor leer(int idVendedor, List<Vendedor> listaVendedores) {
+    public Vendedor leer(int idVendedor, ArrayList<Vendedor> listaVendedores) {
         try {
             return modeloVendedor.leer(idVendedor, listaVendedores);
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class ControllerVendedor {
         }
     }
 
-    public boolean actualizar(List<Vendedor> listaVendedores) {
+    public boolean actualizar(ArrayList<Vendedor> listaVendedores) {
         vendedor.actualizar(vendedor.getNombre(), vendedor.getDireccion(), vendedor.getTelefono(),
                 vendedor.getCorreo(), vendedor.getCiudad(), vendedor.getDepartamento(),
                 vendedor.getTipoDocumento(), vendedor.getNroDocumento(), vendedor.getIdVendedor());

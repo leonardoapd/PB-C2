@@ -17,11 +17,11 @@ public class ModelVendedor {
     public ModelVendedor() {
     }
 
-    public void crear(Vendedor vendedor, List<Vendedor> listaVendedores) {
+    public void crear(Vendedor vendedor, ArrayList<Vendedor> listaVendedores) {
         listaVendedores.add(vendedor);
     }
 
-    public Vendedor leer(int idVendedor, List<Vendedor> listaVendedores) {
+    public Vendedor leer(int idVendedor, ArrayList<Vendedor> listaVendedores) {
         for (Vendedor vendedor : listaVendedores) {
             if (vendedor.getIdVendedor() == idVendedor) {
                 Vendedor vendedorLeido = new Vendedor(vendedor.getNombre(), vendedor.getDireccion(),
@@ -34,7 +34,7 @@ public class ModelVendedor {
         return null;
     }
 
-    public boolean actualizar(Vendedor vendedorActualizado, List<Vendedor> listaVendedores) {
+    public boolean actualizar(Vendedor vendedorActualizado, ArrayList<Vendedor> listaVendedores) {
         for (Vendedor vendedor : listaVendedores) {
             if (vendedor.getIdVendedor() == vendedorActualizado.getIdVendedor()) {
                 vendedor.setNombre(vendedorActualizado.getNombre());
@@ -43,6 +43,7 @@ public class ModelVendedor {
                 vendedor.setCiudad(vendedorActualizado.getCiudad());
                 vendedor.setDepartamento(vendedorActualizado.getDepartamento());
                 vendedor.setNroDocumento(vendedorActualizado.getNroDocumento());
+                vendedor.setTipoDocumento(vendedorActualizado.getTipoDocumento());
                 return true;
             }
         }

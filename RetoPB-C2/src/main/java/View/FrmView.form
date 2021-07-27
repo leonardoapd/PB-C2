@@ -47,7 +47,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tabbedPanelGestor" pref="528" max="32767" attributes="0"/>
+              <Component id="tabbedPanelGestor" pref="501" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -56,6 +56,7 @@
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="tabbedPanelGestor">
       <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[595, 530]"/>
         </Property>
@@ -75,15 +76,58 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="564" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="495" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="394" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="jButton1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Realizar Pedido"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar Pedido"/>
+                <Property name="toolTipText" type="java.lang.String" value="Busca el pedido ingresando el numero de id"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Aplicar Descuento"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A&#xf1;adir Producto"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="panelClientes">
           <Properties>
@@ -172,22 +216,17 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="NombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldNombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TipoDocCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="NombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldNombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TipoDocCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="radioButtonCCCliente" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="radioButtonNITCliente" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="radioButtonOtroCliente" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="radioButtonCCCliente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="radioButtonNITCliente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="radioButtonOtroCliente" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -308,6 +347,7 @@
             <Component class="javax.swing.JButton" name="crearClienteBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear"/>
+                <Property name="toolTipText" type="java.lang.String" value="Llena el formulario para crear un cliente nuevo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearClienteBtnActionPerformed"/>
@@ -316,6 +356,7 @@
             <Component class="javax.swing.JButton" name="leerClienteBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Leer"/>
+                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un cliente registrado"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leerClienteBtnActionPerformed"/>
@@ -324,6 +365,7 @@
             <Component class="javax.swing.JButton" name="actualizarClienteBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Actualiza la informaci&#xf3;n de un cliente registrado"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarClienteBtnActionPerformed"/>
@@ -396,9 +438,6 @@
             </Container>
             <Component class="javax.swing.JRadioButton" name="radioButtonCCCliente">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocCliente"/>
                 </Property>
@@ -408,9 +447,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioButtonNITCliente">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocCliente"/>
                 </Property>
@@ -419,9 +455,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioButtonOtroCliente">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocCliente"/>
                 </Property>
@@ -511,17 +544,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="NombreVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TipoDocVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldNombreVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="3" attributes="0">
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="radioButtonCCVendedor" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="radioButtonNITVendedor" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="radioButtonOtroVendedor" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="radioButtonCCVendedor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="radioButtonNITVendedor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="radioButtonOtroVendedor" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="NombreVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TipoDocVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldNombreVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
@@ -628,6 +658,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="crearVendedorBtn">
               <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Llena el formulario para crear un vendedor nuevo"/>
                 <Property name="label" type="java.lang.String" value="Crear"/>
               </Properties>
               <Events>
@@ -637,6 +668,7 @@
             <Component class="javax.swing.JButton" name="leerVendedorBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Leer"/>
+                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un vendedor registrado"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leerVendedorBtnActionPerformed"/>
@@ -645,6 +677,7 @@
             <Component class="javax.swing.JButton" name="actualizarVendedorBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Actualiza la informaci&#xf3;n de un vendedor registrado"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarVendedorBtnActionPerformed"/>
@@ -709,9 +742,6 @@
             </Container>
             <Component class="javax.swing.JRadioButton" name="radioButtonCCVendedor">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocVendedor"/>
                 </Property>
@@ -721,9 +751,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioButtonNITVendedor">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocVendedor"/>
                 </Property>
@@ -732,9 +759,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioButtonOtroVendedor">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocVendedor"/>
                 </Property>
@@ -921,6 +945,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textFieldNombreProveedor">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textFieldDireccionProveedor">
             </Component>
@@ -938,17 +965,20 @@
             </Component>
             <Component class="javax.swing.JButton" name="crearProveedorBtn">
               <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Llena el formulario para crear un proveedor nuevo"/>
                 <Property name="label" type="java.lang.String" value="Crear"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="leerProveedorBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Leer"/>
+                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un proveedor registrado"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="actualizarProveedorBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Actualiza la informaci&#xf3;n de un proveedor registrado"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="borrarProveedorBtn">
@@ -1013,9 +1043,6 @@
             </Container>
             <Component class="javax.swing.JRadioButton" name="radioButtonCCProveedor">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocProveedor"/>
                 </Property>
@@ -1025,9 +1052,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioButtonNITProveedor">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocProveedor"/>
                 </Property>
@@ -1036,9 +1060,6 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="radioButtonOtroProveedor">
               <Properties>
-                <Property name="model" type="javax.swing.ButtonModel" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="default"/>
-                </Property>
                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                   <ComponentRef name="buttonGroupTDocProveedor"/>
                 </Property>

@@ -74,6 +74,10 @@ public class FrmView extends javax.swing.JFrame {
         buttonGroupTDocProveedor = new javax.swing.ButtonGroup();
         tabbedPanelGestor = new javax.swing.JTabbedPane();
         panelPedidos = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         panelClientes = new javax.swing.JPanel();
         NombreCliente = new javax.swing.JLabel();
         DireccionCliente = new javax.swing.JLabel();
@@ -166,17 +170,44 @@ public class FrmView extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(600, 540));
         setResizable(false);
 
+        tabbedPanelGestor.setToolTipText("");
         tabbedPanelGestor.setPreferredSize(new java.awt.Dimension(595, 530));
+
+        jButton1.setText("Realizar Pedido");
+
+        jButton2.setText("Buscar Pedido");
+        jButton2.setToolTipText("Busca el pedido ingresando el numero de id");
+
+        jButton3.setText("Aplicar Descuento");
+
+        jButton4.setText("Añadir Producto");
+        jButton4.setToolTipText("");
 
         javax.swing.GroupLayout panelPedidosLayout = new javax.swing.GroupLayout(panelPedidos);
         panelPedidos.setLayout(panelPedidosLayout);
         panelPedidosLayout.setHorizontalGroup(
             panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 564, Short.MAX_VALUE)
+            .addGroup(panelPedidosLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jButton4)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         panelPedidosLayout.setVerticalGroup(
             panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPedidosLayout.createSequentialGroup()
+                .addContainerGap(394, Short.MAX_VALUE)
+                .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(52, 52, 52))
         );
 
         tabbedPanelGestor.addTab("Pedidos", panelPedidos);
@@ -202,6 +233,7 @@ public class FrmView extends javax.swing.JFrame {
         IdCliente.setText("Id:");
 
         crearClienteBtn.setText("Crear");
+        crearClienteBtn.setToolTipText("Llena el formulario para crear un cliente nuevo");
         crearClienteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 crearClienteBtnActionPerformed(evt);
@@ -209,6 +241,7 @@ public class FrmView extends javax.swing.JFrame {
         });
 
         leerClienteBtn.setText("Leer");
+        leerClienteBtn.setToolTipText("Ingresa un numero de id para buscar un cliente registrado");
         leerClienteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leerClienteBtnActionPerformed(evt);
@@ -216,6 +249,7 @@ public class FrmView extends javax.swing.JFrame {
         });
 
         actualizarClienteBtn.setText("Actualizar");
+        actualizarClienteBtn.setToolTipText("Actualiza la información de un cliente registrado");
         actualizarClienteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualizarClienteBtnActionPerformed(evt);
@@ -330,19 +364,16 @@ public class FrmView extends javax.swing.JFrame {
         panelClientesLayout.setVerticalGroup(
             panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelClientesLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelClientesLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(NombreCliente)
-                            .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TipoDocCliente)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClientesLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioButtonCCCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(radioButtonNITCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(radioButtonOtroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NombreCliente)
+                        .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TipoDocCliente))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(radioButtonCCCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(radioButtonNITCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(radioButtonOtroCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelClientesLayout.createSequentialGroup()
@@ -404,6 +435,7 @@ public class FrmView extends javax.swing.JFrame {
 
         DepartamentoVendedor.setText("Departamento:");
 
+        crearVendedorBtn.setToolTipText("Llena el formulario para crear un vendedor nuevo");
         crearVendedorBtn.setLabel("Crear");
         crearVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -412,6 +444,7 @@ public class FrmView extends javax.swing.JFrame {
         });
 
         leerVendedorBtn.setText("Leer");
+        leerVendedorBtn.setToolTipText("Ingresa un numero de id para buscar un vendedor registrado");
         leerVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leerVendedorBtnActionPerformed(evt);
@@ -419,6 +452,7 @@ public class FrmView extends javax.swing.JFrame {
         });
 
         actualizarVendedorBtn.setText("Actualizar");
+        actualizarVendedorBtn.setToolTipText("Actualiza la información de un vendedor registrado");
         actualizarVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualizarVendedorBtnActionPerformed(evt);
@@ -528,16 +562,14 @@ public class FrmView extends javax.swing.JFrame {
             panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelVendedorLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NombreVendedor)
-                    .addComponent(TipoDocVendedor)
-                    .addComponent(textFieldNombreVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelVendedorLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radioButtonCCVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(radioButtonNITVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(radioButtonOtroVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radioButtonCCVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(radioButtonNITVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(radioButtonOtroVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NombreVendedor)
+                        .addComponent(TipoDocVendedor)
+                        .addComponent(textFieldNombreVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelVendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DireccionVendedor)
@@ -591,11 +623,16 @@ public class FrmView extends javax.swing.JFrame {
 
         DepartamentoProveedor.setText("Departamento:");
 
+        textFieldNombreProveedor.setToolTipText("");
+
+        crearProveedorBtn.setToolTipText("Llena el formulario para crear un proveedor nuevo");
         crearProveedorBtn.setLabel("Crear");
 
         leerProveedorBtn.setText("Leer");
+        leerProveedorBtn.setToolTipText("Ingresa un numero de id para buscar un proveedor registrado");
 
         actualizarProveedorBtn.setText("Actualizar");
+        actualizarProveedorBtn.setToolTipText("Actualiza la información de un proveedor registrado");
 
         borrarProveedorBtn.setText("Borrar");
 
@@ -758,7 +795,7 @@ public class FrmView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPanelGestor, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                .addComponent(tabbedPanelGestor, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1200,6 +1237,10 @@ public class FrmView extends javax.swing.JFrame {
     private javax.swing.JButton crearClienteBtn;
     private javax.swing.JButton crearProveedorBtn;
     private javax.swing.JButton crearVendedorBtn;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;

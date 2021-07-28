@@ -14,30 +14,40 @@ import java.util.*;
  */
 public class ModelCliente {
 
+    ArrayList<Cliente> tablaClientes = new ArrayList<>();
+
     public ModelCliente() {
     }
 
-    public boolean crear(Cliente cliente, ArrayList<Cliente> tablaClientes) {
+    public ArrayList<Cliente> crear(Cliente cliente) {
         tablaClientes.add(cliente);
-        return true;
+        return tablaClientes;
     }
 
-    public Cliente leer(int idCliente, ArrayList<Cliente> tablaClientes) {
-        for (Cliente cliente : tablaClientes) {
-            if (cliente.getIdCliente() == idCliente) {
-                Cliente clienteEncontrado = new Cliente(cliente.getNombre(), cliente.getDireccion(),
-                        cliente.getTelefono(), cliente.getCorreo(), cliente.getCiudad(),
-                        cliente.getDepartamento(), cliente.getTipoDocumento(), cliente.getNroDocumento(),
-                        cliente.getFechaNacimiento(), cliente.getIdCliente());
-                return clienteEncontrado;
+    public String[] buscar(int idCliente, ArrayList<Cliente> tablaClientes) {
+
+        String[] matrizCliente = new String[10];
+
+        for (Cliente clienteEncontrado : tablaClientes) {
+            if (clienteEncontrado.getIdCliente() == idCliente) {
+                matrizCliente[0] = Integer.toString(clienteEncontrado.getIdCliente());
+                matrizCliente[1] = clienteEncontrado.getNombre();
+                matrizCliente[2] = clienteEncontrado.getDireccion();
+                matrizCliente[3] = clienteEncontrado.getTelefono();
+                matrizCliente[4] = clienteEncontrado.getCorreo();
+                matrizCliente[5] = clienteEncontrado.getCiudad();
+                matrizCliente[6] = clienteEncontrado.getDepartamento();
+                matrizCliente[7] = clienteEncontrado.getTipoDocumento();
+                matrizCliente[8] = Integer.toString(clienteEncontrado.getNroDocumento());
+                matrizCliente[9] = clienteEncontrado.getFechaNacimiento();
             }
         }
-        return null;
+        return matrizCliente;
     }
 
-    public boolean actualizar(Cliente clienteActualizado, ArrayList<Cliente> tablaClientes) {
+    public ArrayList<Cliente> actualizar(Cliente clienteActualizado, ArrayList<Cliente> tablaClientes) {
         for (Cliente cliente : tablaClientes) {
-            if (cliente.getIdCliente() == clienteActualizado.getIdCliente()) {
+                cliente.setIdCliente(clienteActualizado.getIdCliente()); 
                 cliente.setNombre(clienteActualizado.getNombre());
                 cliente.setDireccion(clienteActualizado.getDireccion());
                 cliente.setCorreo(clienteActualizado.getCorreo());
@@ -46,9 +56,8 @@ public class ModelCliente {
                 cliente.setFechaNacimiento(clienteActualizado.getFechaNacimiento());
                 cliente.setNroDocumento(clienteActualizado.getNroDocumento());
                 cliente.setTipoDocumento(clienteActualizado.getTipoDocumento());
-                return true;
-            }
+                return tablaClientes;
         }
-        return false;
+        return null;
     }
 }

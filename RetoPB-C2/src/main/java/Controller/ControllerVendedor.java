@@ -15,43 +15,58 @@ import java.util.*;
  */
 public class ControllerVendedor {
 
-    ModelVendedor modeloVendedor;
-    Vendedor vendedor;
+    private final ModelVendedor modeloVendedor;
+    private ArrayList<Vendedor> tablaVendedores;
+    private Vendedor vendedor;
 
     public ControllerVendedor() {
         modeloVendedor = new ModelVendedor();
+        tablaVendedores = new ArrayList<>();
     }
 
-    public void procesar(String nombre, String direccion, String telefono, String correo,
+    public boolean crear(String nombre, String direccion, String telefono, String correo,
             String ciudad, String departamento, String tipoDocumento, int nroDocumento,
             int idVendedor) {
-
         vendedor = new Vendedor(nombre, direccion, telefono, correo, ciudad, departamento,
                 tipoDocumento, nroDocumento, idVendedor);
-
-    }
-
-    public boolean crear(ArrayList<Vendedor> listaVendedores) {
-        vendedor.crear(vendedor.getNombre(), vendedor.getDireccion(), vendedor.getTelefono(),
-                vendedor.getCorreo(), vendedor.getCiudad(), vendedor.getDepartamento(),
-                vendedor.getTipoDocumento(), vendedor.getNroDocumento(), vendedor.getIdVendedor());
-        modeloVendedor.crear(vendedor, listaVendedores);
+        tablaVendedores = modeloVendedor.crear(vendedor);
         return true;
     }
 
-    public Vendedor leer(int idVendedor, ArrayList<Vendedor> listaVendedores) {
+    public String[] buscar(int idCliente) {
         try {
-            return modeloVendedor.leer(idVendedor, listaVendedores);
+            return modeloVendedor.buscar(idCliente, tablaVendedores);
         } catch (Exception e) {
             return null;
         }
     }
 
-    public boolean actualizar(ArrayList<Vendedor> listaVendedores) {
-        vendedor.actualizar(vendedor.getNombre(), vendedor.getDireccion(), vendedor.getTelefono(),
-                vendedor.getCorreo(), vendedor.getCiudad(), vendedor.getDepartamento(),
-                vendedor.getTipoDocumento(), vendedor.getNroDocumento(), vendedor.getIdVendedor());
-        return modeloVendedor.actualizar(vendedor, listaVendedores);
+    public boolean actualizar(String nombre, String direccion, String telefono, String correo,
+            String ciudad, String departamento, String tipoDocumento, int nroDocumento,
+            int idVendedor) {
+        vendedor = new Vendedor(nombre, direccion, telefono, correo, ciudad, departamento,
+                tipoDocumento, nroDocumento, idVendedor);
+        tablaVendedores = modeloVendedor.actualizar(vendedor, tablaVendedores);
+        return true;
+
     }
 
+    public String[][] refrescarTablaVendedor() {
+        int indice = tablaVendedores.size();
+        String[][] matrizVendedor = new String[indice][9];
+        int i = 0;
+        for (Vendedor vendedorEncontrado : tablaVendedores) {
+            matrizVendedor[i][0] = Integer.toString(vendedorEncontrado.getIdVendedor());
+            matrizVendedor[i][1] = vendedorEncontrado.getNombre();
+            matrizVendedor[i][2] = vendedorEncontrado.getDireccion();
+            matrizVendedor[i][3] = vendedorEncontrado.getTelefono();
+            matrizVendedor[i][4] = vendedorEncontrado.getCorreo();
+            matrizVendedor[i][5] = vendedorEncontrado.getCiudad();
+            matrizVendedor[i][6] = vendedorEncontrado.getDepartamento();
+            matrizVendedor[i][7] = vendedorEncontrado.getTipoDocumento();
+            matrizVendedor[i][8] = Integer.toString(vendedorEncontrado.getNroDocumento());
+            i++;
+        }
+        return matrizVendedor;
+    }
 }

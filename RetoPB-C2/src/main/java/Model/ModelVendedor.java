@@ -5,7 +5,7 @@
  */
 package Model;
 
-import Classes.Vendedor;
+import Classes.*;
 import java.util.*;
 
 /**
@@ -14,29 +14,39 @@ import java.util.*;
  */
 public class ModelVendedor {
 
+    ArrayList<Vendedor> tablaVendedores = new ArrayList<>();
+
     public ModelVendedor() {
     }
 
-    public void crear(Vendedor vendedor, ArrayList<Vendedor> listaVendedores) {
-        listaVendedores.add(vendedor);
+    public ArrayList<Vendedor> crear(Vendedor vendedor) {
+        tablaVendedores.add(vendedor);
+        return tablaVendedores;
     }
 
-    public Vendedor leer(int idVendedor, ArrayList<Vendedor> listaVendedores) {
-        for (Vendedor vendedor : listaVendedores) {
-            if (vendedor.getIdVendedor() == idVendedor) {
-                Vendedor vendedorLeido = new Vendedor(vendedor.getNombre(), vendedor.getDireccion(),
-                        vendedor.getTelefono(), vendedor.getCorreo(), vendedor.getCiudad(), vendedor.getDepartamento(),
-                        vendedor.getTipoDocumento(), vendedor.getNroDocumento(),
-                        vendedor.getIdVendedor());
-                return vendedorLeido;
+    public String[] buscar(int idVendedor, ArrayList<Vendedor> tablaVendedores) {
+
+        String[] matrizVendedor = new String[9];
+
+        for (Vendedor vendedorEncontrado : tablaVendedores) {
+            if (vendedorEncontrado.getIdVendedor() == idVendedor) {
+                matrizVendedor[0] = Integer.toString(vendedorEncontrado.getIdVendedor());
+                matrizVendedor[1] = vendedorEncontrado.getNombre();
+                matrizVendedor[2] = vendedorEncontrado.getDireccion();
+                matrizVendedor[3] = vendedorEncontrado.getTelefono();
+                matrizVendedor[4] = vendedorEncontrado.getCorreo();
+                matrizVendedor[5] = vendedorEncontrado.getCiudad();
+                matrizVendedor[6] = vendedorEncontrado.getDepartamento();
+                matrizVendedor[7] = vendedorEncontrado.getTipoDocumento();
+                matrizVendedor[8] = Integer.toString(vendedorEncontrado.getNroDocumento());
             }
         }
-        return null;
+        return matrizVendedor;
     }
 
-    public boolean actualizar(Vendedor vendedorActualizado, ArrayList<Vendedor> listaVendedores) {
-        for (Vendedor vendedor : listaVendedores) {
-            if (vendedor.getIdVendedor() == vendedorActualizado.getIdVendedor()) {
+    public ArrayList<Vendedor> actualizar(Vendedor vendedorActualizado, ArrayList<Vendedor> tablaVendedores) {
+        for (Vendedor vendedor : tablaVendedores) {
+                vendedor.setIdVendedor(vendedorActualizado.getIdVendedor());
                 vendedor.setNombre(vendedorActualizado.getNombre());
                 vendedor.setDireccion(vendedorActualizado.getDireccion());
                 vendedor.setCorreo(vendedorActualizado.getCorreo());
@@ -44,9 +54,8 @@ public class ModelVendedor {
                 vendedor.setDepartamento(vendedorActualizado.getDepartamento());
                 vendedor.setNroDocumento(vendedorActualizado.getNroDocumento());
                 vendedor.setTipoDocumento(vendedorActualizado.getTipoDocumento());
-                return true;
+                return tablaVendedores;
             }
-        }
-        return false;
+        return null;
     }
 }

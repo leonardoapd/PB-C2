@@ -20,11 +20,8 @@ public class FrmView extends javax.swing.JFrame {
 
     private final ControllerCliente controlCliente;
     private final ControllerVendedor controlVendedor;
-    private final ArrayList<Cliente> tablaClientes = new ArrayList<>();
-    private final ArrayList<Vendedor> tablaVendedores = new ArrayList<>();
     private final ArrayList<Proveedor> tablaProveedores = new ArrayList<>();
-    private Cliente cliente = null;
-    private Vendedor vendedor = null;
+    
     DefaultTableModel modeloTablaCliente = new DefaultTableModel();
     DefaultTableModel modeloTablaVendedor = new DefaultTableModel();
     DefaultTableModel modeloTablaProveedor = new DefaultTableModel();
@@ -44,7 +41,7 @@ public class FrmView extends javax.swing.JFrame {
 
         //this.setLocation(0,0);
         initComponents();
-        setModeloTablas();
+        //setModeloTablas();
     }
 
     //Metodo para cambiar la fuente del jFrame
@@ -73,11 +70,6 @@ public class FrmView extends javax.swing.JFrame {
         buttonGroupTDocVendedor = new javax.swing.ButtonGroup();
         buttonGroupTDocProveedor = new javax.swing.ButtonGroup();
         tabbedPanelGestor = new javax.swing.JTabbedPane();
-        panelPedidos = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         panelClientes = new javax.swing.JPanel();
         NombreCliente = new javax.swing.JLabel();
         DireccionCliente = new javax.swing.JLabel();
@@ -173,45 +165,6 @@ public class FrmView extends javax.swing.JFrame {
         tabbedPanelGestor.setToolTipText("");
         tabbedPanelGestor.setPreferredSize(new java.awt.Dimension(595, 530));
 
-        jButton1.setText("Realizar Pedido");
-
-        jButton2.setText("Buscar Pedido");
-        jButton2.setToolTipText("Busca el pedido ingresando el numero de id");
-
-        jButton3.setText("Aplicar Descuento");
-
-        jButton4.setText("Añadir Producto");
-        jButton4.setToolTipText("");
-
-        javax.swing.GroupLayout panelPedidosLayout = new javax.swing.GroupLayout(panelPedidos);
-        panelPedidos.setLayout(panelPedidosLayout);
-        panelPedidosLayout.setHorizontalGroup(
-            panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPedidosLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jButton4)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
-        panelPedidosLayout.setVerticalGroup(
-            panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPedidosLayout.createSequentialGroup()
-                .addContainerGap(394, Short.MAX_VALUE)
-                .addGroup(panelPedidosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(52, 52, 52))
-        );
-
-        tabbedPanelGestor.addTab("Pedidos", panelPedidos);
-
         panelClientes.setPreferredSize(new java.awt.Dimension(596, 490));
 
         NombreCliente.setText("Nombre:");
@@ -240,7 +193,7 @@ public class FrmView extends javax.swing.JFrame {
             }
         });
 
-        leerClienteBtn.setText("Leer");
+        leerClienteBtn.setText("Buscar");
         leerClienteBtn.setToolTipText("Ingresa un numero de id para buscar un cliente registrado");
         leerClienteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -826,7 +779,10 @@ public class FrmView extends javax.swing.JFrame {
         try {
             clienteCreado = controlCliente.crear(nombre, direccion, telefono, correo,
                     ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
-                    Integer.parseInt(id), tablaClientes);
+                    Integer.parseInt(id));
+
+            limpiarCampos(1);
+            refrescarTabla(1);
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
@@ -835,26 +791,25 @@ public class FrmView extends javax.swing.JFrame {
         if (clienteCreado) {
             JOptionPane.showMessageDialog(this, "El cliente ha sido creado exitosamente.");
         }
-
-        limpiarCampos(1);
-        refrescarTabla(1);
-
     }//GEN-LAST:event_crearClienteBtnActionPerformed
 
     private void leerClienteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerClienteBtnActionPerformed
         try {
-            int id = Integer.parseInt(textFieldIdCliente.getText());
-            cliente = controlCliente.leer(id, tablaClientes);
-            if (cliente != null) {
-                textFieldNombreCliente.setText(cliente.getNombre());
-                textFieldDireccionCliente.setText(cliente.getDireccion());
-                textFieldTelefonoCliente.setText(cliente.getTelefono());
-                textFieldCorreoCliente.setText(cliente.getCorreo());
-                textFieldCiudadCliente.setText(cliente.getCiudad());
-                textFieldDepartamentoCliente.setText(cliente.getDepartamento());
-                textFieldNroDocumentoCliente.setText(Integer.toString(cliente.getNroDocumento()));
-                textFieldFechaCliente.setText(cliente.getFechaNacimiento());
-                String tipo = cliente.getTipoDocumento();
+
+            int id = Integer.parseInt((String) modeloTablaCliente.getValueAt(tableCliente.getSelectedRow(), 0));
+            String[] matrizDevuelta = controlCliente.buscar(id);
+
+            if (matrizDevuelta != null) {
+                textFieldIdCliente.setText(matrizDevuelta[0]);
+                textFieldNombreCliente.setText(matrizDevuelta[1]);
+                textFieldDireccionCliente.setText(matrizDevuelta[2]);
+                textFieldTelefonoCliente.setText(matrizDevuelta[3]);
+                textFieldCorreoCliente.setText(matrizDevuelta[4]);
+                textFieldCiudadCliente.setText(matrizDevuelta[5]);
+                textFieldDepartamentoCliente.setText(matrizDevuelta[6]);
+                textFieldNroDocumentoCliente.setText(matrizDevuelta[8]);
+                textFieldFechaCliente.setText(matrizDevuelta[9]);
+                String tipo = matrizDevuelta[7];
                 switch (tipo) {
                     case "C.C" ->
                         radioButtonCCCliente.setSelected(true);
@@ -898,7 +853,7 @@ public class FrmView extends javax.swing.JFrame {
             try {
                 clienteActualizado = controlCliente.actualizar(nombre, direccion, telefono, correo,
                         ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
-                        id, tablaClientes);
+                        id);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Cliente no existe.");
             }
@@ -933,10 +888,13 @@ public class FrmView extends javax.swing.JFrame {
             tipoDocumento = "Otro";
         }
 
+        boolean vendedorCreado = false;
         try {
-            controlVendedor.procesar(nombre, direccion, telefono, correo, ciudad, departamento,
+            vendedorCreado = controlVendedor.crear(nombre, direccion, telefono, correo, ciudad, departamento,
                     tipoDocumento, Integer.parseInt(nroDocumento), Integer.parseInt(id));
-            boolean vendedorCreado = controlVendedor.crear(tablaVendedores);
+
+            limpiarCampos(2);
+            refrescarTabla(2);
 
             if (vendedorCreado) {
                 JOptionPane.showMessageDialog(this, "El vendedor ha sido creado exitosamente.");
@@ -944,26 +902,23 @@ public class FrmView extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
         }
-
-        limpiarCampos(2);
-        refrescarTabla(2);
-
     }//GEN-LAST:event_crearVendedorBtnActionPerformed
 
     private void leerVendedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerVendedorBtnActionPerformed
 
         try {
-            int idVendedor = Integer.parseInt(textFieldIdVendedor.getText());
-            vendedor = controlVendedor.leer(idVendedor, tablaVendedores);
-            if (vendedor != null) {
-                textFieldNombreVendedor.setText(vendedor.getNombre());
-                textFieldDireccionVendedor.setText(vendedor.getDireccion());
-                textFieldTelefonoVendedor.setText(vendedor.getTelefono());
-                textFieldCorreoVendedor.setText(vendedor.getCorreo());
-                textFieldCiudadVendedor.setText(vendedor.getCiudad());
-                textFieldDptoVendedor.setText(vendedor.getDepartamento());
-                textFieldNroDocVendedor.setText(Integer.toString(vendedor.getNroDocumento()));
-                String tipo = vendedor.getTipoDocumento();
+            int id = Integer.parseInt((String) modeloTablaVendedor.getValueAt(tableVendedor.getSelectedRow(), 0));
+            String[] matrizDevuelta = controlVendedor.buscar(id);
+            if (matrizDevuelta != null) {
+                textFieldIdVendedor.setText(matrizDevuelta[0]);
+                textFieldNombreVendedor.setText(matrizDevuelta[1]);
+                textFieldDireccionVendedor.setText(matrizDevuelta[2]);
+                textFieldTelefonoVendedor.setText(matrizDevuelta[3]);
+                textFieldCorreoVendedor.setText(matrizDevuelta[4]);
+                textFieldCiudadVendedor.setText(matrizDevuelta[5]);
+                textFieldDptoVendedor.setText(matrizDevuelta[6]);
+                textFieldNroDocVendedor.setText(matrizDevuelta[8]);
+                String tipo = matrizDevuelta[7];
                 switch (tipo) {
                     case "C.C" ->
                         radioButtonCCVendedor.setSelected(true);
@@ -1003,9 +958,8 @@ public class FrmView extends javax.swing.JFrame {
 
             boolean vendedorActualizado = false;
             try {
-                controlVendedor.procesar(nombre, direccion, telefono, correo, ciudad, departamento,
+                vendedorActualizado = controlVendedor.actualizar(nombre, direccion, telefono, correo, ciudad, departamento,
                         tipoDocumento, Integer.parseInt(nroDocumento), Integer.parseInt(id));
-                vendedorActualizado = controlVendedor.actualizar(tablaVendedores);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Vendedor no existe.");
             }
@@ -1085,16 +1039,29 @@ public class FrmView extends javax.swing.JFrame {
      */
     public void setModeloTablas() {
 
-        String[] cabeceraCliente = {"Id", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento",
-            "Tipo Documento", "No. Documento", "Fecha de Nacimiento"};
-        modeloTablaCliente.setColumnIdentifiers(cabeceraCliente);
-        tableCliente.setModel(modeloTablaCliente);
+//        String[] cabeceraCliente = {"Id", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento",
+//            "Tipo Documento", "No. Documento", "Fecha de Nacimiento"};
+//        modeloTablaCliente.setColumnIdentifiers(cabeceraCliente);
+//        String[][] matrizClientes = controlCliente.refrescarTablaCliente();
+//        
+//        modeloTablaCliente.setDataVector(matrizClientes, cabeceraCliente);
+//        
+//        tableCliente.setModel(modeloTablaCliente);
 
-        String[] cabeceraVendedor = {"Id", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento",
-            "Tipo Documento", "No. Documento"};
-        modeloTablaVendedor.setColumnIdentifiers(cabeceraVendedor);
-        tableVendedor.setModel(modeloTablaVendedor);
+        /*
+        
 
+        
+        para buscar un item seleccionado de la tabla 
+        lista.getSelectedItem().toString();
+        getSelectedIndex()7
+
+        String codigo = (String) modelo.getValueAt(tabla.getSelectedRow(), 0);
+         */
+//        String[] cabeceraVendedor = {"Id", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento",
+//            "Tipo Documento", "No. Documento"};
+//        modeloTablaVendedor.setColumnIdentifiers(cabeceraVendedor);
+//        tableVendedor.setModel(modeloTablaVendedor);
         String[] cabeceraProveedor = {"Id", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento",
             "Tipo Documento", "No. Documento"};
         modeloTablaProveedor.setColumnIdentifiers(cabeceraProveedor);
@@ -1106,38 +1073,21 @@ public class FrmView extends javax.swing.JFrame {
 
         switch (opcion) {
             case 1 -> {
-                Object[] datosCliente = new Object[modeloTablaCliente.getColumnCount()];
-                modeloTablaCliente.setRowCount(0);
-                for (Cliente cliente : tablaClientes) {
-                    datosCliente[0] = cliente.getIdCliente();
-                    datosCliente[1] = cliente.getNombre();
-                    datosCliente[2] = cliente.getDireccion();
-                    datosCliente[3] = cliente.getTelefono();
-                    datosCliente[4] = cliente.getCorreo();
-                    datosCliente[5] = cliente.getCiudad();
-                    datosCliente[6] = cliente.getDepartamento();
-                    datosCliente[7] = cliente.getTipoDocumento();
-                    datosCliente[8] = cliente.getNroDocumento();
-                    datosCliente[9] = cliente.getFechaNacimiento();
-                    modeloTablaCliente.addRow(datosCliente);
-                }
+                //Se establecen los elementos de la cabecera de la tabla
+                String[] cabeceraCliente = {"Id", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento",
+                    "Tipo Documento", "No. Documento", "Fecha de Nacimiento"};
+                //Se recogen los datos de los clientes añadidos en el almacenamiento temporal
+                String[][] matrizClientes = controlCliente.refrescarTablaCliente();
+                //Se agregan los datos y la cabecera de la tabla al modelo
+                modeloTablaCliente.setDataVector(matrizClientes, cabeceraCliente);
+                //Se agrega el modelo a la vista
                 tableCliente.setModel(modeloTablaCliente);
             }
             case 2 -> {
-                Object[] datosVendedor = new Object[modeloTablaVendedor.getColumnCount()];
-                modeloTablaVendedor.setRowCount(0);
-                for (Vendedor vendedor : tablaVendedores) {
-                    datosVendedor[0] = vendedor.getIdVendedor();
-                    datosVendedor[1] = vendedor.getNombre();
-                    datosVendedor[2] = vendedor.getDireccion();
-                    datosVendedor[3] = vendedor.getTelefono();
-                    datosVendedor[4] = vendedor.getCorreo();
-                    datosVendedor[5] = vendedor.getCiudad();
-                    datosVendedor[6] = vendedor.getDepartamento();
-                    datosVendedor[7] = vendedor.getTipoDocumento();
-                    datosVendedor[8] = vendedor.getNroDocumento();
-                    modeloTablaVendedor.addRow(datosVendedor);
-                }
+                String[] cabeceraVendedor = {"Id", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento",
+                    "Tipo Documento", "No. Documento"};
+                String[][] matrizVendedores = controlVendedor.refrescarTablaVendedor();
+                modeloTablaVendedor.setDataVector(matrizVendedores, cabeceraVendedor);
                 tableVendedor.setModel(modeloTablaVendedor);
             }
             case 3 -> {
@@ -1237,10 +1187,6 @@ public class FrmView extends javax.swing.JFrame {
     private javax.swing.JButton crearClienteBtn;
     private javax.swing.JButton crearProveedorBtn;
     private javax.swing.JButton crearVendedorBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
@@ -1251,7 +1197,6 @@ public class FrmView extends javax.swing.JFrame {
     private javax.swing.JPanel panelListaCliente;
     private javax.swing.JPanel panelListaProveedor;
     private javax.swing.JPanel panelListaVendedor;
-    private javax.swing.JPanel panelPedidos;
     private javax.swing.JPanel panelProveedor;
     private javax.swing.JPanel panelVendedor;
     private javax.swing.JRadioButton radioButtonCCCliente;

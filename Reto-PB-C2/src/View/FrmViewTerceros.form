@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupTDocCliente">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupTDocVendedor">
+    </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroupTDocProveedor">
+    </Component>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="iconifiable" type="boolean" value="true"/>
+    <Property name="title" type="java.lang.String" value="Gestor de Terceros"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[580, 540]"/>
+    </Property>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tabbedPanelGestor" min="-2" pref="564" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="tabbedPanelGestor" pref="501" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JTabbedPane" name="tabbedPanelGestor">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[595, 530]"/>
+        </Property>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="panelClientes">
+          <Properties>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[596, 490]"/>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Cliente">
+                <Property name="tabTitle" type="java.lang.String" value="Cliente"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="IdCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DireccionCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="NombreCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CiudadCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TelefonoCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="2" attributes="0">
+                                  <Component id="textFieldNombreCliente" alignment="2" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <Component id="textFieldDireccionCliente" alignment="2" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <Component id="textFieldIdCliente" alignment="2" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <Component id="textFieldCiudadCliente" alignment="2" min="-2" pref="185" max="-2" attributes="0"/>
+                                  <Component id="textFieldTelefonoCliente" alignment="2" min="-2" pref="185" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="NroDocumentoCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CorreoCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DepartamentoCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="FechaNacimientoCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TipoDocCliente" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="radioButtonCCCliente" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="radioButtonNITCliente" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="radioButtonOtroCliente" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="19" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="textFieldNroDocumentoCliente" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="textFieldCorreoCliente" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="textFieldDepartamentoCliente" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="textFieldFechaCliente" alignment="1" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <Component id="crearClienteBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="leerClienteBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="actualizarClienteBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="borrarClienteBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="panelListaCliente" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="NombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldNombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TipoDocCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="radioButtonCCCliente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="radioButtonNITCliente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="radioButtonOtroCliente" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="DireccionCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textFieldDireccionCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="NroDocumentoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="CorreoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textFieldIdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="IdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="textFieldCiudadCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="CiudadCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="DepartamentoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="FechaNacimientoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="textFieldTelefonoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="TelefonoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="textFieldNroDocumentoCliente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="textFieldCorreoCliente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="textFieldDepartamentoCliente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="textFieldFechaCliente" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelListaCliente" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="crearClienteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="leerClienteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="actualizarClienteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="borrarClienteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="NombreCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DireccionCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Direccion:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TelefonoCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Telefono:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="CorreoCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Correo:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="CiudadCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ciudad: "/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DepartamentoCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Departamento:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="NroDocumentoCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nro Documento:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldNombreCliente">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldDireccionCliente">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldTelefonoCliente">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldCorreoCliente">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldCiudadCliente">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldDepartamentoCliente">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldNroDocumentoCliente">
+            </Component>
+            <Component class="javax.swing.JLabel" name="FechaNacimientoCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha de Nacimiento:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldIdCliente">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="IdCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Id:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldFechaCliente">
+            </Component>
+            <Component class="javax.swing.JButton" name="crearClienteBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Crear"/>
+                <Property name="toolTipText" type="java.lang.String" value="Llena el formulario para crear un cliente nuevo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearClienteBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="leerClienteBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un cliente registrado"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leerClienteBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="actualizarClienteBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Actualiza la informaci&#xf3;n de un cliente registrado"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarClienteBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="borrarClienteBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Borrar"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TipoDocCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tipo Doc:"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="panelListaCliente">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder justification="2" title="Lista de Clientes"/>
+                  </Border>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="panelListaCliente.setPreferredSize(new java.awt.Dimension(540, 180));"/>
+              </AuxValues>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane6" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane6" min="-2" pref="140" max="-2" attributes="0"/>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane6">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tableCliente">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="0" rowCount="0"/>
+                        </Property>
+                        <Property name="autoResizeMode" type="int" value="0"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JRadioButton" name="radioButtonCCCliente">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocCliente"/>
+                </Property>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="C.C"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radioButtonNITCliente">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocCliente"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="NIT"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radioButtonOtroCliente">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocCliente"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Otro"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="panelVendedor">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Vendedor">
+                <Property name="tabTitle" type="java.lang.String" value="Vendedor"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="DireccionVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="NombreVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="IdVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="CiudadVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TelefonoVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="textFieldDireccionVendedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textFieldIdVendedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textFieldCiudadVendedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textFieldTelefonoVendedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textFieldNombreVendedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="NroDocumentoVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="CorreoVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="DepartamentoVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TipoDocVendedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="radioButtonCCVendedor" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="radioButtonNITVendedor" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="radioButtonOtroVendedor" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="textFieldCorreoVendedor" alignment="1" pref="163" max="32767" attributes="0"/>
+                                          <Component id="textFieldNroDocVendedor" alignment="1" pref="163" max="32767" attributes="0"/>
+                                          <Component id="textFieldDptoVendedor" alignment="1" pref="163" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="crearVendedorBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="leerVendedorBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="actualizarVendedorBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="borrarVendedorBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="panelListaVendedor" pref="552" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="radioButtonCCVendedor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="radioButtonNITVendedor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="radioButtonOtroVendedor" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="NombreVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TipoDocVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldNombreVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="DireccionVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NroDocumentoVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldDireccionVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldNroDocVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="IdVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CorreoVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldIdVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldCorreoVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="CiudadVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DepartamentoVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldCiudadVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldDptoVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TelefonoVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldTelefonoVendedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelListaVendedor" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="crearVendedorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="leerVendedorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="actualizarVendedorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="borrarVendedorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="NombreVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DireccionVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Direccion:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="IdVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Id:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="CiudadVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ciudad:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TelefonoVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Telefono:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TipoDocVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tipo Doc:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="NroDocumentoVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nro Documento:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="CorreoVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Correo:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DepartamentoVendedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Departamento:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldNombreVendedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldDireccionVendedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldIdVendedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldCiudadVendedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldTelefonoVendedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldNroDocVendedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldCorreoVendedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldDptoVendedor">
+            </Component>
+            <Component class="javax.swing.JButton" name="crearVendedorBtn">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Llena el formulario para crear un vendedor nuevo"/>
+                <Property name="label" type="java.lang.String" value="Crear"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearVendedorBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="leerVendedorBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Leer"/>
+                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un vendedor registrado"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leerVendedorBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="actualizarVendedorBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Actualiza la informaci&#xf3;n de un vendedor registrado"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarVendedorBtnActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="borrarVendedorBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Borrar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="panelListaVendedor">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder justification="2" title="Lista de Vendedores"/>
+                  </Border>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[540, 180]"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane7" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane7" min="-2" pref="140" max="-2" attributes="0"/>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane7">
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tableVendedor">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="0" rowCount="0"/>
+                        </Property>
+                        <Property name="autoResizeMode" type="int" value="0"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JRadioButton" name="radioButtonCCVendedor">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocVendedor"/>
+                </Property>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="C.C"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radioButtonNITVendedor">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocVendedor"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="NIT"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radioButtonOtroVendedor">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocVendedor"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Otro"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="panelProveedor">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="Proveedor">
+                <Property name="tabTitle" type="java.lang.String" value="Proveedor"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="DireccionProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="NombreProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="IdProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="CiudadProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TelefonoProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="textFieldDireccionProveedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textFieldIdProveedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textFieldCiudadProveedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textFieldTelefonoProveedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                          <Component id="textFieldNombreProveedor" alignment="1" min="-2" pref="185" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="NroDocumentoProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="CorreoProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="DepartamentoProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="TipoDocProveedor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="radioButtonCCProveedor" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="radioButtonNITProveedor" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="radioButtonOtroProveedor" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Component id="textFieldCorreoProveedor" alignment="1" pref="163" max="32767" attributes="0"/>
+                                          <Component id="textFieldNroDocProveedor" alignment="1" pref="163" max="32767" attributes="0"/>
+                                          <Component id="textFieldDptoProveedor" alignment="1" pref="163" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                      <Component id="crearProveedorBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="leerProveedorBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="actualizarProveedorBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                      <Component id="borrarProveedorBtn" min="-2" pref="90" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="panelListaProveedor" pref="552" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="NombreProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TipoDocProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="textFieldNombreProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="radioButtonCCProveedor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="radioButtonNITProveedor" alignment="0" max="32767" attributes="0"/>
+                          <Component id="radioButtonOtroProveedor" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="DireccionProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="NroDocumentoProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldDireccionProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldNroDocProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="IdProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="CorreoProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldIdProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldCorreoProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="CiudadProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="DepartamentoProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldCiudadProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldDptoProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="TelefonoProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="textFieldTelefonoProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelListaProveedor" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="crearProveedorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="leerProveedorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="actualizarProveedorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="borrarProveedorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="NombreProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DireccionProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Direccion:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="IdProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Id:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="CiudadProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Ciudad:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TelefonoProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Telefono:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="TipoDocProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tipo Doc:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="NroDocumentoProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nro Documento:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="CorreoProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Correo:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="DepartamentoProveedor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Departamento:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldNombreProveedor">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldDireccionProveedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldIdProveedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldCiudadProveedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldTelefonoProveedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldNroDocProveedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldCorreoProveedor">
+            </Component>
+            <Component class="javax.swing.JTextField" name="textFieldDptoProveedor">
+            </Component>
+            <Component class="javax.swing.JButton" name="crearProveedorBtn">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Llena el formulario para crear un proveedor nuevo"/>
+                <Property name="label" type="java.lang.String" value="Crear"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="leerProveedorBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Leer"/>
+                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un proveedor registrado"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="actualizarProveedorBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Actualizar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Actualiza la informaci&#xf3;n de un proveedor registrado"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="borrarProveedorBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Borrar"/>
+              </Properties>
+            </Component>
+            <Container class="javax.swing.JPanel" name="panelListaProveedor">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder justification="2" title="Lista de Proveedores"/>
+                  </Border>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[540, 180]"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane8" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jScrollPane8" min="-2" pref="140" max="-2" attributes="0"/>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane8">
+                  <Properties>
+                    <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="tableProveedor">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="0" rowCount="0"/>
+                        </Property>
+                        <Property name="autoResizeMode" type="int" value="0"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JRadioButton" name="radioButtonCCProveedor">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocProveedor"/>
+                </Property>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="C.C"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radioButtonNITProveedor">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocProveedor"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="NIT"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="radioButtonOtroProveedor">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroupTDocProveedor"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Otro"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

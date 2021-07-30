@@ -202,7 +202,7 @@ public class FrmViewProductos extends javax.swing.JInternalFrame {
             textFieldIdProveedor.setText(matrizDevuelta[5]);
                   
         } else {
-            JOptionPane.showMessageDialog(this, "No se ha encontrado el cliente.");
+            JOptionPane.showMessageDialog(this, "No se ha encontrado el producto.");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 

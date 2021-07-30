@@ -16,12 +16,10 @@ import java.util.ArrayList;
 public class ControllerProveedor {
 
     private final ModelProveedor modeloProveedor;
-    private ArrayList<Proveedor> tablaVendedores;
     private Proveedor proveedor;
 
     public ControllerProveedor() {
         modeloProveedor = new ModelProveedor();
-        tablaVendedores = new ArrayList<>();
     }
 
     public boolean crear(String nombre, String direccion, String telefono, String correo,
@@ -29,16 +27,27 @@ public class ControllerProveedor {
             int idProveedor) {
         proveedor = new Proveedor(nombre, direccion, telefono, correo, ciudad, departamento,
                 tipoDocumento, nroDocumento, idProveedor);
-        tablaVendedores = modeloProveedor.crear(proveedor);
-        return true;
+        return modeloProveedor.crear(proveedor);
     }
 
     public String[] buscar(int idProveedor) {
+        String[] matrizProveedor = new String[10];
         try {
-            return modeloProveedor.buscar(idProveedor, tablaVendedores);
+            Proveedor proveedorEncontrado = modeloProveedor.buscar(idProveedor);
+            matrizProveedor[0] = Integer.toString(proveedorEncontrado.getIdProveedor());
+            matrizProveedor[1] = proveedorEncontrado.getNombre();
+            matrizProveedor[2] = proveedorEncontrado.getDireccion();
+            matrizProveedor[3] = proveedorEncontrado.getTelefono();
+            matrizProveedor[4] = proveedorEncontrado.getCorreo();
+            matrizProveedor[5] = proveedorEncontrado.getCiudad();
+            matrizProveedor[6] = proveedorEncontrado.getDepartamento();
+            matrizProveedor[7] = proveedorEncontrado.getTipoDocumento();
+            matrizProveedor[8] = Integer.toString(proveedorEncontrado.getNroDocumento());
+            return matrizProveedor;
         } catch (Exception e) {
-            return null;
+            System.out.println("Hubo un problema para buscar el proveedor en el controlador");
         }
+        return null;
     }
 
     public boolean actualizar(String nombre, String direccion, String telefono, String correo,
@@ -46,16 +55,16 @@ public class ControllerProveedor {
             int idProveedor) {
         proveedor = new Proveedor(nombre, direccion, telefono, correo, ciudad, departamento,
                 tipoDocumento, nroDocumento, idProveedor);
-        tablaVendedores = modeloProveedor.actualizar(proveedor, tablaVendedores);
-        return true;
-
+        return modeloProveedor.actualizar(proveedor);
     }
 
     public String[][] refrescarTablaProveedor() {
-        int indice = tablaVendedores.size();
+        
+        ArrayList<Proveedor> tabla = modeloProveedor.refrescarTabla();
+        int indice = tabla.size();
         String[][] matrizProveedor = new String[indice][9];
         int i = 0;
-        for (Proveedor proveedorEncontrado : tablaVendedores) {
+        for (Proveedor proveedorEncontrado : tabla) {
             matrizProveedor[i][0] = Integer.toString(proveedorEncontrado.getIdProveedor());
             matrizProveedor[i][1] = proveedorEncontrado.getNombre();
             matrizProveedor[i][2] = proveedorEncontrado.getDireccion();
@@ -67,6 +76,7 @@ public class ControllerProveedor {
             matrizProveedor[i][8] = Integer.toString(proveedorEncontrado.getNroDocumento());
             i++;
         }
+        tabla.clear();
         return matrizProveedor;
     }
 

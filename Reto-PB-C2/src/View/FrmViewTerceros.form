@@ -293,7 +293,7 @@
             <Component class="javax.swing.JButton" name="leerClienteBtn">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
-                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un cliente registrado"/>
+                <Property name="toolTipText" type="java.lang.String" value="Elige un cliente de la lista para poder modificarlo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leerClienteBtnActionPerformed"/>
@@ -604,8 +604,8 @@
             </Component>
             <Component class="javax.swing.JButton" name="leerVendedorBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Leer"/>
-                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un vendedor registrado"/>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Elige un vendedor de la lista para poder modificarlo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leerVendedorBtnActionPerformed"/>
@@ -889,6 +889,9 @@
             <Component class="javax.swing.JTextField" name="textFieldDireccionProveedor">
             </Component>
             <Component class="javax.swing.JTextField" name="textFieldIdProveedor">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="textFieldCiudadProveedor">
             </Component>
@@ -905,12 +908,18 @@
                 <Property name="toolTipText" type="java.lang.String" value="Llena el formulario para crear un proveedor nuevo"/>
                 <Property name="label" type="java.lang.String" value="Crear"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearProveedorBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="leerProveedorBtn">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Leer"/>
-                <Property name="toolTipText" type="java.lang.String" value="Ingresa un numero de id para buscar un proveedor registrado"/>
+                <Property name="text" type="java.lang.String" value="Buscar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Elige un proveedor de la lista para poder modificarlo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="leerProveedorBtnActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="actualizarProveedorBtn">
               <Properties>

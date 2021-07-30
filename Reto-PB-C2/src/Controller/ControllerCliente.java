@@ -16,12 +16,10 @@ import java.util.*;
 public class ControllerCliente {
 
     private final ModelCliente modeloCliente;
-    private ArrayList<Cliente> tablaClientes;
     private Cliente cliente;
 
     public ControllerCliente() {
         modeloCliente = new ModelCliente();
-        tablaClientes = new ArrayList<>();
     }
 
     public boolean crear(String nombre, String direccion, String telefono, String correo,

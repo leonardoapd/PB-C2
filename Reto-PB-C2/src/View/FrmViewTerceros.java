@@ -19,6 +19,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
 
     private final ControllerCliente controlCliente;
     private final ControllerVendedor controlVendedor;
+    private final ControllerProveedor controlProveedor;
     private final ArrayList<Proveedor> tablaProveedores = new ArrayList<>();
     
     DefaultTableModel modeloTablaCliente = new DefaultTableModel();
@@ -31,8 +32,11 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         
         controlCliente = new ControllerCliente();
         controlVendedor = new ControllerVendedor();
+        controlProveedor = new ControllerProveedor();
         initComponents();
         refrescarTabla(1);
+        refrescarTabla(2);
+        refrescarTabla(3);
     }
 
     /**
@@ -174,7 +178,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         });
 
         leerClienteBtn.setText("Buscar");
-        leerClienteBtn.setToolTipText("Ingresa un numero de id para buscar un cliente registrado");
+        leerClienteBtn.setToolTipText("Elige un cliente de la lista para poder modificarlo");
         leerClienteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leerClienteBtnActionPerformed(evt);
@@ -376,8 +380,8 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
             }
         });
 
-        leerVendedorBtn.setText("Leer");
-        leerVendedorBtn.setToolTipText("Ingresa un numero de id para buscar un vendedor registrado");
+        leerVendedorBtn.setText("Buscar");
+        leerVendedorBtn.setToolTipText("Elige un vendedor de la lista para poder modificarlo");
         leerVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leerVendedorBtnActionPerformed(evt);
@@ -558,11 +562,23 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
 
         textFieldNombreProveedor.setToolTipText("");
 
+        textFieldIdProveedor.setEditable(false);
+
         crearProveedorBtn.setToolTipText("Llena el formulario para crear un proveedor nuevo");
         crearProveedorBtn.setLabel("Crear");
+        crearProveedorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crearProveedorBtnActionPerformed(evt);
+            }
+        });
 
-        leerProveedorBtn.setText("Leer");
-        leerProveedorBtn.setToolTipText("Ingresa un numero de id para buscar un proveedor registrado");
+        leerProveedorBtn.setText("Buscar");
+        leerProveedorBtn.setToolTipText("Elige un proveedor de la lista para poder modificarlo");
+        leerProveedorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leerProveedorBtnActionPerformed(evt);
+            }
+        });
 
         actualizarProveedorBtn.setText("Actualizar");
         actualizarProveedorBtn.setToolTipText("Actualiza la información de un proveedor registrado");
@@ -955,6 +971,80 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_actualizarVendedorBtnActionPerformed
 
+    private void crearProveedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearProveedorBtnActionPerformed
+        // TODO add your handling code here:
+        String nombre = textFieldNombreProveedor.getText();
+        String direccion = textFieldDireccionProveedor.getText();
+        String telefono = textFieldTelefonoProveedor.getText();
+        String correo = textFieldCorreoProveedor.getText();
+        String ciudad = textFieldCiudadProveedor.getText();
+        String departamento = textFieldDptoProveedor.getText();
+        String nroDocumento = textFieldNroDocProveedor.getText();
+        String id = textFieldIdProveedor.getText();
+        String tipoDocumento = "";
+
+        if (radioButtonCCProveedor.isSelected()) {
+            tipoDocumento = "C.C";
+        } else if (radioButtonNITProveedor.isSelected()) {
+            tipoDocumento = "NIT";
+        } else if (radioButtonOtroProveedor.isSelected()) {
+            tipoDocumento = "Otro";
+        }
+
+        boolean clienteCreado = false;
+        try {
+            clienteCreado = controlProveedor.crear(nombre, direccion, telefono, correo,
+                ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento),
+                Integer.parseInt(id));
+
+            limpiarCampos(3);
+            refrescarTabla(3);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
+        }
+
+        if (clienteCreado) {
+            JOptionPane.showMessageDialog(this, "El proveedor ha sido creado exitosamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un problema durante la creacion del proveedor.");
+        }
+    }//GEN-LAST:event_crearProveedorBtnActionPerformed
+
+    private void leerProveedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerProveedorBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            int id = Integer.parseInt((String) modeloTablaProveedor.getValueAt(tableProveedor.getSelectedRow(), 0));
+            String[] matrizDevuelta = controlProveedor.buscar(id);
+
+            if (matrizDevuelta != null) {
+                textFieldIdProveedor.setText(matrizDevuelta[0]);
+                textFieldNombreProveedor.setText(matrizDevuelta[1]);
+                textFieldDireccionProveedor.setText(matrizDevuelta[2]);
+                textFieldTelefonoProveedor.setText(matrizDevuelta[3]);
+                textFieldCorreoProveedor.setText(matrizDevuelta[4]);
+                textFieldCiudadProveedor.setText(matrizDevuelta[5]);
+                textFieldDptoProveedor.setText(matrizDevuelta[6]);
+                textFieldNroDocProveedor.setText(matrizDevuelta[8]);
+                String tipo = matrizDevuelta[7];
+                switch (tipo) {
+                    case "C.C" ->
+                    radioButtonCCProveedor.setSelected(true);
+                    case "NIT" ->
+                    radioButtonNITProveedor.setSelected(true);
+                    case "Otro" ->
+                    radioButtonOtroProveedor.setSelected(true);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha encontrado el proveedor.");
+                limpiarCampos(3);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Rellene el campo ID.");
+        }
+    }//GEN-LAST:event_leerProveedorBtnActionPerformed
+
     public void limpiarCampos(int opcion) {
         //Se limpian los textField
 
@@ -1016,20 +1106,10 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
                 tableVendedor.setModel(modeloTablaVendedor);
             }
             case 3 -> {
-                Object[] datosProveedor = new Object[modeloTablaProveedor.getColumnCount()];
-                modeloTablaProveedor.setRowCount(0);
-                for (Proveedor proveedor : tablaProveedores) {
-                    datosProveedor[0] = proveedor.getIdProveedor();
-                    datosProveedor[1] = proveedor.getNombre();
-                    datosProveedor[2] = proveedor.getDireccion();
-                    datosProveedor[3] = proveedor.getTelefono();
-                    datosProveedor[4] = proveedor.getCorreo();
-                    datosProveedor[5] = proveedor.getCiudad();
-                    datosProveedor[6] = proveedor.getDepartamento();
-                    datosProveedor[7] = proveedor.getTipoDocumento();
-                    datosProveedor[8] = proveedor.getNroDocumento();
-                    modeloTablaProveedor.addRow(datosProveedor);
-                }
+                String[] cabeceraProveedor = {"Id", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento",
+                    "Tipo Documento", "No. Documento"};
+                String[][] matrizVendedores = controlProveedor.refrescarTablaProveedor();
+                modeloTablaProveedor.setDataVector(matrizVendedores, cabeceraProveedor);
                 tableProveedor.setModel(modeloTablaProveedor);
             }
         }

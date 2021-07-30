@@ -6,6 +6,11 @@
 package Model;
 
 import Classes.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -14,47 +19,138 @@ import java.util.ArrayList;
  */
 public class ModelProveedor {
 
+    private final DbData dbData;
     ArrayList<Proveedor> tablaProveedores = new ArrayList<>();
 
     public ModelProveedor() {
+        this.dbData = new DbData();
     }
+ 
+    public boolean crear(Proveedor proveedor) {
 
-    public ArrayList<Proveedor> crear(Proveedor proveedor) {
-        tablaProveedores.add(proveedor);
-        return tablaProveedores;
-    }
+        /*Se trata de conectar a la base de datos y si lo logra, se añaden los datos de
+        los productos a la base de datos.
+         */
+        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+                dbData.getUser(), dbData.getPassword())) {
+            String query
+                    = "INSERT INTO tb_proveedores (nombre, direccion, telefono,"
+                    + " correo, ciudad, departamento, tipoDocumento, "
+                    + "nroDocumento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-    public String[] buscar(int idProveedor, ArrayList<Proveedor> tablaProveedores) {
+            PreparedStatement statementProveedor = conexion.prepareStatement(query);
 
-        String[] matrizProveedor = new String[9];
+            statementProveedor.setString(1, proveedor.getNombre());
+            statementProveedor.setString(2, proveedor.getDireccion());
+            statementProveedor.setString(3, proveedor.getTelefono());
+            statementProveedor.setString(4, proveedor.getCorreo());
+            statementProveedor.setString(5, proveedor.getCiudad());
+            statementProveedor.setString(6, proveedor.getDepartamento());
+            statementProveedor.setString(7, proveedor.getTipoDocumento());
+            statementProveedor.setInt(8, proveedor.getNroDocumento());
 
-        for (Proveedor proveedorEncontrado : tablaProveedores) {
-            if (proveedorEncontrado.getIdProveedor() == idProveedor) {
-                matrizProveedor[0] = Integer.toString(proveedorEncontrado.getIdProveedor());
-                matrizProveedor[1] = proveedorEncontrado.getNombre();
-                matrizProveedor[2] = proveedorEncontrado.getDireccion();
-                matrizProveedor[3] = proveedorEncontrado.getTelefono();
-                matrizProveedor[4] = proveedorEncontrado.getCorreo();
-                matrizProveedor[5] = proveedorEncontrado.getCiudad();
-                matrizProveedor[6] = proveedorEncontrado.getDepartamento();
-                matrizProveedor[7] = proveedorEncontrado.getTipoDocumento();
-                matrizProveedor[8] = Integer.toString(proveedorEncontrado.getNroDocumento());
-            }
+            int filasInsertadas = statementProveedor.executeUpdate();
+
+            return filasInsertadas > 0;
+        } catch (SQLException e) {
+            System.out.println("Se jodio en el modelo");
         }
-        return matrizProveedor;
+        return false;
     }
 
-    public ArrayList<Proveedor> actualizar(Proveedor proveedorActualizado, ArrayList<Proveedor> tablaProveedores) {
-        for (Proveedor proveedor : tablaProveedores) {
-            proveedor.setIdProveedor(proveedorActualizado.getIdProveedor());
-            proveedor.setNombre(proveedorActualizado.getNombre());
-            proveedor.setDireccion(proveedorActualizado.getDireccion());
-            proveedor.setCorreo(proveedorActualizado.getCorreo());
-            proveedor.setCiudad(proveedorActualizado.getCiudad());
-            proveedor.setDepartamento(proveedorActualizado.getDepartamento());
-            proveedor.setNroDocumento(proveedorActualizado.getNroDocumento());
-            proveedor.setTipoDocumento(proveedorActualizado.getTipoDocumento());
+    public Proveedor buscar(int idProveedor) {
+
+        Proveedor proveedor = null;
+        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+                dbData.getUser(), dbData.getPassword())) {
+            String query = "SELECT * FROM tb_proveedores WHERE idProveedor = ?";
+
+            PreparedStatement statementProveedor = conexion.prepareStatement(query);
+
+            statementProveedor.setInt(1, idProveedor);
+
+            ResultSet resultado = statementProveedor.executeQuery();
+
+            while (resultado.next()) {
+                int id = resultado.getInt(1);
+                String nombre = resultado.getString(2);
+                String direccion = resultado.getString(3);
+                String telefono = resultado.getString(4);
+                String correo = resultado.getString(5);
+                String ciudad = resultado.getString(6);
+                String departamento = resultado.getString(7);
+                String tipoDocumento = resultado.getString(8);
+                int nroDocumento = resultado.getInt(9);
+                proveedor = new Proveedor(nombre, direccion, telefono, correo, ciudad,
+                        departamento, tipoDocumento, nroDocumento, id);
+            }
+
+            return proveedor;
+        } catch (SQLException e) {
+            System.out.println("Se frego en el modelo");
+        }
+        return null;
+    }
+
+    public boolean actualizar(Proveedor proveedor) {
+
+        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+                dbData.getUser(), dbData.getPassword())) {
+            String query
+                    = "UPDATE tb_proveedores SET nombre = ? , direccion = ?, telefono = ?,"
+                    + " correo = ?, ciudad = ?, departamento = ?, tipoDocumento = ?, nroDocumento = ?,"
+                    + "  WHERE idProveedor= ?";
+
+            PreparedStatement statementProveedor = conexion.prepareStatement(query);
+
+            statementProveedor.setString(1, proveedor.getNombre());
+            statementProveedor.setString(2, proveedor.getDireccion());
+            statementProveedor.setString(3, proveedor.getTelefono());
+            statementProveedor.setString(4, proveedor.getCorreo());
+            statementProveedor.setString(5, proveedor.getCiudad());
+            statementProveedor.setString(6, proveedor.getDepartamento());
+            statementProveedor.setString(7, proveedor.getTipoDocumento());
+            statementProveedor.setInt(8, proveedor.getNroDocumento());
+            statementProveedor.setInt(10, proveedor.getIdProveedor());
+
+            int filasInsertadas = statementProveedor.executeUpdate();
+
+            return filasInsertadas > 0;
+        } catch (SQLException e) {
+            System.out.println("Se jodio en el modelo");
+        }
+        return false;
+    }
+    
+    public ArrayList<Proveedor> refrescarTabla() {
+        Proveedor proveedor = null;
+        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+                dbData.getUser(), dbData.getPassword())) {
+            String query = "SELECT * FROM tb_proveedores";
+
+            PreparedStatement statementCliente = conexion.prepareStatement(query);
+
+            ResultSet resultado = statementCliente.executeQuery();
+
+            while (resultado.next()) {
+                int id = resultado.getInt(1);
+                String nombre = resultado.getString(2);
+                String direccion = resultado.getString(3);
+                String telefono = resultado.getString(4);
+                String correo = resultado.getString(5);
+                String ciudad = resultado.getString(6);
+                String departamento = resultado.getString(7);
+                String tipoDocumento = resultado.getString(8);
+                int nroDocumento = resultado.getInt(9);
+
+                proveedor = new Proveedor(nombre, direccion, telefono, correo, ciudad,
+                        departamento, tipoDocumento, nroDocumento, id);
+                tablaProveedores.add(proveedor);
+            }
+
             return tablaProveedores;
+        } catch (SQLException e) {
+            System.out.println("Hubo un problema para resfrecar la tabla en el modelo");
         }
         return null;
     }

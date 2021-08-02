@@ -17,6 +17,7 @@ public class ViewPedido extends javax.swing.JFrame {
     FrmViewProductos gestionarProductos;
     FrmViewGestorInventario gestionarInventario;
     FrmViewVerInventario verInventario;
+    FrmViewPedidos gestionarPedido;
 
     /**
      * Creates new form ViewPedido
@@ -26,6 +27,7 @@ public class ViewPedido extends javax.swing.JFrame {
         gestionarProductos = new FrmViewProductos();
         gestionarInventario = new FrmViewGestorInventario();
         verInventario = new FrmViewVerInventario();
+        gestionarPedido = new FrmViewPedidos();
         initComponents();
     }
 
@@ -77,6 +79,11 @@ public class ViewPedido extends javax.swing.JFrame {
         gestionarPedidosBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestionarPedidosBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         gestionarPedidosBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gestionarPedidosBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gestionarPedidosBtnMouseClicked(evt);
+            }
+        });
 
         gestionarProductosBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\caja.png")); // NOI18N
         gestionarProductosBtn.setText("Gestionar Productos");
@@ -212,6 +219,14 @@ public class ViewPedido extends javax.swing.JFrame {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_verInventarioBtnMouseClicked
+
+    private void gestionarPedidosBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarPedidosBtnMouseClicked
+        try {
+            jDesktopPane.add(gestionarPedido);
+            gestionarPedido.show();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_gestionarPedidosBtnMouseClicked
     /**
      * @param args the command line arguments
      */

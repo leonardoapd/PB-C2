@@ -66,6 +66,8 @@ public final class FrmViewGestorInventario extends javax.swing.JInternalFrame {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -147,10 +149,10 @@ public final class FrmViewGestorInventario extends javax.swing.JInternalFrame {
             .addGroup(gestorInventarioLayout.createSequentialGroup()
                 .addGroup(gestorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gestorInventarioLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addGroup(gestorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(actualizarInventarioBtn)
                             .addGroup(gestorInventarioLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
                                 .addGroup(gestorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(labelIdProducto)
                                     .addComponent(labelIdProveedor))
@@ -159,12 +161,12 @@ public final class FrmViewGestorInventario extends javax.swing.JInternalFrame {
                                     .addComponent(textFieldIdProducto)
                                     .addComponent(textFieldIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(12, 12, 12)
-                                .addGroup(gestorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(buscarProductoBtn)
+                                .addGroup(gestorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(gestorInventarioLayout.createSequentialGroup()
                                         .addComponent(labelNombreProveedor)
                                         .addGap(18, 18, 18)
-                                        .addComponent(listaProveedorCbox, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addComponent(listaProveedorCbox, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(buscarProductoBtn))))
                         .addGap(0, 12, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gestorInventarioLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -334,7 +336,7 @@ public final class FrmViewGestorInventario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel labelNombreProveedor;
     private javax.swing.JComboBox<String> listaProveedorCbox;
     private javax.swing.JPanel panelInventario;
-    private javax.swing.JTable tableInventario;
+    protected javax.swing.JTable tableInventario;
     private javax.swing.JTextField textFieldIdProducto;
     private javax.swing.JTextField textFieldIdProveedor;
     // End of variables declaration//GEN-END:variables

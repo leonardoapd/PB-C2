@@ -21,15 +21,16 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
     private final ControllerVendedor controlVendedor;
     private final ControllerProveedor controlProveedor;
     private final ArrayList<Proveedor> tablaProveedores = new ArrayList<>();
-    
+
     DefaultTableModel modeloTablaCliente = new DefaultTableModel();
     DefaultTableModel modeloTablaVendedor = new DefaultTableModel();
     DefaultTableModel modeloTablaProveedor = new DefaultTableModel();
+
     /**
      * Creates new form FrmViewTerceros
      */
     public FrmViewTerceros() {
-        
+
         controlCliente = new ControllerCliente();
         controlVendedor = new ControllerVendedor();
         controlProveedor = new ControllerProveedor();
@@ -142,7 +143,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Gestor de Terceros");
-        setPreferredSize(new java.awt.Dimension(580, 540));
+        setPreferredSize(new java.awt.Dimension(600, 540));
 
         tabbedPanelGestor.setToolTipText("");
         tabbedPanelGestor.setPreferredSize(new java.awt.Dimension(595, 530));
@@ -372,6 +373,8 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
 
         DepartamentoVendedor.setText("Departamento:");
 
+        textFieldIdVendedor.setEditable(false);
+
         crearVendedorBtn.setToolTipText("Llena el formulario para crear un vendedor nuevo");
         crearVendedorBtn.setLabel("Crear");
         crearVendedorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -582,6 +585,11 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
 
         actualizarProveedorBtn.setText("Actualizar");
         actualizarProveedorBtn.setToolTipText("Actualiza la información de un proveedor registrado");
+        actualizarProveedorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarProveedorBtnActionPerformed(evt);
+            }
+        });
 
         borrarProveedorBtn.setText("Borrar");
 
@@ -738,7 +746,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tabbedPanelGestor, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -760,7 +768,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         String departamento = textFieldDepartamentoCliente.getText();
         String nroDocumento = textFieldNroDocumentoCliente.getText();
         String fechaNacimiento = textFieldFechaCliente.getText();
-        String id = textFieldIdCliente.getText();
+        String id = "0";
         String tipoDocumento = "";
 
         if (radioButtonCCCliente.isSelected()) {
@@ -774,8 +782,8 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         boolean clienteCreado = false;
         try {
             clienteCreado = controlCliente.crear(nombre, direccion, telefono, correo,
-                ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
-                Integer.parseInt(id));
+                    ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
+                    Integer.parseInt(id));
 
             limpiarCampos(1);
             refrescarTabla(1);
@@ -810,11 +818,11 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
                 String tipo = matrizDevuelta[7];
                 switch (tipo) {
                     case "C.C" ->
-                    radioButtonCCCliente.setSelected(true);
+                        radioButtonCCCliente.setSelected(true);
                     case "NIT" ->
-                    radioButtonNITCliente.setSelected(true);
+                        radioButtonNITCliente.setSelected(true);
                     case "Otro" ->
-                    radioButtonOtroCliente.setSelected(true);
+                        radioButtonOtroCliente.setSelected(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "No se ha encontrado el cliente.");
@@ -850,8 +858,8 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
             boolean clienteActualizado = false;
             try {
                 clienteActualizado = controlCliente.actualizar(nombre, direccion, telefono, correo,
-                    ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
-                    id);
+                        ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
+                        id);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Cliente no existe.");
             }
@@ -874,7 +882,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         String ciudad = textFieldCiudadVendedor.getText();
         String departamento = textFieldDptoVendedor.getText();
         String nroDocumento = textFieldNroDocVendedor.getText();
-        String id = textFieldIdVendedor.getText();
+        String id = "0";
         String tipoDocumento = "";
 
         if (radioButtonCCVendedor.isSelected()) {
@@ -888,17 +896,20 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         boolean vendedorCreado = false;
         try {
             vendedorCreado = controlVendedor.crear(nombre, direccion, telefono, correo, ciudad, departamento,
-                tipoDocumento, Integer.parseInt(nroDocumento), Integer.parseInt(id));
+                    tipoDocumento, Integer.parseInt(nroDocumento), Integer.parseInt(id));
 
             limpiarCampos(2);
             refrescarTabla(2);
-
-            if (vendedorCreado) {
-                JOptionPane.showMessageDialog(this, "El vendedor ha sido creado exitosamente.");
-            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
         }
+
+        if (vendedorCreado) {
+            JOptionPane.showMessageDialog(this, "El vendedor ha sido creado exitosamente.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ha ocurrido un problema durante la creacion del proveedor.");
+        }
+
     }//GEN-LAST:event_crearVendedorBtnActionPerformed
 
     private void leerVendedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leerVendedorBtnActionPerformed
@@ -918,11 +929,11 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
                 String tipo = matrizDevuelta[7];
                 switch (tipo) {
                     case "C.C" ->
-                    radioButtonCCVendedor.setSelected(true);
+                        radioButtonCCVendedor.setSelected(true);
                     case "NIT" ->
-                    radioButtonNITVendedor.setSelected(true);
+                        radioButtonNITVendedor.setSelected(true);
                     case "Otro" ->
-                    radioButtonOtroVendedor.setSelected(true);
+                        radioButtonOtroVendedor.setSelected(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "No se ha encontrado el vendedor.");
@@ -935,7 +946,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
 
     private void actualizarVendedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarVendedorBtnActionPerformed
         try {
-            String id = textFieldIdVendedor.getText();
+            int id = Integer.parseInt(textFieldIdVendedor.getText());
             String nombre = textFieldNombreVendedor.getText();
             String direccion = textFieldDireccionVendedor.getText();
             String telefono = textFieldTelefonoVendedor.getText();
@@ -956,7 +967,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
             boolean vendedorActualizado = false;
             try {
                 vendedorActualizado = controlVendedor.actualizar(nombre, direccion, telefono, correo, ciudad, departamento,
-                    tipoDocumento, Integer.parseInt(nroDocumento), Integer.parseInt(id));
+                        tipoDocumento, Integer.parseInt(nroDocumento), id);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Vendedor no existe.");
             }
@@ -980,7 +991,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         String ciudad = textFieldCiudadProveedor.getText();
         String departamento = textFieldDptoProveedor.getText();
         String nroDocumento = textFieldNroDocProveedor.getText();
-        String id = textFieldIdProveedor.getText();
+        String id = "0";
         String tipoDocumento = "";
 
         if (radioButtonCCProveedor.isSelected()) {
@@ -994,8 +1005,8 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         boolean clienteCreado = false;
         try {
             clienteCreado = controlProveedor.crear(nombre, direccion, telefono, correo,
-                ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento),
-                Integer.parseInt(id));
+                    ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento),
+                    Integer.parseInt(id));
 
             limpiarCampos(3);
             refrescarTabla(3);
@@ -1030,11 +1041,11 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
                 String tipo = matrizDevuelta[7];
                 switch (tipo) {
                     case "C.C" ->
-                    radioButtonCCProveedor.setSelected(true);
+                        radioButtonCCProveedor.setSelected(true);
                     case "NIT" ->
-                    radioButtonNITProveedor.setSelected(true);
+                        radioButtonNITProveedor.setSelected(true);
                     case "Otro" ->
-                    radioButtonOtroProveedor.setSelected(true);
+                        radioButtonOtroProveedor.setSelected(true);
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "No se ha encontrado el proveedor.");
@@ -1044,6 +1055,46 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Rellene el campo ID.");
         }
     }//GEN-LAST:event_leerProveedorBtnActionPerformed
+
+    private void actualizarProveedorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarProveedorBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+            int id = Integer.parseInt(textFieldIdProveedor.getText());
+            String nombre = textFieldNombreProveedor.getText();
+            String direccion = textFieldDireccionProveedor.getText();
+            String telefono = textFieldTelefonoProveedor.getText();
+            String correo = textFieldCorreoProveedor.getText();
+            String ciudad = textFieldCiudadProveedor.getText();
+            String departamento = textFieldDptoProveedor.getText();
+            String nroDocumento = textFieldNroDocProveedor.getText();
+            String tipoDocumento = "";
+
+            if (radioButtonCCProveedor.isSelected()) {
+                tipoDocumento = "C.C";
+            } else if (radioButtonNITProveedor.isSelected()) {
+                tipoDocumento = "NIT";
+            } else if (radioButtonOtroProveedor.isSelected()) {
+                tipoDocumento = "Otro";
+            }
+
+            boolean clienteActualizado = false;
+            try {
+                clienteActualizado = controlProveedor.actualizar(nombre, direccion, telefono,
+                        correo, ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), id);
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "El proveedor no existe.");
+            }
+
+            if (clienteActualizado) {
+                JOptionPane.showMessageDialog(this, "El proveedor ha sido actualizado exitosamente.");
+            }
+            limpiarCampos(3);
+            refrescarTabla(3);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
+        }
+    }//GEN-LAST:event_actualizarProveedorBtnActionPerformed
 
     public void limpiarCampos(int opcion) {
         //Se limpian los textField

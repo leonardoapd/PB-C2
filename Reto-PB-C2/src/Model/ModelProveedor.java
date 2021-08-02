@@ -25,7 +25,7 @@ public class ModelProveedor {
     public ModelProveedor() {
         this.dbData = new DbData();
     }
- 
+
     public boolean crear(Proveedor proveedor) {
 
         /*Se trata de conectar a la base de datos y si lo logra, se añaden los datos de
@@ -50,9 +50,10 @@ public class ModelProveedor {
             statementProveedor.setInt(8, proveedor.getNroDocumento());
 
             int filasInsertadas = statementProveedor.executeUpdate();
-
+            conexion.close();
             return filasInsertadas > 0;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             System.out.println("Se jodio en el modelo");
         }
         return false;
@@ -84,7 +85,7 @@ public class ModelProveedor {
                 proveedor = new Proveedor(nombre, direccion, telefono, correo, ciudad,
                         departamento, tipoDocumento, nroDocumento, id);
             }
-
+            conexion.close();
             return proveedor;
         } catch (SQLException e) {
             System.out.println("Se frego en el modelo");
@@ -98,7 +99,7 @@ public class ModelProveedor {
                 dbData.getUser(), dbData.getPassword())) {
             String query
                     = "UPDATE tb_proveedores SET nombre = ? , direccion = ?, telefono = ?,"
-                    + " correo = ?, ciudad = ?, departamento = ?, tipoDocumento = ?, nroDocumento = ?,"
+                    + " correo = ?, ciudad = ?, departamento = ?, tipoDocumento = ?, nroDocumento = ?"
                     + "  WHERE idProveedor= ?";
 
             PreparedStatement statementProveedor = conexion.prepareStatement(query);
@@ -111,17 +112,18 @@ public class ModelProveedor {
             statementProveedor.setString(6, proveedor.getDepartamento());
             statementProveedor.setString(7, proveedor.getTipoDocumento());
             statementProveedor.setInt(8, proveedor.getNroDocumento());
-            statementProveedor.setInt(10, proveedor.getIdProveedor());
+            statementProveedor.setInt(9, proveedor.getIdProveedor());
 
             int filasInsertadas = statementProveedor.executeUpdate();
-
+            conexion.close();
             return filasInsertadas > 0;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             System.out.println("Se jodio en el modelo");
         }
         return false;
     }
-    
+
     public ArrayList<Proveedor> refrescarTabla() {
         Proveedor proveedor = null;
         try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
@@ -147,7 +149,7 @@ public class ModelProveedor {
                         departamento, tipoDocumento, nroDocumento, id);
                 tablaProveedores.add(proveedor);
             }
-
+            conexion.close();
             return tablaProveedores;
         } catch (SQLException e) {
             System.out.println("Hubo un problema para resfrecar la tabla en el modelo");

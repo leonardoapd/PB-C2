@@ -6,15 +6,27 @@
 package View;
 
 import Controller.ControllerInventario;
+//import java.awt.Toolkit; //Importacion para usar el sonido de Windows cuando se presione enter
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Leonardo Perdomo
+ * Implemento el KeyListener para escuchar eventos de teclado
+ * y capturar cuando se presiona enter en la tabla donde se muestra el listado de los productos
+ * agregados.
  */
-public class FrmViewProductos extends javax.swing.JInternalFrame {
+public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyListener {
 
+    /** Se declaran los objetos del controlador de la vista 
+     * relacionada con los productos y el modelo de la tabla 
+     * que almacena el listado de productos.
+     */
     private final ControllerInventario controlInventario;
+    DefaultTableModel modeloTablaProductos = new DefaultTableModel();
 
     /**
      * Creates new form FrmViewProductos
@@ -22,6 +34,9 @@ public class FrmViewProductos extends javax.swing.JInternalFrame {
     public FrmViewProductos() {
         controlInventario = new ControllerInventario();
         initComponents();
+        //Obtengo el siguiente ID de Producto en la tabla de la base de datos para mostrarlo en la vista
+        textFieldIdProducto.setText(controlInventario.obtenerId());
+        refrescarTabla();
     }
 
     /**
@@ -33,21 +48,34 @@ public class FrmViewProductos extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        panelCrear = new javax.swing.JPanel();
         labelNombre = new javax.swing.JLabel();
-        labelPrecio = new javax.swing.JLabel();
-        labelCantidad = new javax.swing.JLabel();
         labelIdProducto = new javax.swing.JLabel();
-        labelIdProveedor = new javax.swing.JLabel();
-        textFieldIdProveedor = new javax.swing.JTextField();
-        textFieldCantidad = new javax.swing.JTextField();
         textFieldNombre = new javax.swing.JTextField();
         textFieldIdProducto = new javax.swing.JTextField();
-        textFieldPrecio = new javax.swing.JTextField();
         agregarBtn = new javax.swing.JButton();
-        buscarBtn = new javax.swing.JButton();
-        actualizarBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaDescripcion = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textAreaDescripcion2 = new javax.swing.JTextArea();
+        unidadMedidaCbox = new javax.swing.JComboBox<>();
+        labelUnidadMedida = new javax.swing.JLabel();
+        panelBuscar = new javax.swing.JPanel();
+        labelNombreB = new javax.swing.JLabel();
+        labelIdProductoB = new javax.swing.JLabel();
+        textFieldNombreB = new javax.swing.JTextField();
+        textFieldIdProductoB = new javax.swing.JTextField();
+        buscarBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textAreaDescripcionB = new javax.swing.JTextArea();
+        unidadMedidaBCbox = new javax.swing.JComboBox<>();
+        labelUnidadMedida1 = new javax.swing.JLabel();
+        actualizarBtn = new javax.swing.JButton();
+        borrarBtn = new javax.swing.JButton();
+        panelLista = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableProductos = new javax.swing.JTable();
 
         setClosable(true);
         setIconifiable(true);
@@ -55,13 +83,9 @@ public class FrmViewProductos extends javax.swing.JInternalFrame {
 
         labelNombre.setText("Nombre: ");
 
-        labelPrecio.setText("Precio:");
+        labelIdProducto.setText("ID:");
 
-        labelCantidad.setText("Cantidad:");
-
-        labelIdProducto.setText("Id:");
-
-        labelIdProveedor.setText("Id Proveedor:");
+        textFieldIdProducto.setEditable(false);
 
         agregarBtn.setText("Agregar");
         agregarBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
@@ -71,93 +95,210 @@ public class FrmViewProductos extends javax.swing.JInternalFrame {
             }
         });
 
+        textAreaDescripcion.setColumns(20);
+        textAreaDescripcion.setRows(5);
+        textAreaDescripcion.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
+        jScrollPane1.setViewportView(textAreaDescripcion);
+
+        textAreaDescripcion2.setColumns(20);
+        textAreaDescripcion2.setRows(5);
+        textAreaDescripcion2.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
+        jScrollPane3.setViewportView(textAreaDescripcion2);
+
+        unidadMedidaCbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kg", "gr", "Ton", "cm3", "Unidad" }));
+
+        labelUnidadMedida.setText("Unidad de Medida");
+
+        javax.swing.GroupLayout panelCrearLayout = new javax.swing.GroupLayout(panelCrear);
+        panelCrear.setLayout(panelCrearLayout);
+        panelCrearLayout.setHorizontalGroup(
+            panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(panelCrearLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelCrearLayout.createSequentialGroup()
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelCrearLayout.createSequentialGroup()
+                                .addComponent(labelUnidadMedida)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(unidadMedidaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelCrearLayout.createSequentialGroup()
+                                .addComponent(labelIdProducto)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(textFieldIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        panelCrearLayout.setVerticalGroup(
+            panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCrearLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelIdProducto)
+                    .addComponent(textFieldIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNombre)
+                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(unidadMedidaCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUnidadMedida))
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(agregarBtn)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\anadir-producto-24px.png"), panelCrear, "Crear Producto"); // NOI18N
+
+        labelNombreB.setText("Nombre: ");
+
+        labelIdProductoB.setText("ID:");
+
         buscarBtn.setText("Buscar");
+        buscarBtn.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         buscarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarBtnActionPerformed(evt);
             }
         });
 
+        textAreaDescripcionB.setColumns(20);
+        textAreaDescripcionB.setRows(5);
+        textAreaDescripcionB.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
+        jScrollPane2.setViewportView(textAreaDescripcionB);
+
+        unidadMedidaBCbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kg", "gr", "Ton", "cm3", "Unidad" }));
+
+        labelUnidadMedida1.setText("Unidad de Medida");
+
         actualizarBtn.setText("Actualizar");
-        actualizarBtn.setActionCommand("");
+        actualizarBtn.setToolTipText("");
         actualizarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualizarBtnActionPerformed(evt);
             }
         });
 
-        textAreaDescripcion.setColumns(20);
-        textAreaDescripcion.setRows(5);
-        textAreaDescripcion.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripción"));
-        jScrollPane1.setViewportView(textAreaDescripcion);
+        borrarBtn.setText("Borrar");
+
+        javax.swing.GroupLayout panelBuscarLayout = new javax.swing.GroupLayout(panelBuscar);
+        panelBuscar.setLayout(panelBuscarLayout);
+        panelBuscarLayout.setHorizontalGroup(
+            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBuscarLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(borrarBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(actualizarBtn)
+                .addGap(18, 18, 18)
+                .addComponent(buscarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(panelBuscarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBuscarLayout.createSequentialGroup()
+                        .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelBuscarLayout.createSequentialGroup()
+                                .addComponent(labelUnidadMedida1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(unidadMedidaBCbox, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelBuscarLayout.createSequentialGroup()
+                                .addComponent(labelIdProductoB)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(textFieldIdProductoB, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelNombreB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(textFieldNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelBuscarLayout.setVerticalGroup(
+            panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBuscarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelIdProductoB)
+                    .addComponent(textFieldIdProductoB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNombreB)
+                    .addComponent(textFieldNombreB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(unidadMedidaBCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUnidadMedida1))
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buscarBtn)
+                    .addComponent(actualizarBtn)
+                    .addComponent(borrarBtn))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\buscar-producto-24px.png"), panelBuscar, "Buscar Producto"); // NOI18N
+
+        tableProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tableProductos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tableProductos.addKeyListener(this);
+        jScrollPane4.setViewportView(tableProductos);
+
+        javax.swing.GroupLayout panelListaLayout = new javax.swing.GroupLayout(panelLista);
+        panelLista.setLayout(panelListaLayout);
+        panelListaLayout.setHorizontalGroup(
+            panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 448, Short.MAX_VALUE)
+            .addGroup(panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelListaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        panelListaLayout.setVerticalGroup(
+            panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 358, Short.MAX_VALUE)
+            .addGroup(panelListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelListaLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("", new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\lista-de-verificacion-24px.png"), panelLista, "Lista de Productos"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelIdProveedor)
-                            .addComponent(labelNombre)
-                            .addComponent(labelCantidad))
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(textFieldCantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(textFieldIdProveedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(actualizarBtn)
-                        .addGap(40, 40, 40)
-                        .addComponent(buscarBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(40, 40, 40)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textFieldPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
-                    .addComponent(textFieldIdProducto)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(agregarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNombre)
-                    .addComponent(labelPrecio)
-                    .addComponent(textFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCantidad)
-                    .addComponent(labelIdProducto)
-                    .addComponent(textFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIdProveedor)
-                    .addComponent(textFieldIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(agregarBtn)
-                    .addComponent(buscarBtn)
-                    .addComponent(actualizarBtn))
+                .addComponent(jTabbedPane1)
                 .addGap(26, 26, 26))
         );
 
@@ -165,96 +306,197 @@ public class FrmViewProductos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void agregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarBtnActionPerformed
+        /**
+         * Se recoje la informacion de la vista, textfields y combobox
+         */
         String nombre = textFieldNombre.getText();
-        String precio = textFieldPrecio.getText();
-        String cantidad = textFieldCantidad.getText();
         String idProducto = textFieldIdProducto.getText();
-        String idProveedor = textFieldIdProveedor.getText();
         String descripcion = textAreaDescripcion.getText();
+        String unidadMedida = "";
 
+        switch (unidadMedidaCbox.getSelectedItem().toString()) {
+            case "Kg" ->
+                unidadMedida = "Kg";
+            case "gr" ->
+                unidadMedida = "gr";
+            case "Ton" ->
+                unidadMedida = "Ton";
+            case "cm3" ->
+                unidadMedida = "cm3";
+            case "Unidad" ->
+                unidadMedida = "Unidad";
+        }
+
+        /**
+         * Se crea una variable booleana para determinar si el producto ha sido agregado con exito.
+         * Se invoca el metodo agregarProducto del controlador que añade la informacion recopilada
+         * a la base de datos en su respectiva tabla.
+         */
         boolean productoAgregado = false;
         try {
-            productoAgregado = controlInventario.agregarProducto(nombre, descripcion, Integer.parseInt(precio),
-                    Integer.parseInt(cantidad), Integer.parseInt(idProducto), Integer.parseInt(idProveedor));
-            limpiarCampos();
+            productoAgregado = controlInventario.agregarProducto(nombre, descripcion, unidadMedida,
+                    Integer.parseInt(idProducto));
+            //Se limpian los campos para que quede disponible para rellenar nuevamente
+            limpiarCampos(1);
+            //Se muestra la tabla con el registro nuevo
+            refrescarTabla();
         } catch (Exception e) {
+            //Si se presenta un error como el no relleno de los campos, lo muestra
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
         }
 
         if (productoAgregado) {
+            //Se muestra un mensaje de exito al crear el producto
             JOptionPane.showMessageDialog(this, "El producto ha sido agregado exitosamente.");
         } else {
-            JOptionPane.showMessageDialog(this, "No fue posible agregar el producto al inventario");
+            JOptionPane.showMessageDialog(this, "No fue posible agregar el producto al inventario.");
         }
     }//GEN-LAST:event_agregarBtnActionPerformed
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
-        // TODO add your handling code here:
-        String id = textFieldIdProducto.getText();
-        String[] matrizDevuelta = controlInventario.buscar(Integer.parseInt(id));
-
-        if (matrizDevuelta != null) {
-            textFieldIdProducto.setText(matrizDevuelta[0]);     
-            textFieldNombre.setText(matrizDevuelta[1]);
-            textAreaDescripcion.setText(matrizDevuelta[2]);
-            textFieldPrecio.setText(matrizDevuelta[3]);
-            textFieldCantidad.setText(matrizDevuelta[4]);
-            textFieldIdProveedor.setText(matrizDevuelta[5]);
-                  
-        } else {
-            JOptionPane.showMessageDialog(this, "No se ha encontrado el producto.");
+        /**
+         * Para buscar un producto en la base de datos, se ingresa la informacion al campo id.
+         * Se invoca el metodo buscar en el controlador y este a su vez lo invoca en el modelo, 
+         * que consulta a base de datos, y los datos devueltos se muestran en los textfields y combobox
+         */
+        try {
+            String id = textFieldIdProductoB.getText();
+            
+            String[][] productoEncontrado = controlInventario.buscar(Integer.parseInt(id));
+            textFieldIdProductoB.setText(productoEncontrado[0][0]);
+            textFieldNombreB.setText(productoEncontrado[0][1]);
+            textAreaDescripcionB.setText(productoEncontrado[0][2]);
+            unidadMedidaBCbox.setSelectedItem(productoEncontrado[0][3]);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No se ha ingresado el ID para realizar la busqueda del producto.");
         }
     }//GEN-LAST:event_buscarBtnActionPerformed
 
     private void actualizarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarBtnActionPerformed
-        // TODO add your handling code here:
-        String nombre = textFieldNombre.getText();
-        String precio = textFieldPrecio.getText();
-        String cantidad = textFieldCantidad.getText();
-        String idProducto = textFieldIdProducto.getText();
-        String idProveedor = textFieldIdProveedor.getText();
-        String descripcion = textAreaDescripcion.getText();
-
-        boolean productoAgregado = false;
         try {
-            productoAgregado = controlInventario.actualizar(nombre, descripcion, Integer.parseInt(precio),
-                    Integer.parseInt(cantidad), Integer.parseInt(idProducto), Integer.parseInt(idProveedor));
-            limpiarCampos();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
-        }
+            String nombre = textFieldNombreB.getText();
+            String idProducto = textFieldIdProductoB.getText();
+            String descripcion = textAreaDescripcionB.getText();
+            String unidadMedida = "";
 
-        if (productoAgregado) {
-            JOptionPane.showMessageDialog(this, "El producto ha sido agregado exitosamente.");
-        } else {
-            JOptionPane.showMessageDialog(this, "No fue posible agregar el producto al inventario");
+            switch (unidadMedidaBCbox.getSelectedItem().toString()) {
+                case "Kg" ->
+                    unidadMedida = "Kg";
+                case "gr" ->
+                    unidadMedida = "gr";
+                case "Ton" ->
+                    unidadMedida = "Ton";
+                case "cm3" ->
+                    unidadMedida = "cm3";
+                case "Unidad" ->
+                    unidadMedida = "Unidad";
+            }
+
+            if (nombre.equals("") || descripcion.equals("")) {
+                JOptionPane.showMessageDialog(this, "Por favor realice la busqueda!");
+            } else {
+                boolean productoActualizado = controlInventario.actualizar(nombre,
+                        descripcion, unidadMedida, Integer.parseInt(idProducto), 0, 0, 0);
+                limpiarCampos(2);
+                refrescarTabla();
+                if (productoActualizado) {
+                    JOptionPane.showMessageDialog(this, "El producto ha sido actualizado.");
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un ID para realizar una busqueda.");
         }
     }//GEN-LAST:event_actualizarBtnActionPerformed
 
-    public void limpiarCampos() {
-        textFieldNombre.setText("");
-        textFieldPrecio.setText("");
-        textFieldCantidad.setText("");
-        textFieldIdProducto.setText("");
-        textFieldIdProveedor.setText("");
-        textAreaDescripcion.setText("");
+    public void limpiarCampos(int opcion) {
+        //Metodo para limpiar los campos de los paneles de la vista.
+        switch (opcion) {
+            case 1 -> {
+                textFieldNombre.setText("");
+                textFieldIdProducto.setText("");
+                textAreaDescripcion.setText("");
+                textFieldIdProducto.setText(controlInventario.obtenerId());
+            }
+            case 2 -> {
+                textFieldNombreB.setText("");
+                textFieldIdProductoB.setText("");
+                textAreaDescripcionB.setText("");
+            }
+        }
+
     }
 
+    public final void refrescarTabla() {
+        //Se establecen los elementos de la cabecera de la tabla
+        String[] cabeceraProducto = {"Id", "Nombre", "Unidad de Medida", "Descripcion"};
+        //Se recogen los datos de los clientes añadidos en el almacenamiento temporal
+        String[][] matrizProducto = controlInventario.refrescarTablaProducto();
+        //Se agregan los datos y la cabecera de la tabla al modelo
+        modeloTablaProductos.setDataVector(matrizProducto, cabeceraProducto);
+        //Se agrega el modelo a la vista
+        tableProductos.setModel(modeloTablaProductos);
+        if (tableProductos.getColumnModel().getColumnCount() > 0) {
+            tableProductos.getColumnModel().getColumn(0).setPreferredWidth(30);
+            tableProductos.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tableProductos.getColumnModel().getColumn(3).setPreferredWidth(300);
+        }
+    }
+
+    /**
+     * 
+     * Los metodos a continuacion sirven para detectar cuando ha sido presionada la tecla enter dentro de
+     * la tabla que lista los productos, para permitir actualizarlos.
+     */
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
+
+    public void keyPressed(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_ENTER) {
+            //Toolkit.getDefaultToolkit().beep();
+            System.out.println("ENTER Presionado");
+            int id = Integer.parseInt((String) modeloTablaProductos.getValueAt(tableProductos.getSelectedRow(), 0));
+            String[][] productoEncontrado = controlInventario.buscar(id);
+            textFieldIdProductoB.setText(productoEncontrado[0][0]);
+            textFieldNombreB.setText(productoEncontrado[0][1]);
+            textAreaDescripcionB.setText(productoEncontrado[0][2]);
+            unidadMedidaBCbox.setSelectedItem(productoEncontrado[0][3]);
+            //Linea para seleccionar una de las pestañas del jTabbedPane
+            jTabbedPane1.setSelectedIndex(1);
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualizarBtn;
     private javax.swing.JButton agregarBtn;
+    private javax.swing.JButton borrarBtn;
     private javax.swing.JButton buscarBtn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCantidad;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel labelIdProducto;
-    private javax.swing.JLabel labelIdProveedor;
+    private javax.swing.JLabel labelIdProductoB;
     private javax.swing.JLabel labelNombre;
-    private javax.swing.JLabel labelPrecio;
+    private javax.swing.JLabel labelNombreB;
+    private javax.swing.JLabel labelUnidadMedida;
+    private javax.swing.JLabel labelUnidadMedida1;
+    private javax.swing.JPanel panelBuscar;
+    private javax.swing.JPanel panelCrear;
+    private javax.swing.JPanel panelLista;
+    private javax.swing.JTable tableProductos;
     protected javax.swing.JTextArea textAreaDescripcion;
-    protected javax.swing.JTextField textFieldCantidad;
+    protected javax.swing.JTextArea textAreaDescripcion2;
+    protected javax.swing.JTextArea textAreaDescripcionB;
     protected javax.swing.JTextField textFieldIdProducto;
-    protected javax.swing.JTextField textFieldIdProveedor;
+    protected javax.swing.JTextField textFieldIdProductoB;
     protected javax.swing.JTextField textFieldNombre;
-    protected javax.swing.JTextField textFieldPrecio;
+    protected javax.swing.JTextField textFieldNombreB;
+    private javax.swing.JComboBox<String> unidadMedidaBCbox;
+    private javax.swing.JComboBox<String> unidadMedidaCbox;
     // End of variables declaration//GEN-END:variables
 }

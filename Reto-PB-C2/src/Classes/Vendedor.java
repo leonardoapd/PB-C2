@@ -21,7 +21,7 @@ public class Vendedor extends DatosBasicos {
             String ciudad, String departamento, String tipoDocumento, int nroDocumento,
             int idVendedor) {
         super(nombre, direccion, telefono, correo, ciudad, departamento, tipoDocumento, nroDocumento);
-        this.cantidadVentas = cantidadVentas;
+        this.cantidadVentas = 0;
         this.idVendedor = idVendedor;
         this.totalVenta = 0;
     }

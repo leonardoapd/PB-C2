@@ -5,8 +5,7 @@
  */
 package View;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -16,7 +15,8 @@ public class ViewPedido extends javax.swing.JFrame {
 
     FrmViewTerceros gestionarTerceros;
     FrmViewProductos gestionarProductos;
-    FrmViewInventario gestionarInventario;
+    FrmViewGestorInventario gestionarInventario;
+    FrmViewVerInventario verInventario;
 
     /**
      * Creates new form ViewPedido
@@ -24,7 +24,8 @@ public class ViewPedido extends javax.swing.JFrame {
     public ViewPedido() {
         gestionarTerceros = new FrmViewTerceros();
         gestionarProductos = new FrmViewProductos();
-        gestionarInventario = new FrmViewInventario();
+        gestionarInventario = new FrmViewGestorInventario();
+        verInventario = new FrmViewVerInventario();
         initComponents();
     }
 
@@ -43,7 +44,8 @@ public class ViewPedido extends javax.swing.JFrame {
         gestionarPedidosBtn = new javax.swing.JLabel();
         gestionarProductosBtn = new javax.swing.JLabel();
         gestionarInventarioBtn = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        gestionarVentasBtn = new javax.swing.JLabel();
+        verInventarioBtn = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -53,6 +55,7 @@ public class ViewPedido extends javax.swing.JFrame {
         setResizable(false);
 
         jDesktopPane.setToolTipText("");
+        jDesktopPane.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jDesktopPane.setPreferredSize(new java.awt.Dimension(1366, 690));
 
         gestionarTercerosBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -87,7 +90,7 @@ public class ViewPedido extends javax.swing.JFrame {
         });
 
         gestionarInventarioBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\estar.png")); // NOI18N
-        gestionarInventarioBtn.setText("Ver Inventario");
+        gestionarInventarioBtn.setText("Gestionar Inventario");
         gestionarInventarioBtn.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         gestionarInventarioBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestionarInventarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -98,17 +101,28 @@ public class ViewPedido extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\shopping-basket.png")); // NOI18N
-        jLabel1.setText("Gestionar Ventas");
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        gestionarVentasBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\shopping-basket.png")); // NOI18N
+        gestionarVentasBtn.setText("Gestionar Ventas");
+        gestionarVentasBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestionarVentasBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gestionarVentasBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        verInventarioBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\inventario-128-px.png")); // NOI18N
+        verInventarioBtn.setText("Ver Inventario");
+        verInventarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        verInventarioBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        verInventarioBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                verInventarioBtnMouseClicked(evt);
+            }
+        });
 
         jDesktopPane.setLayer(gestionarTercerosBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(gestionarPedidosBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(gestionarProductosBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane.setLayer(gestionarInventarioBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(gestionarVentasBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(verInventarioBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
         jDesktopPane.setLayout(jDesktopPaneLayout);
@@ -119,22 +133,28 @@ public class ViewPedido extends javax.swing.JFrame {
                 .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(gestionarInventarioBtn)
                     .addComponent(gestionarProductosBtn)
-                    .addComponent(gestionarPedidosBtn)
+                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                        .addComponent(gestionarPedidosBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(verInventarioBtn))
                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
                         .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1)))
+                        .addComponent(gestionarVentasBtn)))
                 .addContainerGap(1077, Short.MAX_VALUE))
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(gestionarPedidosBtn)
+                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gestionarVentasBtn))
+                        .addGap(18, 18, 18)
+                        .addComponent(gestionarPedidosBtn))
+                    .addComponent(verInventarioBtn))
                 .addGap(18, 18, 18)
                 .addComponent(gestionarProductosBtn)
                 .addGap(18, 18, 18)
@@ -180,15 +200,22 @@ public class ViewPedido extends javax.swing.JFrame {
         try {
             jDesktopPane.add(gestionarInventario);
             gestionarInventario.show();
-            gestionarInventario.refrescarTabla();
         } catch (Exception e) {
 
         }
     }//GEN-LAST:event_gestionarInventarioBtnMouseClicked
+
+    private void verInventarioBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_verInventarioBtnMouseClicked
+        try {
+            jDesktopPane.add(verInventario);
+            verInventario.show();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_verInventarioBtnMouseClicked
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {  
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -226,8 +253,9 @@ public class ViewPedido extends javax.swing.JFrame {
     private javax.swing.JLabel gestionarPedidosBtn;
     private javax.swing.JLabel gestionarProductosBtn;
     private javax.swing.JLabel gestionarTercerosBtn;
+    private javax.swing.JLabel gestionarVentasBtn;
     protected javax.swing.JDesktopPane jDesktopPane;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JLabel verInventarioBtn;
     // End of variables declaration//GEN-END:variables
 }

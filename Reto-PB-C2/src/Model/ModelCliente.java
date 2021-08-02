@@ -51,7 +51,7 @@ public class ModelCliente {
             statementCliente.setString(9, cliente.getFechaNacimiento());
 
             int filasInsertadas = statementCliente.executeUpdate();
-
+            conexion.close();
             return filasInsertadas > 0;
         } catch (SQLException e) {
             System.out.println("Se jodio en el modelo");
@@ -86,7 +86,7 @@ public class ModelCliente {
                 cliente = new Cliente(nombre, direccion, telefono, correo, ciudad,
                         departamento, tipoDocumento, nroDocumento, fechaNacimiento, id);
             }
-
+            conexion.close();
             return cliente;
         } catch (SQLException e) {
             System.out.println("Se frego en el modelo");
@@ -117,7 +117,7 @@ public class ModelCliente {
             statementCliente.setInt(10, cliente.getIdCliente());
 
             int filasInsertadas = statementCliente.executeUpdate();
-
+            conexion.close();
             return filasInsertadas > 0;
         } catch (SQLException e) {
             System.out.println("Se jodio en el modelo");
@@ -151,7 +151,7 @@ public class ModelCliente {
                         departamento, tipoDocumento, nroDocumento, fechaNacimiento, id);
                 tablaClientes.add(cliente);
             }
-
+            conexion.close();
             return tablaClientes;
         } catch (SQLException e) {
             System.out.println("Hubo un problema para resfrecar la tabla en el modelo");

@@ -12,20 +12,34 @@ package Classes;
 public class Producto {
     
     //Se crean los atributos de la clase
-    private String nombre, descripcion;
+    private String nombre, descripcion, unidadMedida;
     private int precioUnitario, cantidadInventario, idProducto, idProveedor;
 
     
     //Se crea el constructor de la clase
-    public Producto(String nombre, String descripcion, int precioUnitario, int cantidadInventario, int idProducto, int idProveedor) {
+    public Producto(String nombre, String descripcion, String unidadMedida, 
+            int precioUnitario, int cantidadInventario, int idProducto, int idProveedor) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.unidadMedida = unidadMedida;
         this.precioUnitario = precioUnitario;
         this.cantidadInventario = cantidadInventario;
         this.idProducto = idProducto;
         this.idProveedor = idProveedor;
     }
     
+    public Producto() {
+        
+    }
+
+    public String getUnidadMedida() {
+        return unidadMedida;
+    }
+
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
+    }
+
     //Se crean los get y los set
     public String getNombre() {
         return nombre;

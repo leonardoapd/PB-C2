@@ -22,6 +22,7 @@ public class ModelInventario {
     private final DbData dbData;
     Inventario inventario;
     ArrayList<Producto> productos = new ArrayList<>();
+    ArrayList<String> listaDeProveedores = new ArrayList<>();
 
     public ModelInventario() {
         this.dbData = new DbData();
@@ -36,25 +37,24 @@ public class ModelInventario {
                 dbData.getUser(), dbData.getPassword())) {
             String query
                     = "INSERT INTO tb_productos "
-                    + "(nombre, descripcion, precio, cantidad, idProvedor) "
-                    + "VALUES (?, ?, ?, ?, ?)";
+                    + "(nombre, descripcion, unidadMedida) "
+                    + "VALUES (?, ?, ?)";
 
             PreparedStatement statementProducto = conexion.prepareStatement(query);
 
             statementProducto.setString(1, producto.getNombre());
             statementProducto.setString(2, producto.getDescripcion());
-            statementProducto.setInt(3, producto.getPrecioUnitario());
-            statementProducto.setInt(4, producto.getCantidadInventario());
-            statementProducto.setInt(5, producto.getIdProveedor());
+            statementProducto.setString(3, producto.getUnidadMedida());
 
             int filasInsertadas = statementProducto.executeUpdate();
-
+            conexion.close();
             return filasInsertadas > 0;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }
-    
+
     //TODO
     public Producto buscar(int idProducto) {
 
@@ -73,41 +73,57 @@ public class ModelInventario {
                 int id = resultado.getInt(1);
                 String nombre = resultado.getString(2);
                 String descripcion = resultado.getString(3);
-                int precio = resultado.getInt(4);
-                int cantidad = resultado.getInt(5);
-                int idProveedor = resultado.getInt(6);
-                producto = new Producto(nombre, descripcion, precio, cantidad,
-                        id, idProveedor);
+                String unidadMedida = resultado.getString(4);
+                producto = new Producto();
+                producto.setNombre(nombre);
+                producto.setDescripcion(descripcion);
+                producto.setUnidadMedida(unidadMedida);
+                producto.setIdProducto(id);
             }
-
+            conexion.close();
             return producto;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             System.out.println("Se frego en el modelo");
         }
         return null;
     }
-    
+
     public boolean actualizar(Producto producto) {
 
         try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
-            String query
-                    = "UPDATE tb_productos SET nombre = ? , descripcion = ?, precio = ?,"
-                    + " cantidad = ?, idProvedor = ? WHERE idProducto = ?";
+            String query = "";
+            PreparedStatement statementProducto = null;
+            if (producto.getDescripcion().equals("")) {
+                query
+                        = "UPDATE tb_productos SET "
+                        + "precio = ?, cantidad = ?, idProveedor = ?"
+                        + " WHERE idProducto = ?";
 
-            PreparedStatement statementProducto = conexion.prepareStatement(query);
+                statementProducto = conexion.prepareStatement(query);
+                statementProducto.setInt(1, producto.getPrecioUnitario());
+                statementProducto.setInt(2, producto.getCantidadInventario());
+                statementProducto.setInt(3, producto.getIdProveedor());
+                statementProducto.setInt(4, producto.getIdProducto());
+            } else if (producto.getPrecioUnitario() == 0) {
+                query
+                        = "UPDATE tb_productos SET nombre = ? , descripcion = ?, unidadMedida = ? "
+                        + "WHERE idProducto = ?";
 
-            statementProducto.setString(1, producto.getNombre());
-            statementProducto.setString(2, producto.getDescripcion());
-            statementProducto.setInt(3, producto.getPrecioUnitario());
-            statementProducto.setInt(4, producto.getCantidadInventario());
-            statementProducto.setInt(5, producto.getIdProveedor());
-            statementProducto.setInt(6, producto.getIdProducto());
-            
+                statementProducto = conexion.prepareStatement(query);
+
+                statementProducto.setString(1, producto.getNombre());
+                statementProducto.setString(2, producto.getDescripcion());
+                statementProducto.setString(3, producto.getUnidadMedida());
+                statementProducto.setInt(4, producto.getIdProducto());
+            }
+
             int filasInsertadas = statementProducto.executeUpdate();
-
+            conexion.close();
             return filasInsertadas > 0;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             System.out.println("Se jodio en el modelo");
         }
         return false;
@@ -127,20 +143,116 @@ public class ModelInventario {
                 int id = resultado.getInt(1);
                 String nombre = resultado.getString(2);
                 String descripcion = resultado.getString(3);
-                int precio = resultado.getInt(4);
-                int cantidad = resultado.getInt(5);
-                int idProveedor = resultado.getInt(6);
-                
+                String unidadMedida = resultado.getString(4);
+                int precio = resultado.getInt(5);
+                int cantidad = resultado.getInt(6);
+                int idProveedor = resultado.getInt(7);
 
-                producto = new Producto(nombre, descripcion, precio, cantidad,
+                producto = new Producto(nombre, descripcion, unidadMedida, precio, cantidad,
                         id, idProveedor);
                 productos.add(producto);
             }
-
+            conexion.close();
             return productos;
         } catch (SQLException e) {
             System.out.println("Hubo un problema para resfrecar la tabla en el modelo");
         }
         return null;
+    }
+
+    public String obtenerId() {
+        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+                dbData.getUser(), dbData.getPassword())) {
+            String query = "SELECT MAX(idProducto) AS id FROM tb_productos";
+
+            PreparedStatement statementProducto = conexion.prepareStatement(query);
+
+            ResultSet resultado = statementProducto.executeQuery();
+
+            int id = 0;
+            while (resultado.next()) {
+                id = resultado.getInt(1);
+            }
+            conexion.close();
+            return Integer.toString(id + 1);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Se frego en el modelo");
+        }
+        return null;
+    }
+
+    public ArrayList<Producto> refrescarTablaProducto() {
+        Producto producto = null;
+        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+                dbData.getUser(), dbData.getPassword())) {
+            String query = "SELECT idProducto, nombre, unidadMedida, descripcion FROM tb_productos";
+
+            PreparedStatement statementProducto = conexion.prepareStatement(query);
+
+            ResultSet resultado = statementProducto.executeQuery();
+
+            while (resultado.next()) {
+                int id = resultado.getInt(1);
+                String nombre = resultado.getString(2);
+                String unidadMedida = resultado.getString(3);
+                String descripcion = resultado.getString(4);
+                producto = new Producto();
+                producto.setNombre(nombre);
+                producto.setDescripcion(descripcion);
+                producto.setUnidadMedida(unidadMedida);
+                producto.setIdProducto(id);
+                productos.add(producto);
+            }
+            conexion.close();
+            return productos;
+        } catch (SQLException e) {
+            System.out.println("Hubo un problema para resfrecar la tabla en el modelo");
+        }
+        return null;
+    }
+
+    public ArrayList<String> obtenerListaProveedores() {
+        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+                dbData.getUser(), dbData.getPassword())) {
+            String query = "SELECT nombre FROM tb_proveedores";
+
+            PreparedStatement statementCliente = conexion.prepareStatement(query);
+
+            ResultSet resultado = statementCliente.executeQuery();
+            listaDeProveedores.clear();
+            while (resultado.next()) {
+                String nombre = resultado.getString(1);
+                listaDeProveedores.add(nombre);
+            }
+            conexion.close();
+            return listaDeProveedores;
+        } catch (SQLException e) {
+            System.out.println("Hubo un problema para resfrecar la tabla en el modelo");
+        }
+        return null;
+    }
+
+    public int obtenerNombreProveedor(String seleccionado) {
+        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+                dbData.getUser(), dbData.getPassword())) {
+            String query = "SELECT idProveedor FROM tb_proveedores WHERE nombre = ?";
+
+            PreparedStatement statementNombreP = conexion.prepareStatement(query);
+
+            statementNombreP.setString(1, seleccionado);
+
+            ResultSet resultado = statementNombreP.executeQuery();
+            int idProveedor = 0;
+            while (resultado.next()) {
+                idProveedor = resultado.getInt(1);
+            }
+            conexion.close();
+            return idProveedor;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Hubo un problema para resfrecar la tabla en el modelo");
+        }
+        return 0;
     }
 }

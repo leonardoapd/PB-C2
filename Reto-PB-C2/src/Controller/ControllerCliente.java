@@ -7,6 +7,7 @@ package Controller;
 
 import Classes.*;
 import Model.ModelCliente;
+import Model.ModeloGeneral;
 import java.util.*;
 
 /**
@@ -16,10 +17,12 @@ import java.util.*;
 public class ControllerCliente {
 
     private final ModelCliente modeloCliente;
+    private final ModeloGeneral modeloGeneral;
     private Cliente cliente;
 
     public ControllerCliente() {
         modeloCliente = new ModelCliente();
+        modeloGeneral = new ModeloGeneral();
     }
 
     public boolean crear(String nombre, String direccion, String telefono, String correo,
@@ -82,20 +85,9 @@ public class ControllerCliente {
         }
         tabla.clear();
         return matrizCliente;
-        
-//        String[][] matrizCliente = new String[10][1];
-//        
-//            matrizCliente[0][0] = Integer.toString(cliente.getIdCliente());
-//            matrizCliente[1][0] = cliente.getNombre();
-//            matrizCliente[2][0] = cliente.getDireccion();
-//            matrizCliente[3][0] = cliente.getTelefono();
-//            matrizCliente[4][0] = cliente.getCorreo();
-//            matrizCliente[5][0] = cliente.getCiudad();
-//            matrizCliente[6][0] = cliente.getDepartamento();
-//            matrizCliente[7][0] = cliente.getTipoDocumento();
-//            matrizCliente[8][0] = Integer.toString(cliente.getNroDocumento());
-//            matrizCliente[9][0] = cliente.getFechaNacimiento();
-//         
-//        return matrizCliente;
+    }
+    
+    public String obtenerId(String persona, String nombreTablaBD) {
+        return modeloGeneral.obtenerId(persona, nombreTablaBD);
     }
 }

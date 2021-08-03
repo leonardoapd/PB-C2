@@ -13,7 +13,7 @@ import javax.swing.JDesktopPane;
  */
 public class ViewPedido extends javax.swing.JFrame {
 
-    FrmViewTerceros gestionarTerceros;
+    FrmViewTerceros2 gestionarTerceros;
     FrmViewProductos gestionarProductos;
     FrmViewGestorInventario gestionarInventario;
     FrmViewVerInventario verInventario;
@@ -23,7 +23,7 @@ public class ViewPedido extends javax.swing.JFrame {
      * Creates new form ViewPedido
      */
     public ViewPedido() {
-        gestionarTerceros = new FrmViewTerceros();
+        gestionarTerceros = new FrmViewTerceros2();
         gestionarProductos = new FrmViewProductos();
         gestionarInventario = new FrmViewGestorInventario();
         verInventario = new FrmViewVerInventario();

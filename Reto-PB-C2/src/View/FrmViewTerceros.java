@@ -20,7 +20,6 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
     private final ControllerCliente controlCliente;
     private final ControllerVendedor controlVendedor;
     private final ControllerProveedor controlProveedor;
-    private final ArrayList<Proveedor> tablaProveedores = new ArrayList<>();
 
     DefaultTableModel modeloTablaCliente = new DefaultTableModel();
     DefaultTableModel modeloTablaVendedor = new DefaultTableModel();

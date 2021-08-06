@@ -1134,7 +1134,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
 
     }
 
-    public void refrescarTabla(int opcion) {
+    public final void refrescarTabla(int opcion) {
 
         switch (opcion) {
             case 1 -> {

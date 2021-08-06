@@ -5,6 +5,8 @@
  */
 package View;
 
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JDesktopPane;
 
 /**
@@ -17,7 +19,7 @@ public class ViewPedido extends javax.swing.JFrame {
     FrmViewProductos gestionarProductos;
     FrmViewGestorInventario gestionarInventario;
     FrmViewVerInventario verInventario;
-    FrmViewPedidos gestionarPedido;
+    FrmViewPedidos2 gestionarPedido;
 
     /**
      * Creates new form ViewPedido
@@ -27,7 +29,7 @@ public class ViewPedido extends javax.swing.JFrame {
         gestionarProductos = new FrmViewProductos();
         gestionarInventario = new FrmViewGestorInventario();
         verInventario = new FrmViewVerInventario();
-        gestionarPedido = new FrmViewPedidos();
+        gestionarPedido = new FrmViewPedidos2();
         initComponents();
     }
 
@@ -53,6 +55,7 @@ public class ViewPedido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestor de Pedidos");
+        setIconImage(getIconImage());
         setPreferredSize(new java.awt.Dimension(1366, 725));
         setResizable(false);
 
@@ -261,6 +264,20 @@ public class ViewPedido extends javax.swing.JFrame {
                 new ViewPedido().setVisible(true);
             }
         });
+    }
+
+    /**
+     * Metodo para mostrar el icono deseado en la barra de la ventana.
+     * Se debe configurar el iconImage en las propiedades del jFrame 
+     * principal
+     * @return retValue que configura el icono de la ventana
+     */
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Resources/order-24px.png"));
+
+        return retValue;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

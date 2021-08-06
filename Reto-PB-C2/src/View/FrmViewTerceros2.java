@@ -5,6 +5,7 @@
  */
 package View;
 
+import Classes.EstadoPedido;
 import Controller.*;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
 
-    CardLayout cardLayout;
+    private CardLayout cardLayout;
     private final ControllerCliente controlCliente;
     private final ControllerVendedor controlVendedor;
     private final ControllerProveedor controlProveedor;
@@ -805,6 +806,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         switch (persona) {
             case "Cliente" -> {
                 textFieldFechaCrear.setEditable(true);
+                textFieldIDCrear.setText(controlCliente.obtenerId(persona, persona + "s".toLowerCase()));
             }
             case "Vendedor" -> {
                 textFieldFechaCrear.setEditable(false);

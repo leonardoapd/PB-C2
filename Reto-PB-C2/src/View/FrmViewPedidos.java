@@ -5,17 +5,24 @@
  */
 package View;
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Leonardo Perdomo
  */
-public class FrmViewPedidos extends javax.swing.JInternalFrame {
+public class FrmViewPedidos extends javax.swing.JInternalFrame  implements KeyListener{
 
+    DefaultTableModel modeloTablaPedidos;
     /**
      * Creates new form FrmViewPedidos
      */
     public FrmViewPedidos() {
         initComponents();
+        modeloTablaPedidos = new DefaultTableModel();
     }
 
     /**
@@ -63,21 +70,6 @@ public class FrmViewPedidos extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
@@ -92,6 +84,7 @@ public class FrmViewPedidos extends javax.swing.JInternalFrame {
                 return types [columnIndex];
             }
         });
+        jTable1.addKeyListener(this);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Agregar");
@@ -183,6 +176,34 @@ public class FrmViewPedidos extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    public void keyTyped(KeyEvent e) {
+    }
+
+    public void keyReleased(KeyEvent e) {
+    }
+
+    public void keyPressed(KeyEvent e) {
+        
+        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            Toolkit.getDefaultToolkit().beep();
+            System.out.println("ENTER Presionado");  
+            refrescarTabla();
+            modeloTablaPedidos.addRow(new Object[]{"",""});
+            jTable1.setModel(modeloTablaPedidos);
+        }
+    }
+    
+    public void refrescarTabla() {
+
+                //Se establecen los elementos de la cabecera de la tabla
+                String[] cabeceraInventario = {"Id", "Nombre", "Precio", "Cantidad", "Id Provedor", "Descripcion"};
+                //Se recogen los datos de los clientes añadidos en el almacenamiento temporal
+                //String[][] matrizInventario = controlInventario.refrescarTablaInventario();
+                //Se agregan los datos y la cabecera de la tabla al modelo
+                modeloTablaPedidos.setColumnIdentifiers(cabeceraInventario);
+                //Se agrega el modelo a la vista
+                jTable1.setModel(modeloTablaPedidos);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

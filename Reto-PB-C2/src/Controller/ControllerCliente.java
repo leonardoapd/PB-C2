@@ -6,8 +6,7 @@
 package Controller;
 
 import Classes.*;
-import Model.ModelCliente;
-import Model.ModeloGeneral;
+import Model.*;
 import java.util.*;
 
 /**
@@ -17,12 +16,12 @@ import java.util.*;
 public class ControllerCliente {
 
     private final ModelCliente modeloCliente;
-    private final ModeloGeneral modeloGeneral;
+    private final ModelGeneral modeloGeneral;
     private Cliente cliente;
 
     public ControllerCliente() {
         modeloCliente = new ModelCliente();
-        modeloGeneral = new ModeloGeneral();
+        modeloGeneral = new ModelGeneral();
     }
 
     public boolean crear(String nombre, String direccion, String telefono, String correo,

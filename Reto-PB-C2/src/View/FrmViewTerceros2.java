@@ -9,10 +9,13 @@ import Classes.EstadoPedido;
 import Controller.*;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.DateFormat;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicLabelUI;
 import javax.swing.table.DefaultTableModel;
+import java.util.Date;
+
 
 /**
  *
@@ -24,6 +27,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
     private final ControllerCliente controlCliente;
     private final ControllerVendedor controlVendedor;
     private final ControllerProveedor controlProveedor;
+    private Date fecha;
 
     DefaultTableModel modeloTablaPersona = new DefaultTableModel();
     
@@ -35,7 +39,8 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         controlCliente = new ControllerCliente();
         controlVendedor = new ControllerVendedor();
         controlProveedor = new ControllerProveedor();
-
+        fecha = new Date();
+        
         initComponents();
 
         Component[] components = this.getContentPane().getComponents();
@@ -75,7 +80,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jSplitPane1 = new javax.swing.JSplitPane();
-        jPanel17 = new javax.swing.JPanel();
+        panelLateral = new javax.swing.JPanel();
         labelCrear = new javax.swing.JLabel();
         labelBuscar = new javax.swing.JLabel();
         labelRegistros = new javax.swing.JLabel();
@@ -98,7 +103,6 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         labelCiudadCrear = new javax.swing.JLabel();
         labelFechaNacimientoCrear = new javax.swing.JLabel();
         labelTipoDocumentoCrear = new javax.swing.JLabel();
-        textFieldFechaCrear = new javax.swing.JTextField();
         textFieldCiudadCrear = new javax.swing.JTextField();
         textFieldTelefonoCrear = new javax.swing.JTextField();
         textFieldNombreCrear = new javax.swing.JTextField();
@@ -107,6 +111,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         rButtonOtroCrear = new javax.swing.JRadioButton();
         btnCrear = new javax.swing.JButton();
         labelTituloCrear = new javax.swing.JLabel();
+        dateChooserFechaNacimientoCrear = new com.toedter.calendar.JDateChooser();
         panelBuscar = new javax.swing.JPanel();
         labelTipoPersonaBuscar = new javax.swing.JLabel();
         cBoxTipoPersonaBuscar = new javax.swing.JComboBox<>();
@@ -147,8 +152,8 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
 
         jSplitPane1.setDividerSize(0);
 
-        jPanel17.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel17.setPreferredSize(new java.awt.Dimension(100, 442));
+        panelLateral.setBackground(new java.awt.Color(204, 204, 204));
+        panelLateral.setPreferredSize(new java.awt.Dimension(100, 442));
 
         labelCrear.setBackground(new java.awt.Color(0, 0, 0));
         labelCrear.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\people.png")); // NOI18N
@@ -182,21 +187,21 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
-        jPanel17.setLayout(jPanel17Layout);
-        jPanel17Layout.setHorizontalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelLateralLayout = new javax.swing.GroupLayout(panelLateral);
+        panelLateral.setLayout(panelLateralLayout);
+        panelLateralLayout.setHorizontalGroup(
+            panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLateralLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel17Layout.setVerticalGroup(
-            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel17Layout.createSequentialGroup()
+        panelLateralLayout.setVerticalGroup(
+            panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelLateralLayout.createSequentialGroup()
                 .addGap(99, 99, 99)
                 .addComponent(labelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -206,7 +211,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
                 .addContainerGap(130, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setLeftComponent(jPanel17);
+        jSplitPane1.setLeftComponent(panelLateral);
 
         panelCards.setBackground(new java.awt.Color(204, 204, 204));
         panelCards.setPreferredSize(new java.awt.Dimension(200, 442));
@@ -266,8 +271,6 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         labelTipoDocumentoCrear.setText("Tipo Documento:");
         labelTipoDocumentoCrear.setPreferredSize(new java.awt.Dimension(110, 16));
 
-        textFieldFechaCrear.setPreferredSize(new java.awt.Dimension(150, 22));
-
         textFieldCiudadCrear.setPreferredSize(new java.awt.Dimension(150, 22));
 
         textFieldTelefonoCrear.setPreferredSize(new java.awt.Dimension(150, 22));
@@ -276,7 +279,6 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
 
         rButtonCCCrear.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(rButtonCCCrear);
-        rButtonCCCrear.setSelected(true);
         rButtonCCCrear.setText("C.C");
         rButtonCCCrear.setPreferredSize(new java.awt.Dimension(50, 22));
 
@@ -299,6 +301,8 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
 
         labelTituloCrear.setFont(new java.awt.Font("Poor Richard", 0, 36)); // NOI18N
         labelTituloCrear.setText("Crear Terceros");
+
+        dateChooserFechaNacimientoCrear.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout panelCrearLayout = new javax.swing.GroupLayout(panelCrear);
         panelCrear.setLayout(panelCrearLayout);
@@ -340,17 +344,17 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelTipoDocumentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelCrearLayout.createSequentialGroup()
                                 .addComponent(rButtonCCCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
                                 .addComponent(rButtonNitCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
                                 .addComponent(rButtonOtroCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(textFieldNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldTelefonoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldCiudadCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldFechaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(textFieldNombreCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldTelefonoCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(textFieldCiudadCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dateChooserFechaNacimientoCrear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panelCrearLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(labelTituloCrear))
@@ -367,51 +371,56 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         panelCrearLayout.setVerticalGroup(
             panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCrearLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(labelTituloCrear)
-                .addGap(34, 34, 34)
-                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(labelTipoPersonaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cBoxTipoPersonaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCrearLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(labelTituloCrear)
+                        .addGap(34, 34, 34)
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(labelTipoPersonaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cBoxTipoPersonaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(labelIDCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldIDCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDireccionCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDireccionCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelTelefonoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldTelefonoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCorreoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldCorreoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelCiudadCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldCiudadCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelCrearLayout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(labelNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(labelIDCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldIDCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDireccionCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldDireccionCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTelefonoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldTelefonoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCorreoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldCorreoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCiudadCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldCiudadCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDepartamentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldDepartamentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelFechaNacimientoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldFechaCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNoDocumentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldNoDocumentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelTipoDocumentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rButtonCCCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rButtonNitCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rButtonOtroCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCrear)
-                .addGap(53, 53, 53))
-            .addGroup(panelCrearLayout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(labelNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldNombreCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(262, 262, 262))
+                .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCrearLayout.createSequentialGroup()
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelDepartamentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldDepartamentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelFechaNacimientoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelNoDocumentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldNoDocumentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelTipoDocumentoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rButtonCCCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rButtonNitCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rButtonOtroCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addComponent(btnCrear)
+                        .addGap(53, 53, 53))
+                    .addGroup(panelCrearLayout.createSequentialGroup()
+                        .addComponent(dateChooserFechaNacimientoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         panelCards.add(panelCrear, "panelCrear");
@@ -736,7 +745,9 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         String ciudad = textFieldCiudadCrear.getText();
         String departamento = textFieldDepartamentoCrear.getText();
         String nroDocumento = textFieldNoDocumentoCrear.getText();
-        String fechaNacimiento = textFieldFechaCrear.getText();
+        //String fechaNacimiento = textFieldFechaCrear.getText();
+        fecha = dateChooserFechaNacimientoCrear.getDate();
+        String fechaNacimiento = DateFormat.getDateInstance().format(fecha);
         String id = "0";
         String tipoDocumento = "";
 
@@ -755,6 +766,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
                             ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
                             Integer.parseInt(id));
                     limpiarCampos(1);
+                    textFieldIDCrear.setText(controlCliente.obtenerId(persona, persona + "s".toLowerCase()));
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
                 }
@@ -771,6 +783,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
                     vendedorCreado = controlVendedor.crear(nombre, direccion, telefono, correo, ciudad, departamento,
                             tipoDocumento, Integer.parseInt(nroDocumento), Integer.parseInt(id));
                     limpiarCampos(1);
+                    textFieldIDCrear.setText(controlCliente.obtenerId(persona, persona + "es".toLowerCase()));
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
                 }
@@ -788,6 +801,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
                             ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento),
                             Integer.parseInt(id));
                     limpiarCampos(1);
+                    textFieldIDCrear.setText(controlCliente.obtenerId(persona, persona + "es".toLowerCase()));
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
                 }
@@ -805,15 +819,18 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         String persona = cBoxTipoPersonaCrear.getSelectedItem().toString();
         switch (persona) {
             case "Cliente" -> {
-                textFieldFechaCrear.setEditable(true);
+                dateChooserFechaNacimientoCrear.setEnabled(true);
+                //textFieldFechaCrear.setEditable(true);
                 textFieldIDCrear.setText(controlCliente.obtenerId(persona, persona + "s".toLowerCase()));
             }
             case "Vendedor" -> {
-                textFieldFechaCrear.setEditable(false);
+                dateChooserFechaNacimientoCrear.setEnabled(false);
+                //textFieldFechaCrear.setEditable(false);
                 textFieldIDCrear.setText(controlCliente.obtenerId(persona, persona + "es".toLowerCase()));
             }
             case "Proveedor" -> {
-                textFieldFechaCrear.setEditable(false);
+                //textFieldFechaCrear.setEditable(false);
+                dateChooserFechaNacimientoCrear.setEnabled(false);
                 textFieldIDCrear.setText(controlCliente.obtenerId(persona, persona + "es".toLowerCase()));
             }
         }
@@ -981,7 +998,8 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
                 textFieldCiudadCrear.setText("");
                 textFieldDepartamentoCrear.setText("");
                 textFieldNoDocumentoCrear.setText("");
-                textFieldFechaCrear.setText("");
+                dateChooserFechaNacimientoCrear.setCalendar(null);
+                //textFieldFechaCrear.setText("");
             }
             case 2 -> {
                 textFieldNombreBuscar.setText("");
@@ -1038,7 +1056,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cBoxTipoPersonaBuscar;
     private javax.swing.JComboBox<String> cBoxTipoPersonaCrear;
     private javax.swing.JComboBox<String> cBoxTipoPersonaRegistros;
-    private javax.swing.JPanel jPanel17;
+    private com.toedter.calendar.JDateChooser dateChooserFechaNacimientoCrear;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel labelBuscar;
@@ -1073,6 +1091,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelBuscar;
     private javax.swing.JPanel panelCards;
     private javax.swing.JPanel panelCrear;
+    private javax.swing.JPanel panelLateral;
     private javax.swing.JPanel panelRegistros;
     private javax.swing.JRadioButton rButtonCCBuscar;
     private javax.swing.JRadioButton rButtonCCCrear;
@@ -1090,7 +1109,6 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textFieldDireccionBuscar;
     private javax.swing.JTextField textFieldDireccionCrear;
     private javax.swing.JTextField textFieldFechaBuscar;
-    private javax.swing.JTextField textFieldFechaCrear;
     private javax.swing.JTextField textFieldIDBuscar;
     private javax.swing.JTextField textFieldIDCrear;
     private javax.swing.JTextField textFieldNoDocumentoBuscar;

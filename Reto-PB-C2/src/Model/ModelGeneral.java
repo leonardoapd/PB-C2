@@ -74,9 +74,10 @@ public class ModelGeneral {
                 dbData.getUser(), dbData.getPassword())) {
             Producto producto = null;
             
-            
+            //Sentencia con INNER JOIN para buscar la interseccion de ids en diferentes tablas
+            //de la base de datos buscandola con el id del pedido.
             String query
-                    = "SELECT p.nombre, p.unidadMedida FROM "
+                    = "SELECT p.idProducto, p.nombre, p.unidadMedida FROM "
                     + "tb_productos as p INNER JOIN tb_pedido_producto as pp WHERE "
                     + "p.idProducto = pp.idProducto AND pp.idPedido = "+ idPedido;
                     
@@ -87,9 +88,11 @@ public class ModelGeneral {
             ResultSet resultado = statementCliente.executeQuery();
 
             while (resultado.next()) {
-                String nombre = resultado.getString(1);
-                String unidadMedida = resultado.getString(2);
+                int idProducto = resultado.getInt(1);
+                String nombre = resultado.getString(2);
+                String unidadMedida = resultado.getString(3);
                 producto = new Producto();
+                producto.setIdProducto(idProducto);
                 producto.setNombre(nombre);
                 producto.setUnidadMedida(unidadMedida);
                 tablaProductos.add(producto);

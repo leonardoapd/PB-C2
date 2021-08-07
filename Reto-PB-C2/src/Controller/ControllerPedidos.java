@@ -14,19 +14,21 @@ import java.util.ArrayList;
  * @author Leonardo Perdomo
  */
 public class ControllerPedidos {
-    
+
     private final ModelGeneral modeloGeneral;
+    private ArrayList<Producto> tabla;
 
     public ControllerPedidos() {
         modeloGeneral = new ModelGeneral();
+        tabla = new ArrayList();
     }
-    
+
     public String obtenerId() {
         return modeloGeneral.obtenerId("Pedido", "pedidos");
     }
-    
+
     public boolean agregarProducto(String idProducto, String idPedido) {
-        return modeloGeneral.agregarProducto(Integer.parseInt(idProducto), 
+        return modeloGeneral.agregarProducto(Integer.parseInt(idProducto),
                 Integer.parseInt(idPedido));
     }
 
@@ -36,7 +38,7 @@ public class ControllerPedidos {
         String[][] matrizProducto = new String[indice][3];
         int i = 0;
         for (Producto productoEncontrado : tabla) {
-            //matrizProducto[i][0] = Integer.toString(productoEncontrado.getIdProducto());
+            matrizProducto[i][0] = Integer.toString(productoEncontrado.getIdProducto());
             matrizProducto[i][1] = productoEncontrado.getNombre();
             matrizProducto[i][2] = productoEncontrado.getUnidadMedida();
             i++;
@@ -44,4 +46,29 @@ public class ControllerPedidos {
         tabla.clear();
         return matrizProducto;
     }
+
+    public ArrayList<Producto> agregarProducto(String[][] productoDevuelto) {
+        Producto producto = new Producto();
+        producto.setIdProducto(Integer.parseInt(productoDevuelto[0][0]));
+        producto.setNombre(productoDevuelto[0][1]);
+        producto.setUnidadMedida(productoDevuelto[0][3]);
+
+        tabla.add(producto);
+        return tabla;
+    }
+
+    public String[][] refrescarTablaPedidos() {
+
+        int indice = tabla.size();
+        String[][] matrizProducto = new String[indice][3];
+        int i = 0;
+        for (Producto productoEncontrado : tabla) {
+            matrizProducto[i][0] = Integer.toString(productoEncontrado.getIdProducto());
+            matrizProducto[i][1] = productoEncontrado.getNombre();
+            matrizProducto[i][2] = productoEncontrado.getUnidadMedida();
+            i++;
+        }
+        return matrizProducto;
+    }
+
 }

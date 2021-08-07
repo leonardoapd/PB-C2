@@ -5,6 +5,7 @@
  */
 package View;
 
+import Classes.Producto;
 import Controller.*;
 import java.awt.AWTException;
 import java.awt.CardLayout;
@@ -13,6 +14,7 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.plaf.basic.BasicLabelUI;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +28,9 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
 
     private final CardLayout cardLayout;
     private final ControllerPedidos controlPedidos;
+    private final ControllerInventario controlInventario;
     private final DefaultTableModel modeloTablaPedido;
+    private ArrayList<Producto> tablaPro;
 
     /**
      * Creates new form FrmViewPedidos2
@@ -34,7 +38,9 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     public FrmViewPedidos2() {
 
         controlPedidos = new ControllerPedidos();
+        controlInventario = new ControllerInventario();
         modeloTablaPedido = new DefaultTableModel();
+        tablaPro = new ArrayList();
 
         initComponents();
 
@@ -196,12 +202,6 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
 
         tablePedidosCrear.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
                 {null, null, null, null, null, null}
             },
             new String [] {
@@ -224,6 +224,12 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(tablePedidosCrear);
+        if (tablePedidosCrear.getColumnModel().getColumnCount() > 0) {
+            tablePedidosCrear.getColumnModel().getColumn(0).setResizable(false);
+            tablePedidosCrear.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tablePedidosCrear.getColumnModel().getColumn(1).setResizable(false);
+            tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(190);
+        }
 
         crearProductoBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\anadir-producto-24px.png")); // NOI18N
         crearProductoBtn.setToolTipText("Agregar Producto");
@@ -511,16 +517,52 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     private void tablePedidosCrearKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablePedidosCrearKeyPressed
         // TODO add your handling code here:
         try {
-            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_TAB) {
+                //Pregunta si el cursor se encuentra en la columna de ID para agregar los productos
+                if (tablePedidosCrear.getSelectedColumn() == 0) {
+                    if (tablePedidosCrear.isEditing()) {
+                        tablePedidosCrear.getCellEditor().stopCellEditing();
+                    }
+                    Toolkit.getDefaultToolkit().beep();
+                    System.out.println("TAB Presionado");
+                    int filaSeleccionada = tablePedidosCrear.getSelectedRow();
+                    //int columnaSeleccionada = tablePedidosCrear.getSelectedColumn();
+                    String codigo = tablePedidosCrear.getValueAt(filaSeleccionada, 0).toString();
+                    //String idPedido = textFieldIdPedidoCrear.getText();
+                    //boolean productoAgregado = false;
+                    try {
+                        String[][] productoDevuelto = controlInventario.buscar(Integer.parseInt(codigo));
+                        controlPedidos.agregarProducto(productoDevuelto);
+                    } catch (Exception e) {
+                        e.getMessage();
+                    }
 
-                Toolkit.getDefaultToolkit().beep();
-                System.out.println("TAB Presionado");
-                int filaSeleccionada = tablePedidosCrear.getSelectedRow();
-                int columnaSeleccionada = tablePedidosCrear.getSelectedColumn();
-                String codigo = tablePedidosCrear.getValueAt(filaSeleccionada, columnaSeleccionada).toString();
-                System.out.println(codigo);
+                    refrescarTabla(1);
+                }
 
             }
+
+            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                //Si al presionar la tecla Enter la celda en cuestion esta siendo editada,
+                //detiene la edicion y realiza la accion.
+                if (tablePedidosCrear.isEditing()) {
+                    tablePedidosCrear.getCellEditor().stopCellEditing();
+                }
+
+                System.out.println("ENTER Presionado");
+                int columna = tablePedidosCrear.getSelectedColumn();
+                if (columna == 4) {
+                    //Se calcula el precio total del producto entre cantidad y precio unitario
+                    int fila = tablePedidosCrear.getSelectedRow();
+                    String cantidad = tablePedidosCrear.getValueAt(fila, 3).toString();
+                    String precio = tablePedidosCrear.getValueAt(fila, 4).toString();
+                    int total = Integer.parseInt(cantidad) * Integer.parseInt(precio);
+                    tablePedidosCrear.setValueAt(Integer.toString(total), fila, 5);
+                    //Se agrega una fila en blanco para introducir la informacion del siguiente producto                    
+                    tablePedidosCrear.changeSelection(fila, 3, false, false);
+                }
+            }
+
         } catch (Exception e) {
             e.getMessage();
         }
@@ -540,7 +582,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
         }
         if (productoAgregado) {
 
-            refrescarTabla(1, Integer.parseInt(idPedido));
+            refrescarTabla(1);
         }
 
 //        String[][] productoEncontrado = controlInventario.buscar(Integer.parseInt(codigo));
@@ -552,23 +594,24 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_crearProductoBtnActionPerformed
 
-    public void refrescarTabla(int opcion, int idPedido) {
+    public void refrescarTabla(int opcion) {
 
         switch (opcion) {
             case 1 -> {
                 //Se establecen los elementos de la cabecera de la tabla
                 String[] cabeceraPedido = {"Id", "Nombre", "Unidad", "Cantidad", "Precio", "Total Parcial"};
                 //Se recogen los datos de los clientes añadidos en el almacenamiento temporal
-                String[][] matrizPedido = controlPedidos.refrescarTablaCrearPedido(idPedido);
+                String[][] matrizPedido = controlPedidos.refrescarTablaPedidos();
                 //Se agregan los datos y la cabecera de la tabla al modelo
                 modeloTablaPedido.setDataVector(matrizPedido, cabeceraPedido);
                 //Se agrega el modelo a la vista
                 modeloTablaPedido.addRow(new String[]{"", ""});
                 tablePedidosCrear.setModel(modeloTablaPedido);
                 if (tablePedidosCrear.getColumnModel().getColumnCount() > 0) {
-                    tablePedidosCrear.getColumnModel().getColumn(0).setPreferredWidth(40);
-                    tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(120);
+                    tablePedidosCrear.getColumnModel().getColumn(0).setPreferredWidth(60);
+                    tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(190);
                 }
+                tablePedidosCrear.changeSelection(tablePedidosCrear.getRowCount() - 1, -1, false, false);
             }
             case 2 -> {
 //                String[] cabeceraInventario = {"Id", "Nombre", "Unidad", "Cantidad", "Precio", "Total Parcial"};

@@ -31,6 +31,10 @@ public abstract class DatosBasicos {
         this.tipoDocumento = tipoDocumento;
         this.nroDocumento = nroDocumento;
     }
+    
+    public DatosBasicos() {
+        
+    }
 
     //Se crean los metodos
     protected void crear(String nombre, String direccion, String telefono,

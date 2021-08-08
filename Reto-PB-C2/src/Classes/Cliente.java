@@ -33,6 +33,10 @@ public class Cliente extends DatosBasicos {
         this.fidelizacion = false;
         this.estadoCliente = true;
     }
+    
+    public Cliente() {
+        super();
+    }
 
     public void crear(String nombre, String direccion, String telefono,
             String correo, String ciudad, String departamento, String tipoDocumento,

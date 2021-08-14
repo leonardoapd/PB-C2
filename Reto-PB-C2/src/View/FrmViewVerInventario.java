@@ -57,7 +57,7 @@ public class FrmViewVerInventario extends javax.swing.JInternalFrame {
         tableInventario.setEnabled(false);
         jScrollPane1.setViewportView(tableInventario);
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\reload-24px.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/recargar-inventario-24px.png"))); // NOI18N
         jButton1.setToolTipText("Refrescar Inventario");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

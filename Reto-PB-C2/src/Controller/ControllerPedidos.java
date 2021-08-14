@@ -20,7 +20,7 @@ public class ControllerPedidos {
 
     public ControllerPedidos() {
         modeloGeneral = new ModelGeneral();
-        tabla = new ArrayList();
+        tabla = new ArrayList<>();
     }
 
     public String obtenerId() {

@@ -56,7 +56,6 @@ public class ViewPedido extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestor de Pedidos");
         setIconImage(getIconImage());
-        setPreferredSize(new java.awt.Dimension(1366, 725));
         setResizable(false);
 
         jDesktopPane.setToolTipText("");
@@ -64,7 +63,7 @@ public class ViewPedido extends javax.swing.JFrame {
         jDesktopPane.setPreferredSize(new java.awt.Dimension(1366, 690));
 
         gestionarTercerosBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gestionarTercerosBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\worker-128px.png")); // NOI18N
+        gestionarTercerosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/gestionar-terceros-128px.png"))); // NOI18N
         gestionarTercerosBtn.setText("Gestionar Terceros");
         gestionarTercerosBtn.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         gestionarTercerosBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -77,7 +76,7 @@ public class ViewPedido extends javax.swing.JFrame {
             }
         });
 
-        gestionarPedidosBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\delivery-box-128px.png")); // NOI18N
+        gestionarPedidosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/gestionar-pedidos-128px.png"))); // NOI18N
         gestionarPedidosBtn.setText("Gestionar Pedidos");
         gestionarPedidosBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestionarPedidosBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -88,7 +87,7 @@ public class ViewPedido extends javax.swing.JFrame {
             }
         });
 
-        gestionarProductosBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\caja.png")); // NOI18N
+        gestionarProductosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/gestionar-producto-128px.png"))); // NOI18N
         gestionarProductosBtn.setText("Gestionar Productos");
         gestionarProductosBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestionarProductosBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -99,7 +98,7 @@ public class ViewPedido extends javax.swing.JFrame {
             }
         });
 
-        gestionarInventarioBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\estar.png")); // NOI18N
+        gestionarInventarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/inventario-128-px.png"))); // NOI18N
         gestionarInventarioBtn.setText("Gestionar Inventario");
         gestionarInventarioBtn.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         gestionarInventarioBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -111,13 +110,13 @@ public class ViewPedido extends javax.swing.JFrame {
             }
         });
 
-        gestionarVentasBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\RetoPB-C2\\src\\main\\java\\Resources\\shopping-basket.png")); // NOI18N
+        gestionarVentasBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/gestionar-ventas-128px.png"))); // NOI18N
         gestionarVentasBtn.setText("Gestionar Ventas");
         gestionarVentasBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestionarVentasBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         gestionarVentasBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        verInventarioBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\inventario-128-px.png")); // NOI18N
+        verInventarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ver-inventario-128px.png"))); // NOI18N
         verInventarioBtn.setText("Ver Inventario");
         verInventarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         verInventarioBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -157,18 +156,18 @@ public class ViewPedido extends javax.swing.JFrame {
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gestionarVentasBtn))
+                .addGap(18, 18, 18)
+                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gestionarVentasBtn))
+                        .addComponent(gestionarPedidosBtn)
                         .addGap(18, 18, 18)
-                        .addComponent(gestionarPedidosBtn))
+                        .addComponent(gestionarProductosBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(gestionarInventarioBtn))
                     .addComponent(verInventarioBtn))
-                .addGap(18, 18, 18)
-                .addComponent(gestionarProductosBtn)
-                .addGap(18, 18, 18)
-                .addComponent(gestionarInventarioBtn)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -241,7 +240,8 @@ public class ViewPedido extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                System.out.println(info.getName());
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -117,14 +117,6 @@ public final class FrmViewGestorInventario extends javax.swing.JInternalFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 listaProveedorCboxFocusGained(evt);
             }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                listaProveedorCboxFocusLost(evt);
-            }
-        });
-        listaProveedorCbox.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listaProveedorCboxMouseClicked(evt);
-            }
         });
         listaProveedorCbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,19 +170,19 @@ public final class FrmViewGestorInventario extends javax.swing.JInternalFrame {
             .addGroup(gestorInventarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(gestorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIdProveedor)
-                    .addComponent(labelNombreProveedor)
-                    .addComponent(listaProveedorCbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNombreProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listaProveedorCbox, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldIdProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(gestorInventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelIdProducto)
-                    .addComponent(buscarProductoBtn)
-                    .addComponent(textFieldIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscarProductoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textFieldIdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(panelInventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(actualizarInventarioBtn)
+                .addComponent(actualizarInventarioBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
@@ -239,15 +231,6 @@ public final class FrmViewGestorInventario extends javax.swing.JInternalFrame {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_listaProveedorCboxActionPerformed
-
-    private void listaProveedorCboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaProveedorCboxMouseClicked
-        // TODO add your handling code here:
-        //insertarModeloCBox();
-    }//GEN-LAST:event_listaProveedorCboxMouseClicked
-
-    private void listaProveedorCboxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_listaProveedorCboxFocusLost
-        //listaProveedorCbox.removeAllItems();
-    }//GEN-LAST:event_listaProveedorCboxFocusLost
 
     private void listaProveedorCboxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_listaProveedorCboxFocusGained
         listaProveedorCbox.removeAllItems();

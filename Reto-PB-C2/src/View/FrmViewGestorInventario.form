@@ -90,21 +90,21 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelIdProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelNombreProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="listaProveedorCbox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textFieldIdProveedor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelIdProveedor" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="labelNombreProveedor" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="listaProveedorCbox" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="textFieldIdProveedor" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="labelIdProducto" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="buscarProductoBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="textFieldIdProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelIdProducto" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="buscarProductoBtn" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="textFieldIdProducto" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="panelInventario" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="actualizarInventarioBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="actualizarInventarioBtn" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -227,8 +227,6 @@
           </Properties>
           <Events>
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="listaProveedorCboxFocusGained"/>
-            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="listaProveedorCboxFocusLost"/>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaProveedorCboxMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listaProveedorCboxActionPerformed"/>
           </Events>
           <AuxValues>

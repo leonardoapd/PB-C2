@@ -52,7 +52,7 @@
               <JTabbedPaneConstraints tabName="" toolTip="Crear Producto">
                 <Property name="tabTitle" type="java.lang.String" value=""/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\lperd\Documents\NetBeansProjects\PB-C2\Reto-PB-C2\src\Resources\anadir-producto-24px.png"/>
+                  <Image iconType="3" name="/Resources/a&#xf1;adir-producto-24px.png"/>
                 </Property>
                 <Property name="tabToolTip" type="java.lang.String" value="Crear Producto"/>
               </JTabbedPaneConstraints>
@@ -62,9 +62,13 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="agregarBtn" min="-2" pref="82" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
@@ -87,11 +91,6 @@
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="agregarBtn" min="-2" pref="82" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -99,20 +98,20 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelIdProducto" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldIdProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNombre" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="textFieldNombre" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="labelIdProducto" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="textFieldIdProducto" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="labelUnidadMedida" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="unidadMedidaCbox" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelUnidadMedida" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="unidadMedidaCbox" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="237" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="agregarBtn" min="-2" max="-2" attributes="0"/>
+                      <Component id="agregarBtn" min="-2" pref="22" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -226,7 +225,7 @@
               <JTabbedPaneConstraints tabName="" toolTip="Buscar Producto">
                 <Property name="tabTitle" type="java.lang.String" value=""/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\lperd\Documents\NetBeansProjects\PB-C2\Reto-PB-C2\src\Resources\buscar-producto-24px.png"/>
+                  <Image iconType="3" name="/Resources/buscar-producto-24px.png"/>
                 </Property>
                 <Property name="tabToolTip" type="java.lang.String" value="Buscar Producto"/>
               </JTabbedPaneConstraints>
@@ -237,16 +236,14 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="borrarBtn" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
-                      <Component id="actualizarBtn" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <Component id="borrarBtn" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="246" max="-2" attributes="0"/>
+                              <Component id="actualizarBtn" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="labelUnidadMedida1" min="-2" max="-2" attributes="0"/>
@@ -272,7 +269,7 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <Component id="jScrollPane2" pref="411" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="1" pref="411" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
@@ -283,23 +280,23 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="labelNombreB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldNombreB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="labelIdProductoB" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="textFieldIdProductoB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelNombreB" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="textFieldNombreB" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="labelIdProductoB" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="textFieldIdProductoB" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="labelUnidadMedida1" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="unidadMedidaBCbox" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="buscarBtn" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelUnidadMedida1" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="unidadMedidaBCbox" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="buscarBtn" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="241" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" pref="237" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="actualizarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="borrarBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="actualizarBtn" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="borrarBtn" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -402,7 +399,7 @@
               <JTabbedPaneConstraints tabName="" toolTip="Lista de Productos">
                 <Property name="tabTitle" type="java.lang.String" value=""/>
                 <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\lperd\Documents\NetBeansProjects\PB-C2\Reto-PB-C2\src\Resources\lista-de-verificacion-24px.png"/>
+                  <Image iconType="3" name="/Resources/registros-24px.png"/>
                 </Property>
                 <Property name="tabToolTip" type="java.lang.String" value="Lista de Productos"/>
               </JTabbedPaneConstraints>

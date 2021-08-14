@@ -96,7 +96,7 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\lperd\Documents\NetBeansProjects\PB-C2\Reto-PB-C2\src\Resources\people.png"/>
+                  <Image iconType="3" name="/Resources/anadir-tercero-24px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Crear"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -114,7 +114,7 @@
             <Component class="javax.swing.JLabel" name="labelBuscar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\lperd\Documents\NetBeansProjects\PB-C2\Reto-PB-C2\src\Resources\lupa.png"/>
+                  <Image iconType="3" name="/Resources/buscar-terceros-24px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Buscar"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -131,7 +131,7 @@
             <Component class="javax.swing.JLabel" name="labelRegistros">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\lperd\Documents\NetBeansProjects\PB-C2\Reto-PB-C2\src\Resources\lista-de-verificacion-24px.png"/>
+                  <Image iconType="3" name="/Resources/registros-24px.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Registros"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -266,34 +266,34 @@
                                   <Component id="labelTituloCrear" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="2" attributes="0">
-                                      <Component id="labelTipoPersonaCrear" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="cBoxTipoPersonaCrear" alignment="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelTipoPersonaCrear" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="cBoxTipoPersonaCrear" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="2" attributes="0">
-                                      <Component id="labelIDCrear" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldIDCrear" alignment="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelIDCrear" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="textFieldIDCrear" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelDireccionCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldDireccionCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelTelefonoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldTelefonoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelDireccionCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="textFieldDireccionCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="labelTelefonoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="textFieldTelefonoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelCorreoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldCorreoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelCiudadCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldCiudadCrear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelCorreoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="textFieldCorreoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="labelCiudadCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="textFieldCiudadCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="135" pref="135" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="2" attributes="0">
-                                      <Component id="labelNombreCrear" alignment="2" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldNombreCrear" alignment="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelNombreCrear" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="textFieldNombreCrear" alignment="2" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -301,25 +301,25 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelDepartamentoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldDepartamentoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelFechaNacimientoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelDepartamentoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="textFieldDepartamentoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="labelFechaNacimientoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelNoDocumentoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="textFieldNoDocumentoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelTipoDocumentoCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rButtonCCCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rButtonNitCrear" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="rButtonOtroCrear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelNoDocumentoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="textFieldNoDocumentoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="labelTipoDocumentoCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="rButtonCCCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="rButtonNitCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                      <Component id="rButtonOtroCrear" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="50" max="32767" attributes="0"/>
-                                  <Component id="btnCrear" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCrear" min="-2" pref="22" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="dateChooserFechaNacimientoCrear" min="-2" max="-2" attributes="0"/>
+                                  <Component id="dateChooserFechaNacimientoCrear" min="-2" pref="22" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -658,52 +658,52 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="labelTituloBuscar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                  <Component id="labelTipoPersonaBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cBoxTipoPersonaBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="labelTipoPersonaBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                                  <Component id="cBoxTipoPersonaBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="btnBuscar" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBuscar" alignment="1" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelIDBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldIDBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelNombreBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldNombreBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelIDBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldIDBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="labelNombreBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldNombreBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelDireccionBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldDireccionBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelTelefonoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldTelefonoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDireccionBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldDireccionBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="labelTelefonoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldTelefonoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelCorreoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldCorreoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelCiudadBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldCiudadBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelCorreoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldCorreoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="labelCiudadBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldCiudadBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelDepartamentoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldDepartamentoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelFechaBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldFechaBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDepartamentoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldDepartamentoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="labelFechaBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldFechaBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="labelNoDocumentoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="textFieldNoDocumentoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelTipoDocumentoBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rButtonCCBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rButtonNitBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="rButtonOtroBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelNoDocumentoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="textFieldNoDocumentoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="labelTipoDocumentoBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="rButtonCCBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="rButtonNitBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
+                              <Component id="rButtonOtroBuscar" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="51" max="32767" attributes="0"/>
+                          <EmptySpace pref="50" max="32767" attributes="0"/>
                           <Component id="btnActualizar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                       </Group>

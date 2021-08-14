@@ -216,11 +216,10 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="textFieldIdVendedorCrear" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="crearProductoBtn" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="27" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -257,13 +256,11 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="crearProductoBtn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="264" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="btnCrearPedido" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="65" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -299,6 +296,9 @@
                       <Dimension value="[150, 22]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldIdClienteCrearFocusLost"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textFieldIdVendedorCrear">
                   <Properties>
@@ -325,6 +325,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="textFieldNombreClienteCrear">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[150, 22]"/>
                     </Property>
@@ -341,6 +342,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Crear"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearPedidoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="labelTituloCrear">
                   <Properties>
@@ -351,6 +355,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="textFieldIdPedidoCrear">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
                 </Component>
                 <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                   <AuxValues>
@@ -417,20 +424,6 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="crearProductoBtn">
-                  <Properties>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="C:\Users\lperd\Documents\NetBeansProjects\PB-C2\Reto-PB-C2\src\Resources\anadir-producto-24px.png"/>
-                    </Property>
-                    <Property name="toolTipText" type="java.lang.String" value="Agregar Producto"/>
-                    <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                      <Color id="Hand Cursor"/>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="crearProductoBtnActionPerformed"/>
-                  </Events>
-                </Component>
               </SubComponents>
             </Container>
             <Container class="javax.swing.JPanel" name="panelBuscar">

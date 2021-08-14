@@ -64,7 +64,7 @@ public class Cliente extends DatosBasicos {
 
         //Se obtiene el nombre del mes
         String nombre = mes.getDisplayName(TextStyle.FULL, new Locale("es", "ES")).toLowerCase();
-
+        
         /*Si la cantidad de compras ha alcanzado las 100 unidades y el cliente cumple años se aplica la
         fidelizacion.
          */

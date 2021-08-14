@@ -16,7 +16,6 @@ import javax.swing.plaf.basic.BasicLabelUI;
 import javax.swing.table.DefaultTableModel;
 import java.util.Date;
 
-
 /**
  *
  * @author Leonardo Perdomo
@@ -30,7 +29,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
     private Date fecha;
 
     DefaultTableModel modeloTablaPersona = new DefaultTableModel();
-    
+
     /**
      * Creates new form FrmViewTerceros2
      */
@@ -40,9 +39,10 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         controlVendedor = new ControllerVendedor();
         controlProveedor = new ControllerProveedor();
         fecha = new Date();
-        
+
         initComponents();
 
+        // Se declaran componentes para hacer funcionar el splipanel
         Component[] components = this.getContentPane().getComponents();
         for (Component component : components) {
             if (component instanceof JLabel) {
@@ -733,7 +733,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
                 refrescarTabla(3);
             }
         }
-        
+
     }//GEN-LAST:event_labelRegistrosMouseClicked
 
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
@@ -746,8 +746,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         String departamento = textFieldDepartamentoCrear.getText();
         String nroDocumento = textFieldNoDocumentoCrear.getText();
         //String fechaNacimiento = textFieldFechaCrear.getText();
-        fecha = dateChooserFechaNacimientoCrear.getDate();
-        String fechaNacimiento = DateFormat.getDateInstance().format(fecha);
+
         String id = "0";
         String tipoDocumento = "";
 
@@ -762,6 +761,8 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
             case "Cliente" -> {
                 boolean clienteCreado = false;
                 try {
+                    fecha = dateChooserFechaNacimientoCrear.getDate();
+                    String fechaNacimiento = DateFormat.getDateInstance().format(fecha);
                     clienteCreado = controlCliente.crear(nombre, direccion, telefono, correo,
                             ciudad, departamento, tipoDocumento, Integer.parseInt(nroDocumento), fechaNacimiento,
                             Integer.parseInt(id));
@@ -1014,7 +1015,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         }
 
     }
-    
+
     public void refrescarTabla(int opcion) {
 
         switch (opcion) {

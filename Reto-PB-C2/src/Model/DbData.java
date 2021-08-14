@@ -5,6 +5,12 @@
  */
 package Model;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.*;
+
 /**
  *
  * @author Leonardo Perdomo
@@ -16,6 +22,23 @@ public class DbData {
     private final String user = "root";
     private final String password = "";
     private final String url = "jdbc:mysql://localhost:3306/administracionproductos";
+    private Connection connect;
+    
+    public void connectBD() {
+        try {
+            connect = DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void disconnectBD() {
+        try {
+            connect.close();            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public String getDriver() {
         return driver;
@@ -31,6 +54,10 @@ public class DbData {
 
     public String getUrl() {
         return url;
+    }
+    
+    public Connection getConnect() {
+        return connect;
     }
 
 }

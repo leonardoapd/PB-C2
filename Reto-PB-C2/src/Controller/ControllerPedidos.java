@@ -57,18 +57,22 @@ public class ControllerPedidos {
         return tabla;
     }
 
-    public String[][] refrescarTablaPedidos() {
+    public String[] organizarProductos(String [][] tablaProducto) {
 
-        int indice = tabla.size();
-        String[][] matrizProducto = new String[indice][3];
-        int i = 0;
-        for (Producto productoEncontrado : tabla) {
-            matrizProducto[i][0] = Integer.toString(productoEncontrado.getIdProducto());
-            matrizProducto[i][1] = productoEncontrado.getNombre();
-            matrizProducto[i][2] = productoEncontrado.getUnidadMedida();
-            i++;
+        
+        String[] matrizProducto = new String[3];
+        
+        for (String[] productoEncontrado : tablaProducto) {
+            matrizProducto[0] = productoEncontrado[0];
+            matrizProducto[1] = productoEncontrado[1];
+            matrizProducto[2] = productoEncontrado[3];
+            
         }
         return matrizProducto;
+    }
+
+    public String buscarCliente(int idCliente) {
+        return modeloGeneral.buscarCliente(idCliente);
     }
 
 }

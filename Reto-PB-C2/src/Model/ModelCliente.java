@@ -6,8 +6,6 @@
 package Model;
 
 import Classes.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
@@ -31,14 +29,15 @@ public class ModelCliente {
         /*Se trata de conectar a la base de datos y si lo logra, se añaden los datos de
         los productos a la base de datos.
          */
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
-                dbData.getUser(), dbData.getPassword())) {
+        try {
+            dbData.connectBD();
+            
             String query
                     = "INSERT INTO tb_clientes (nombre, direccion, telefono,"
                     + " correo, ciudad, departamento, tipoDocumento, "
                     + "nroDocumento, fechaNacimiento) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-            PreparedStatement statementCliente = conexion.prepareStatement(query);
+            PreparedStatement statementCliente = dbData.getConnect().prepareStatement(query);
 
             statementCliente.setString(1, cliente.getNombre());
             statementCliente.setString(2, cliente.getDireccion());
@@ -51,27 +50,42 @@ public class ModelCliente {
             statementCliente.setString(9, cliente.getFechaNacimiento());
 
             int filasInsertadas = statementCliente.executeUpdate();
-            conexion.close();
+            
+            dbData.disconnectBD();
+            
             return filasInsertadas > 0;
         } catch (SQLException e) {
-            System.out.println("Se jodio en el modelo");
+            System.out.println(e.getMessage());
         }
         return false;
     }
 
     public Cliente buscar(int idCliente) {
-
+        
+        // Se inicializa un objeto de la clase Cliente que es el que se retornará
         Cliente cliente = null;
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
-                dbData.getUser(), dbData.getPassword())) {
+        try {
+            /**
+             * Se realiza la conexion a la base de datos con ayuda de la clase
+             * DbData.java
+             */
+            dbData.connectBD();
+            // Se establece la sentencia que se inyectará a la BD para buscar los datos
             String query = "SELECT * FROM tb_clientes WHERE idCliente = ?";
 
-            PreparedStatement statementCliente = conexion.prepareStatement(query);
-
+            // Se prepara la sentencia SQL para su inyección
+            PreparedStatement statementCliente = dbData.getConnect().prepareStatement(query);
+            
+            // Se añaden (set) los parametros para reemplazar aquellos con ? en la sentencia.
             statementCliente.setInt(1, idCliente);
 
+            // Se ejecuta la sentencia SQL
             ResultSet resultado = statementCliente.executeQuery();
 
+            /**
+             * Se capturan los resultados de la consulta por medio de un while y se almacenan 
+             * en variables para luego crear el objeto a devolver.
+             */
             while (resultado.next()) {
                 int id = resultado.getInt(1);
                 String nombre = resultado.getString(2);
@@ -83,27 +97,35 @@ public class ModelCliente {
                 String tipoDocumento = resultado.getString(8);
                 int nroDocumento = resultado.getInt(9);
                 String fechaNacimiento = resultado.getString(10);
+                // Se crea un objeto con los parametros adquiridos de la BD
                 cliente = new Cliente(nombre, direccion, telefono, correo, ciudad,
                         departamento, tipoDocumento, nroDocumento, fechaNacimiento, id);
             }
-            conexion.close();
+            /**
+             * Es necesario realizar la desconexion de la base de datos despues
+             * de cada consulta, ya que puede generarse una acumulación
+             * innecesaria del uso de memoria.
+             */
+            dbData.disconnectBD();
+            // Se retorna un objeto de la clse cliente
             return cliente;
         } catch (SQLException e) {
-            System.out.println("Se frego en el modelo");
+            //Si se genera una excepción, se obtiene su mensaje y se muestra por consola.
+            System.out.println(e.getMessage());
         }
         return null;
     }
 
     public boolean actualizar(Cliente cliente) {
 
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
-                dbData.getUser(), dbData.getPassword())) {
+        try {
+            dbData.connectBD();
             String query
                     = "UPDATE tb_clientes SET nombre = ? , direccion = ?, telefono = ?,"
                     + " correo = ?, ciudad = ?, departamento = ?, tipoDocumento = ?, nroDocumento = ?,"
                     + " fechaNacimiento = ? WHERE idCliente= ?";
 
-            PreparedStatement statementCliente = conexion.prepareStatement(query);
+            PreparedStatement statementCliente = dbData.getConnect().prepareStatement(query);
 
             statementCliente.setString(1, cliente.getNombre());
             statementCliente.setString(2, cliente.getDireccion());
@@ -117,21 +139,22 @@ public class ModelCliente {
             statementCliente.setInt(10, cliente.getIdCliente());
 
             int filasInsertadas = statementCliente.executeUpdate();
-            conexion.close();
+
+            dbData.disconnectBD();
             return filasInsertadas > 0;
         } catch (SQLException e) {
-            System.out.println("Se jodio en el modelo");
+            System.out.println(e.getMessage());
         }
         return false;
     }
 
     public ArrayList<Cliente> refrescarTabla() {
         Cliente cliente = null;
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
-                dbData.getUser(), dbData.getPassword())) {
+        try {
+            dbData.connectBD();
             String query = "SELECT * FROM tb_clientes";
 
-            PreparedStatement statementCliente = conexion.prepareStatement(query);
+            PreparedStatement statementCliente = dbData.getConnect().prepareStatement(query);
 
             ResultSet resultado = statementCliente.executeQuery();
 
@@ -151,10 +174,10 @@ public class ModelCliente {
                         departamento, tipoDocumento, nroDocumento, fechaNacimiento, id);
                 tablaClientes.add(cliente);
             }
-            conexion.close();
+            dbData.disconnectBD();
             return tablaClientes;
         } catch (SQLException e) {
-            System.out.println("Hubo un problema para resfrecar la tabla en el modelo");
+            System.out.println(e.getMessage());
         }
         return null;
     }

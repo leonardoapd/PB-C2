@@ -29,7 +29,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     private final CardLayout cardLayout;
     private final ControllerPedidos controlPedidos;
     private final ControllerInventario controlInventario;
-    private final DefaultTableModel modeloTablaPedido;
+    private DefaultTableModel modeloTablaPedido;
     private ArrayList<Producto> tablaPro;
 
     /**
@@ -86,7 +86,6 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
         textFieldIdPedidoCrear = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePedidosCrear = new javax.swing.JTable();
-        crearProductoBtn = new javax.swing.JButton();
         panelBuscar = new javax.swing.JPanel();
         labelIdPedidoBuscar = new javax.swing.JLabel();
         textFieldIDBuscar = new javax.swing.JTextField();
@@ -182,6 +181,11 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
         labelIdVendedorCrear.setPreferredSize(new java.awt.Dimension(110, 16));
 
         textFieldIdClienteCrear.setPreferredSize(new java.awt.Dimension(150, 22));
+        textFieldIdClienteCrear.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldIdClienteCrearFocusLost(evt);
+            }
+        });
 
         textFieldIdVendedorCrear.setPreferredSize(new java.awt.Dimension(150, 22));
 
@@ -191,14 +195,22 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
         labelNombreClienteCrear.setText("Nombre Cliente:");
         labelNombreClienteCrear.setPreferredSize(new java.awt.Dimension(110, 16));
 
+        textFieldNombreClienteCrear.setEditable(false);
         textFieldNombreClienteCrear.setPreferredSize(new java.awt.Dimension(150, 22));
 
         textFieldEstadoPedidoCrear.setPreferredSize(new java.awt.Dimension(150, 22));
 
         btnCrearPedido.setText("Crear");
+        btnCrearPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearPedidoActionPerformed(evt);
+            }
+        });
 
         labelTituloCrear.setFont(new java.awt.Font("Poor Richard", 0, 36)); // NOI18N
         labelTituloCrear.setText("Crear Pedidos");
+
+        textFieldIdPedidoCrear.setEditable(false);
 
         tablePedidosCrear.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -230,15 +242,6 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             tablePedidosCrear.getColumnModel().getColumn(1).setResizable(false);
             tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(190);
         }
-
-        crearProductoBtn.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\anadir-producto-24px.png")); // NOI18N
-        crearProductoBtn.setToolTipText("Agregar Producto");
-        crearProductoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        crearProductoBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearProductoBtnActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelCrearLayout = new javax.swing.GroupLayout(panelCrear);
         panelCrear.setLayout(panelCrearLayout);
@@ -278,9 +281,8 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                             .addGroup(panelCrearLayout.createSequentialGroup()
                                 .addComponent(labelIdVendedorCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldIdVendedorCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(crearProductoBtn))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(textFieldIdVendedorCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         panelCrearLayout.setVerticalGroup(
             panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,13 +310,11 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                         .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelNombreClienteCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldNombreClienteCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(crearProductoBtn)
-                .addGap(0, 0, 0)
+                .addGap(42, 42, 42)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnCrearPedido)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         panelCards.add(panelCrear, "panelCrear");
@@ -515,114 +515,104 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cBoxTipoPersonaRegistrosActionPerformed
 
     private void tablePedidosCrearKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablePedidosCrearKeyPressed
-        // TODO add your handling code here:
         try {
-            if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_TAB) {
-                //Pregunta si el cursor se encuentra en la columna de ID para agregar los productos
-                if (tablePedidosCrear.getSelectedColumn() == 0) {
-                    if (tablePedidosCrear.isEditing()) {
-                        tablePedidosCrear.getCellEditor().stopCellEditing();
-                    }
-                    Toolkit.getDefaultToolkit().beep();
-                    System.out.println("TAB Presionado");
-                    int filaSeleccionada = tablePedidosCrear.getSelectedRow();
-                    //int columnaSeleccionada = tablePedidosCrear.getSelectedColumn();
-                    String codigo = tablePedidosCrear.getValueAt(filaSeleccionada, 0).toString();
-                    //String idPedido = textFieldIdPedidoCrear.getText();
-                    //boolean productoAgregado = false;
-                    try {
-                        String[][] productoDevuelto = controlInventario.buscar(Integer.parseInt(codigo));
-                        controlPedidos.agregarProducto(productoDevuelto);
-                    } catch (Exception e) {
-                        e.getMessage();
-                    }
-
-                    refrescarTabla(1);
-                }
-
-            }
-
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                //Si al presionar la tecla Enter la celda en cuestion esta siendo editada,
-                //detiene la edicion y realiza la accion.
+            if (evt.getKeyCode() == KeyEvent.VK_TAB || evt.getKeyCode() == KeyEvent.VK_ENTER) {
                 if (tablePedidosCrear.isEditing()) {
                     tablePedidosCrear.getCellEditor().stopCellEditing();
                 }
 
-                System.out.println("ENTER Presionado");
                 int columna = tablePedidosCrear.getSelectedColumn();
-                if (columna == 4) {
-                    //Se calcula el precio total del producto entre cantidad y precio unitario
-                    int fila = tablePedidosCrear.getSelectedRow();
-                    String cantidad = tablePedidosCrear.getValueAt(fila, 3).toString();
-                    String precio = tablePedidosCrear.getValueAt(fila, 4).toString();
+                int filaSeleccionada = tablePedidosCrear.getSelectedRow();
+
+                //Pregunta si el cursor se encuentra en la columna de ID para agregar los productos
+                if (columna == 0) {
+                    String codigo = tablePedidosCrear.getValueAt(filaSeleccionada, 0).toString();
+
+                    try {
+                        String[][] productoDevuelto = controlInventario.buscar(Integer.parseInt(codigo));
+                        String[] contenido = controlPedidos.organizarProductos(productoDevuelto);
+
+                        for (int i = 0; i < contenido.length; i++) {
+                            tablePedidosCrear.setValueAt(contenido[i], filaSeleccionada, i);
+                        }
+
+                    } catch (NumberFormatException e) {
+                        e.getMessage();
+                    }
+                    refrescarTabla(1);
+                    if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+                        tablePedidosCrear.changeSelection(filaSeleccionada, 2, false, false);
+                    } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                        tablePedidosCrear.changeSelection(filaSeleccionada - 2, 3, true, true);
+                    }
+
+                    //Toolkit.getDefaultToolkit().beep();
+                    //System.out.println("TAB Presionado");
+                    
+                } else if (columna == 4) {
+                    String cantidad = tablePedidosCrear.getValueAt(filaSeleccionada, 3).toString();
+                    String precio = tablePedidosCrear.getValueAt(filaSeleccionada, 4).toString();
                     int total = Integer.parseInt(cantidad) * Integer.parseInt(precio);
-                    tablePedidosCrear.setValueAt(Integer.toString(total), fila, 5);
-                    //Se agrega una fila en blanco para introducir la informacion del siguiente producto                    
-                    tablePedidosCrear.changeSelection(fila, 3, false, false);
+                    tablePedidosCrear.setValueAt(Integer.toString(total), filaSeleccionada, 5);
+
+                    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                        tablePedidosCrear.changeSelection(filaSeleccionada, 3, true, true);
+                        filaSeleccionada = tablePedidosCrear.getSelectedRow();
+                        tablePedidosCrear.changeSelection(filaSeleccionada, 0, true, true);
+                    } else if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+                        filaSeleccionada += 1;
+                        tablePedidosCrear.changeSelection(filaSeleccionada, 0, true, true);
+                    }
+                    refrescarTabla(2);
                 }
             }
 
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             e.getMessage();
         }
 
     }//GEN-LAST:event_tablePedidosCrearKeyPressed
 
-    private void crearProductoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearProductoBtnActionPerformed
-        int filaSeleccionada = tablePedidosCrear.getSelectedRow();
-        String codigoProducto = tablePedidosCrear.getValueAt(filaSeleccionada, 0).toString();
-        String idPedido = textFieldIdPedidoCrear.getText();
-
-        boolean productoAgregado = false;
-        try {
-            productoAgregado = controlPedidos.agregarProducto(codigoProducto, idPedido);
-        } catch (Exception e) {
-            e.getMessage();
+    private void textFieldIdClienteCrearFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldIdClienteCrearFocusLost
+        if(!(textFieldIdClienteCrear.getText().equals(""))) {
+            String idCliente = textFieldIdClienteCrear.getText(); 
+            String nombreCliente = controlPedidos.buscarCliente(Integer.parseInt(idCliente));
+            textFieldNombreClienteCrear.setText(nombreCliente);
         }
-        if (productoAgregado) {
+    }//GEN-LAST:event_textFieldIdClienteCrearFocusLost
 
-            refrescarTabla(1);
+    private void btnCrearPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPedidoActionPerformed
+        int fila = tablePedidosCrear.getRowCount();
+        int columna = tablePedidosCrear.getColumnCount();
+        fila -= 1;
+        String [][] array_tabla = new String[fila][columna];
+        
+        
+        
+        for (int i = 0; i < fila; i++) {
+            for (int j = 0; j < columna; j++) {
+                array_tabla [i][j] = (String) tablePedidosCrear.getValueAt(i, j);
+            }
+            
         }
-
-//        String[][] productoEncontrado = controlInventario.buscar(Integer.parseInt(codigo));
-//        String[][] pro = new String[1][3];
-//        pro[0][0] = productoEncontrado[0][0];
-//        pro[0][1] = productoEncontrado[0][1];
-//        pro[0][2] = productoEncontrado[0][3];
-//        refrescarTabla(2, pro);
-
-    }//GEN-LAST:event_crearProductoBtnActionPerformed
+        int idPedido = Integer.parseInt(textFieldIdPedidoCrear.getText());
+        int idCliente = Integer.parseInt(textFieldIdClienteCrear.getText());
+        int idVendedor = Integer.parseInt(textFieldIdVendedorCrear.getText());
+        
+        System.out.println("Bien");
+    }//GEN-LAST:event_btnCrearPedidoActionPerformed
 
     public void refrescarTabla(int opcion) {
 
         switch (opcion) {
             case 1 -> {
-                //Se establecen los elementos de la cabecera de la tabla
-                String[] cabeceraPedido = {"Id", "Nombre", "Unidad", "Cantidad", "Precio", "Total Parcial"};
-                //Se recogen los datos de los clientes añadidos en el almacenamiento temporal
-                String[][] matrizPedido = controlPedidos.refrescarTablaPedidos();
-                //Se agregan los datos y la cabecera de la tabla al modelo
-                modeloTablaPedido.setDataVector(matrizPedido, cabeceraPedido);
-                //Se agrega el modelo a la vista
+                modeloTablaPedido = (DefaultTableModel) tablePedidosCrear.getModel();
                 modeloTablaPedido.addRow(new String[]{"", ""});
                 tablePedidosCrear.setModel(modeloTablaPedido);
-                if (tablePedidosCrear.getColumnModel().getColumnCount() > 0) {
-                    tablePedidosCrear.getColumnModel().getColumn(0).setPreferredWidth(60);
-                    tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(190);
-                }
-                tablePedidosCrear.changeSelection(tablePedidosCrear.getRowCount() - 1, -1, false, false);
             }
             case 2 -> {
-//                String[] cabeceraInventario = {"Id", "Nombre", "Unidad", "Cantidad", "Precio", "Total Parcial"};
-//
-//                modeloTablaPedido.setDataVector(registro, cabeceraInventario);
-//                modeloTablaPedido.addRow(new String[]{"", ""});
-//                tablePedidosCrear.setModel(modeloTablaPedido);
-//                if (tablePedidosCrear.getColumnModel().getColumnCount() > 0) {
-//                    tablePedidosCrear.getColumnModel().getColumn(0).setPreferredWidth(30);
-//                    tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(120);
-//                }
+                modeloTablaPedido = (DefaultTableModel) tablePedidosCrear.getModel();
+                tablePedidosCrear.setModel(modeloTablaPedido);
             }
         }
 
@@ -632,7 +622,6 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnBuscarPedido;
     private javax.swing.JButton btnCrearPedido;
     private javax.swing.JComboBox<String> cBoxTipoPersonaRegistros;
-    private javax.swing.JButton crearProductoBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

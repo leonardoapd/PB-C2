@@ -63,9 +63,10 @@ public class ControllerInventario {
 
     public boolean actualizar(String nombre, String descripcion, String unidadMedida,
             int idProducto, int precio, int cantidad, int idProveedor) throws SQLException {
+        double total = precio * cantidad; 
         producto = new Producto(nombre, descripcion, unidadMedida, precio, 
                 cantidad, idProducto, idProveedor);
-        return modeloInventario.actualizar(producto);
+        return modeloInventario.actualizar(producto, total);
     }
     
     public String obtenerId() {

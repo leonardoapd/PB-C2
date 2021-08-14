@@ -5,48 +5,49 @@
  */
 package Classes;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
- * @author Leonardo Perdomo
+ * @author lperd
  */
 public class ClienteTest {
-    
+
     public ClienteTest() {
     }
-    
-    @BeforeAll
+
+    @BeforeClass
     public static void setUpClass() {
     }
-    
-    @AfterAll
+
+    @AfterClass
     public static void tearDownClass() {
     }
-    
-    @BeforeEach
+
+    @Before
     public void setUp() {
     }
-    
-    @AfterEach
+
+    @After
     public void tearDown() {
     }
 
-    
+    /**
+     * Test of aplicarFidelizacion method, of class Cliente.
+     */
     @Test
     public void testAplicarFidelizacion() {
+        System.out.println("Se realiza el test para aplicar fidelización");
         Cliente instance = new Cliente();
-        instance.setFechaNacimiento("01-Enero-1992");
-        instance.setCantidadCompras(100);
+        instance.setFechaNacimiento("01-agosto-1997");
+        instance.setCantidadCompras(200);
         instance.aplicarFidelizacion();
         assertEquals(true, instance.isFidelizacion());
-        
     }
 
-    
 }

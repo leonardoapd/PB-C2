@@ -27,11 +27,11 @@ public class ModelGeneral {
     }
 
     public String obtenerId(String nombreDeId, String nombreTablaDB) {
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
-                dbData.getUser(), dbData.getPassword())) {
+        try {
+            dbData.connectBD();
             String query = "SELECT MAX(id" + nombreDeId + ") AS id FROM tb_" + nombreTablaDB + "";
 
-            PreparedStatement statementPersona = conexion.prepareStatement(query);
+            PreparedStatement statementPersona = dbData.getConnect().prepareStatement(query);
 
             ResultSet resultado = statementPersona.executeQuery();
 
@@ -39,53 +39,51 @@ public class ModelGeneral {
             while (resultado.next()) {
                 id = resultado.getInt(1);
             }
-            conexion.close();
+            dbData.disconnectBD();
             return Integer.toString(id + 1);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("Se frego en el modelo");
         }
         return null;
     }
 
     public boolean agregarProducto(int idProducto, int idPedido) {
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
-                dbData.getUser(), dbData.getPassword())) {
+        try {
+            dbData.connectBD();
             String query
                     = "INSERT INTO tb_pedido_producto (idPedido, idProducto) VALUES (?, ?)";
 
-            PreparedStatement statementCliente = conexion.prepareStatement(query);
+            PreparedStatement statementProducto = dbData.getConnect().prepareStatement(query);
 
-            statementCliente.setInt(1, idPedido);
-            statementCliente.setInt(2, idProducto);
+            statementProducto.setInt(1, idPedido);
+            statementProducto.setInt(2, idProducto);
 
-            int filasInsertadas = statementCliente.executeUpdate();
-            conexion.close();
+            int filasInsertadas = statementProducto.executeUpdate();
+            
+            dbData.disconnectBD();
+            
             return filasInsertadas > 0;
         } catch (SQLException e) {
-            e.getMessage();
-            System.out.println("Se jodio en el modelo");
+            System.out.println(e.getMessage());
         }
         return false;
     }
 
     public ArrayList<Producto> refrescarTabla(int idPedido) {
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
-                dbData.getUser(), dbData.getPassword())) {
+        try {
+            dbData.connectBD();
             Producto producto = null;
-            
+
             //Sentencia con INNER JOIN para buscar la interseccion de ids en diferentes tablas
             //de la base de datos buscandola con el id del pedido.
             String query
                     = "SELECT p.idProducto, p.nombre, p.unidadMedida FROM "
                     + "tb_productos as p INNER JOIN tb_pedido_producto as pp WHERE "
-                    + "p.idProducto = pp.idProducto AND pp.idPedido = "+ idPedido;
-                    
+                    + "p.idProducto = pp.idProducto AND pp.idPedido = " + idPedido;
 
-            PreparedStatement statementCliente = conexion.prepareStatement(query);
-            
+            PreparedStatement statementProducto = dbData.getConnect().prepareStatement(query);
 
-            ResultSet resultado = statementCliente.executeQuery();
+            ResultSet resultado = statementProducto.executeQuery();
 
             while (resultado.next()) {
                 int idProducto = resultado.getInt(1);
@@ -98,14 +96,36 @@ public class ModelGeneral {
                 tablaProductos.add(producto);
             }
 
-            conexion.close();
+            dbData.disconnectBD();
             return tablaProductos;
         } catch (SQLException e) {
-            e.getMessage();
-            System.out.println("Se jodio en el modelo");
+            System.out.println(e.getMessage());
         }
         return null;
 
+    }
+
+    public String buscarCliente(int idCliente) {
+        try {
+            dbData.connectBD();
+            String query =
+                    "SELECT nombre FROM tb_clientes WHERE idCliente = " + idCliente;
+            
+            PreparedStatement comando = dbData.getConnect().prepareStatement(query);
+
+            ResultSet resultado = comando.executeQuery();
+            
+            String nombre = "";
+            while (resultado.next()) {
+                nombre = resultado.getString(1);
+            }
+            dbData.disconnectBD();
+            
+            return nombre;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
 }

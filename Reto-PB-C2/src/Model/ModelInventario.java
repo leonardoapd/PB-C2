@@ -33,7 +33,7 @@ public class ModelInventario {
         /*Se trata de conectar a la base de datos y si lo logra, se añaden los datos de
         los productos a la base de datos.
          */
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+        try (Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
             String query
                     = "INSERT INTO tb_productos "
@@ -59,7 +59,7 @@ public class ModelInventario {
     public Producto buscar(int idProducto) {
 
         Producto producto = null;
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+        try (Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
             String query = "SELECT * FROM tb_productos WHERE idProducto = ?";
 
@@ -89,21 +89,37 @@ public class ModelInventario {
         return null;
     }
 
-    public boolean actualizar(Producto producto) {
+    public boolean actualizar(Producto producto, double total) {
 
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+        try (Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
             String query = "";
             PreparedStatement statementProducto = null;
             if (producto.getDescripcion().equals("")) {
+                query = "SELECT total, cantidad, precioPromedio FROM tb_productos "
+                        + "WHERE idProducto = " + producto.getIdProducto();
+
+                statementProducto = conexion.prepareStatement(query);
+
+                ResultSet resultado = statementProducto.executeQuery();
+                
+                int cantidad = producto.getCantidadInventario();
+                double precioPromedio = 0;
+                while (resultado.next()) {
+                total += resultado.getInt(1);
+                cantidad += resultado.getInt(2);
+                }
+                
+                precioPromedio = total/cantidad;
+                
                 query
                         = "UPDATE tb_productos SET "
-                        + "precio = ?, cantidad = ?, idProveedor = ?"
-                        + " WHERE idProducto = ?";
+                        + "precio = ?, cantidad = ?, idProveedor = ?, total = " + total
+                        + ", precioPromedio = " + precioPromedio + " WHERE idProducto = ?";
 
                 statementProducto = conexion.prepareStatement(query);
                 statementProducto.setInt(1, producto.getPrecioUnitario());
-                statementProducto.setInt(2, producto.getCantidadInventario());
+                statementProducto.setInt(2, cantidad);
                 statementProducto.setInt(3, producto.getIdProveedor());
                 statementProducto.setInt(4, producto.getIdProducto());
             } else if (producto.getPrecioUnitario() == 0) {
@@ -131,7 +147,7 @@ public class ModelInventario {
 
     public ArrayList<Producto> refrescarTabla() {
         Producto producto = null;
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+        try (Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
             String query = "SELECT * FROM tb_productos";
 
@@ -147,8 +163,9 @@ public class ModelInventario {
                 int precio = resultado.getInt(5);
                 int cantidad = resultado.getInt(6);
                 int idProveedor = resultado.getInt(7);
+                int precioPromedio = resultado.getInt(9);
 
-                producto = new Producto(nombre, descripcion, unidadMedida, precio, cantidad,
+                producto = new Producto(nombre, descripcion, unidadMedida, precioPromedio, cantidad,
                         id, idProveedor);
                 productos.add(producto);
             }
@@ -161,7 +178,7 @@ public class ModelInventario {
     }
 
     public String obtenerId() {
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+        try (Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
             String query = "SELECT MAX(idProducto) AS id FROM tb_productos";
 
@@ -184,7 +201,7 @@ public class ModelInventario {
 
     public ArrayList<Producto> refrescarTablaProducto() {
         Producto producto = null;
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+        try (Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
             String query = "SELECT idProducto, nombre, unidadMedida, descripcion FROM tb_productos";
 
@@ -213,7 +230,7 @@ public class ModelInventario {
     }
 
     public ArrayList<String> obtenerListaProveedores() {
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+        try (Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
             String query = "SELECT nombre FROM tb_proveedores";
 
@@ -234,7 +251,7 @@ public class ModelInventario {
     }
 
     public int obtenerNombreProveedor(String seleccionado) {
-        try ( Connection conexion = DriverManager.getConnection(dbData.getUrl(),
+        try (Connection conexion = DriverManager.getConnection(dbData.getUrl(),
                 dbData.getUser(), dbData.getPassword())) {
             String query = "SELECT idProveedor FROM tb_proveedores WHERE nombre = ?";
 

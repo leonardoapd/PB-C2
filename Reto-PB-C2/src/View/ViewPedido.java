@@ -275,7 +275,7 @@ public class ViewPedido extends javax.swing.JFrame {
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
-                getImage(ClassLoader.getSystemResource("Resources/order-24px.png"));
+                getImage(ClassLoader.getSystemResource("Resources/crear-pedido-24px.png"));
 
         return retValue;
     }

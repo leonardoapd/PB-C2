@@ -55,11 +55,13 @@ public class ViewPedido extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestor de Pedidos");
+        setBounds(new java.awt.Rectangle(0, 0, 1366, 690));
         setIconImage(getIconImage());
-        setResizable(false);
+        setLocation(new java.awt.Point(0, 0));
 
         jDesktopPane.setToolTipText("");
         jDesktopPane.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jDesktopPane.setMinimumSize(new java.awt.Dimension(1366, 690));
         jDesktopPane.setPreferredSize(new java.awt.Dimension(1366, 690));
 
         gestionarTercerosBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -139,49 +141,48 @@ public class ViewPedido extends javax.swing.JFrame {
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
+                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(gestionarPedidosBtn)
+                    .addComponent(gestionarVentasBtn)
+                    .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gestionarInventarioBtn)
                     .addComponent(gestionarProductosBtn)
-                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addComponent(gestionarPedidosBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(verInventarioBtn))
-                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(gestionarVentasBtn)))
+                    .addComponent(gestionarInventarioBtn)
+                    .addComponent(verInventarioBtn))
                 .addContainerGap(1077, Short.MAX_VALUE))
         );
         jDesktopPaneLayout.setVerticalGroup(
             jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPaneLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gestionarVentasBtn))
+                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                        .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(gestionarTercerosBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gestionarProductosBtn))
+                        .addGap(18, 18, 18)
+                        .addComponent(gestionarPedidosBtn))
+                    .addComponent(gestionarInventarioBtn))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addComponent(gestionarPedidosBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(gestionarProductosBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(gestionarInventarioBtn))
-                    .addComponent(verInventarioBtn))
-                .addContainerGap(27, Short.MAX_VALUE))
+                        .addComponent(gestionarVentasBtn)
+                        .addGap(18, 193, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
+                        .addComponent(verInventarioBtn)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+            .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jDesktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

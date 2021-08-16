@@ -634,6 +634,8 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
         panelCards.add(panelBuscar, "panelBuscar");
         panelBuscar.getAccessibleContext().setAccessibleName("panelBuscar");
 
+        panelRegistros.setBackground(new java.awt.Color(255, 255, 255));
+
         labelTipoPersonaRegistros.setText("Tipo de Persona:");
         labelTipoPersonaRegistros.setPreferredSize(new java.awt.Dimension(110, 16));
 
@@ -661,6 +663,7 @@ public class FrmViewTerceros2 extends javax.swing.JInternalFrame {
             }
         ));
         tableRegistros.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tableRegistros.setEnabled(false);
         jScrollPane1.setViewportView(tableRegistros);
 
         javax.swing.GroupLayout panelRegistrosLayout = new javax.swing.GroupLayout(panelRegistros);

@@ -85,4 +85,8 @@ public class ControllerPedidos {
         return modeloGeneral.buscarPedido(idPedido);
     }
 
+    public void actualizarEstado(String estadoPedido, String idPedido) {
+        modeloGeneral.actualizarPedido(estadoPedido, idPedido );
+    }
+
 }

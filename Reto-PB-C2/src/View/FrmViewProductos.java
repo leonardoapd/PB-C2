@@ -14,16 +14,15 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Leonardo Perdomo
- * Implemento el KeyListener para escuchar eventos de teclado
- * y capturar cuando se presiona enter en la tabla donde se muestra el listado de los productos
- * agregados.
+ * @author Leonardo Perdomo Implemento el KeyListener para escuchar eventos de
+ * teclado y capturar cuando se presiona enter en la tabla donde se muestra el
+ * listado de los productos agregados.
  */
 public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyListener {
 
-    /** Se declaran los objetos del controlador de la vista 
-     * relacionada con los productos y el modelo de la tabla 
-     * que almacena el listado de productos.
+    /**
+     * Se declaran los objetos del controlador de la vista relacionada con los
+     * productos y el modelo de la tabla que almacena el listado de productos.
      */
     private final ControllerInventario controlInventario;
     DefaultTableModel modeloTablaProductos = new DefaultTableModel();
@@ -80,6 +79,10 @@ public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyL
         setClosable(true);
         setIconifiable(true);
         setTitle("Gestor de Productos");
+
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        panelCrear.setBackground(new java.awt.Color(255, 255, 255));
 
         labelNombre.setText("Nombre: ");
 
@@ -157,6 +160,8 @@ public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyL
         );
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Resources/añadir-producto-24px.png")), panelCrear, "Crear Producto"); // NOI18N
+
+        panelBuscar.setBackground(new java.awt.Color(255, 255, 255));
 
         labelNombreB.setText("Nombre: ");
 
@@ -247,6 +252,8 @@ public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyL
 
         jTabbedPane1.addTab("", new javax.swing.ImageIcon(getClass().getResource("/Resources/buscar-producto-24px.png")), panelBuscar, "Buscar Producto"); // NOI18N
 
+        panelLista.setBackground(new java.awt.Color(255, 255, 255));
+
         tableProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -260,6 +267,7 @@ public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyL
         ));
         tableProductos.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         tableProductos.addKeyListener(this);
+        tableProductos.setEnabled(false);
         jScrollPane4.setViewportView(tableProductos);
 
         javax.swing.GroupLayout panelListaLayout = new javax.swing.GroupLayout(panelLista);
@@ -328,20 +336,25 @@ public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyL
         }
 
         /**
-         * Se crea una variable booleana para determinar si el producto ha sido agregado con exito.
-         * Se invoca el metodo agregarProducto del controlador que añade la informacion recopilada
-         * a la base de datos en su respectiva tabla.
+         * Se crea una variable booleana para determinar si el producto ha sido
+         * agregado con exito. Se invoca el metodo agregarProducto del
+         * controlador que añade la informacion recopilada a la base de datos en
+         * su respectiva tabla.
          */
         boolean productoAgregado = false;
-        try {
-            productoAgregado = controlInventario.agregarProducto(nombre, descripcion, unidadMedida,
-                    Integer.parseInt(idProducto));
-            //Se limpian los campos para que quede disponible para rellenar nuevamente
-            limpiarCampos(1);
-            //Se muestra la tabla con el registro nuevo
-            refrescarTabla();
-        } catch (Exception e) {
-            //Si se presenta un error como el no relleno de los campos, lo muestra
+        if (!"".equals(textFieldNombre.getText())) {
+            try {
+                productoAgregado = controlInventario.agregarProducto(nombre, descripcion, unidadMedida,
+                        Integer.parseInt(idProducto));
+                //Se limpian los campos para que quede disponible para rellenar nuevamente
+                limpiarCampos(1);
+                //Se muestra la tabla con el registro nuevo
+                refrescarTabla();
+            } catch (Exception e) {
+                //Si se presenta un error como el no relleno de los campos, lo muestra
+                JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
+            }
+        } else {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos.");
         }
 
@@ -355,13 +368,14 @@ public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyL
 
     private void buscarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarBtnActionPerformed
         /**
-         * Para buscar un producto en la base de datos, se ingresa la informacion al campo id.
-         * Se invoca el metodo buscar en el controlador y este a su vez lo invoca en el modelo, 
-         * que consulta a base de datos, y los datos devueltos se muestran en los textfields y combobox
+         * Para buscar un producto en la base de datos, se ingresa la
+         * informacion al campo id. Se invoca el metodo buscar en el controlador
+         * y este a su vez lo invoca en el modelo, que consulta a base de datos,
+         * y los datos devueltos se muestran en los textfields y combobox
          */
         try {
             String id = textFieldIdProductoB.getText();
-            
+
             String[][] productoEncontrado = controlInventario.buscar(Integer.parseInt(id));
             textFieldIdProductoB.setText(productoEncontrado[0][0]);
             textFieldNombreB.setText(productoEncontrado[0][1]);
@@ -444,9 +458,10 @@ public class FrmViewProductos extends javax.swing.JInternalFrame implements KeyL
     }
 
     /**
-     * 
-     * Los metodos a continuacion sirven para detectar cuando ha sido presionada la tecla enter dentro de
-     * la tabla que lista los productos, para permitir actualizarlos.
+     *
+     * Los metodos a continuacion sirven para detectar cuando ha sido presionada
+     * la tecla enter dentro de la tabla que lista los productos, para permitir
+     * actualizarlos.
      */
     public void keyTyped(KeyEvent e) {
     }

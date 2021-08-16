@@ -60,9 +60,7 @@ public class ViewPedido extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
 
         jDesktopPane.setToolTipText("");
-        jDesktopPane.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jDesktopPane.setMinimumSize(new java.awt.Dimension(1366, 690));
-        jDesktopPane.setPreferredSize(new java.awt.Dimension(1366, 690));
 
         gestionarTercerosBtn.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gestionarTercerosBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/gestionar-terceros-128px.png"))); // NOI18N
@@ -101,7 +99,7 @@ public class ViewPedido extends javax.swing.JFrame {
         });
 
         gestionarInventarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/inventario-128-px.png"))); // NOI18N
-        gestionarInventarioBtn.setText("Gestionar Inventario");
+        gestionarInventarioBtn.setText("Entradas de Inventario");
         gestionarInventarioBtn.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         gestionarInventarioBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestionarInventarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -120,6 +118,7 @@ public class ViewPedido extends javax.swing.JFrame {
 
         verInventarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resources/ver-inventario-128px.png"))); // NOI18N
         verInventarioBtn.setText("Ver Inventario");
+        verInventarioBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         verInventarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         verInventarioBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         verInventarioBtn.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -166,12 +165,9 @@ public class ViewPedido extends javax.swing.JFrame {
                     .addComponent(gestionarInventarioBtn))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
-                        .addComponent(gestionarVentasBtn)
-                        .addGap(18, 193, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
-                        .addComponent(verInventarioBtn)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(gestionarVentasBtn)
+                    .addComponent(verInventarioBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -29,7 +29,7 @@ import javax.swing.table.TableModel;
  * @author Leonardo Perdomo
  */
 public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
-    
+
     private final CardLayout cardLayout;
     private final ControllerPedidos controlPedidos;
     private final ControllerInventario controlInventario;
@@ -40,21 +40,21 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
      * Creates new form FrmViewPedidos2
      */
     public FrmViewPedidos2() {
-        
+
         controlPedidos = new ControllerPedidos();
         controlInventario = new ControllerInventario();
         modeloTablaPedido = new DefaultTableModel();
         tablaPro = new ArrayList<Producto>();
-        
+
         initComponents();
-        
+
         Component[] components = this.getContentPane().getComponents();
         for (Component component : components) {
             if (component instanceof JLabel) {
                 ((JLabel) component).setUI(new BasicLabelUI());
                 ((JLabel) component).setFocusCycleRoot(false);
             }
-            
+
         }
         cardLayout = (CardLayout) (panelCards.getLayout());
         textFieldIdPedidoCrear.setText(controlPedidos.obtenerId());
@@ -165,6 +165,8 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
         panelCards.setBackground(new java.awt.Color(204, 204, 204));
         panelCards.setPreferredSize(new java.awt.Dimension(200, 442));
         panelCards.setLayout(new java.awt.CardLayout());
+
+        panelCrear.setBackground(new java.awt.Color(255, 255, 255));
 
         labelIdPedidoCrear.setText("ID Pedido:");
         labelIdPedidoCrear.setPreferredSize(new java.awt.Dimension(110, 16));
@@ -315,6 +317,8 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
 
         panelCards.add(panelCrear, "panelCrear");
 
+        panelBuscar.setBackground(new java.awt.Color(255, 255, 255));
+
         labelTituloBuscar.setFont(new java.awt.Font("Poor Richard", 0, 36)); // NOI18N
         labelTituloBuscar.setText("Buscar Pedido");
 
@@ -344,12 +348,8 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             }
         });
         tablePedidosBuscar.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tablePedidosBuscar.setEnabled(false);
         tablePedidosBuscar.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablePedidosBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tablePedidosBuscarKeyPressed(evt);
-            }
-        });
         jScrollPane3.setViewportView(tablePedidosBuscar);
         if (tablePedidosBuscar.getColumnModel().getColumnCount() > 0) {
             tablePedidosBuscar.getColumnModel().getColumn(0).setResizable(false);
@@ -375,11 +375,6 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
 
         textFieldIdClienteBuscar.setEditable(false);
         textFieldIdClienteBuscar.setPreferredSize(new java.awt.Dimension(150, 22));
-        textFieldIdClienteBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                textFieldIdClienteBuscarFocusLost(evt);
-            }
-        });
 
         labelIdPedidoBuscar.setText("ID Pedido:");
         labelIdPedidoBuscar.setPreferredSize(new java.awt.Dimension(110, 16));
@@ -492,7 +487,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     private void labelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarMouseClicked
         cardLayout.show(panelCards, "panelBuscar");
     }//GEN-LAST:event_labelBuscarMouseClicked
-    
+
 
     private void tablePedidosCrearKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablePedidosCrearKeyPressed
         try {
@@ -500,22 +495,22 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                 if (tablePedidosCrear.isEditing()) {
                     tablePedidosCrear.getCellEditor().stopCellEditing();
                 }
-                
+
                 int columna = tablePedidosCrear.getSelectedColumn();
                 int filaSeleccionada = tablePedidosCrear.getSelectedRow();
 
                 //Pregunta si el cursor se encuentra en la columna de ID para agregar los productos
                 if (columna == 0) {
                     String codigo = tablePedidosCrear.getValueAt(filaSeleccionada, 0).toString();
-                    
+
                     try {
                         String[][] productoDevuelto = controlInventario.buscar(Integer.parseInt(codigo));
                         String[] contenido = controlPedidos.organizarProductos(productoDevuelto);
-                        
+
                         for (int i = 0; i < contenido.length; i++) {
                             tablePedidosCrear.setValueAt(contenido[i], filaSeleccionada, i);
                         }
-                        
+
                     } catch (NumberFormatException e) {
                         e.getMessage();
                     }
@@ -533,7 +528,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                     String precio = tablePedidosCrear.getValueAt(filaSeleccionada, 4).toString();
                     int total = Integer.parseInt(cantidad) * Integer.parseInt(precio);
                     tablePedidosCrear.setValueAt(Integer.toString(total), filaSeleccionada, 5);
-                    
+
                     if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                         tablePedidosCrear.changeSelection(filaSeleccionada, 3, true, true);
                         filaSeleccionada = tablePedidosCrear.getSelectedRow();
@@ -545,7 +540,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                     refrescarTabla(2);
                 }
             }
-            
+
         } catch (NumberFormatException e) {
             e.getMessage();
         }
@@ -561,75 +556,83 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_textFieldIdClienteCrearFocusLost
 
     private void btnCrearPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPedidoActionPerformed
-        
+
         try {
             int fila = tablePedidosCrear.getRowCount();
             int columna = tablePedidosCrear.getColumnCount();
             fila -= 1;
             String[][] array_tabla = new String[fila][columna];
-            
+
             for (int i = 0; i < fila; i++) {
                 for (int j = 0; j < columna; j++) {
                     array_tabla[i][j] = (String) tablePedidosCrear.getValueAt(i, j);
                 }
-                
+
             }
             int idPedido = Integer.parseInt(textFieldIdPedidoCrear.getText());
             int idCliente = Integer.parseInt(textFieldIdClienteCrear.getText());
             int idVendedor = Integer.parseInt(textFieldIdVendedorCrear.getText());
             String estadoPedido = cBEstadoPedidoCrear.getSelectedItem().toString();
-            
+
             try {
                 controlPedidos.crearPedido(array_tabla, idPedido, idCliente, idVendedor, estadoPedido);
                 JOptionPane.showConfirmDialog(this, "Se ha creado satisfactoriamente el pedido.");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-            
+
             limpiarCampos();
-            
+
             System.out.println("Bien");
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            JOptionPane.showConfirmDialog(this, "Por favor rellene los campos faltantes.");
+            JOptionPane.showMessageDialog(this, "Por favor rellene los campos faltantes.");
         }
     }//GEN-LAST:event_btnCrearPedidoActionPerformed
 
     private void btnActualizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPedidoActionPerformed
         // TODO add your handling code here:
+        try {
+            if (textFieldIdPedidoBuscar.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Primero realice la busqueda del pedido.");
+            } else {
+                String estadoPedido = cBEstadoPedidoBuscar.getSelectedItem().toString();
+                String idPedido = textFieldIdPedidoBuscar.getText();
+                controlPedidos.actualizarEstado(estadoPedido, idPedido);
+                JOptionPane.showMessageDialog(this, "El estado del pedido ha sido actualizado.");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Primero realice la busqueda del pedido.");
+        }
+
     }//GEN-LAST:event_btnActualizarPedidoActionPerformed
-
-    private void tablePedidosBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablePedidosBuscarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tablePedidosBuscarKeyPressed
-
-    private void textFieldIdClienteBuscarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldIdClienteBuscarFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldIdClienteBuscarFocusLost
 
     private void btnBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidoActionPerformed
         // TODO comentar codigo
         reinicializarTablaBuscar();
         try {
             int idPedido = Integer.parseInt(textFieldIdPedidoBuscar.getText());
-            String [][] tabla = controlPedidos.buscarPedido(idPedido);
-            System.out.println("Bien");
+            String[][] tabla = controlPedidos.buscarPedido(idPedido);
             int columnas = tabla[0].length;
-            textFieldIdClienteBuscar.setText(tabla[0][columnas-2]);
-            textFieldIdVendedorBuscar.setText(tabla[0][columnas-1]);
+            textFieldIdClienteBuscar.setText(tabla[0][columnas - 3]);
+            String nombreCliente = controlPedidos.buscarCliente(Integer.parseInt(tabla[0][columnas - 3]));
+            textFieldNombreClienteBuscar.setText(nombreCliente);
+            textFieldIdVendedorBuscar.setText(tabla[0][columnas - 2]);
+            cBEstadoPedidoBuscar.setSelectedItem(tabla[0][columnas - 1]);
             int filas = tabla.length;
-         
+
             for (int i = 0; i < filas; i++) {
-                
-                for (int j = 0; j < columnas-2; j++) {
+
+                for (int j = 0; j < columnas - 3; j++) {
                     tablePedidosBuscar.setValueAt(tabla[i][j], i, j);
-                    
+
                 }
                 refrescarTabla(3);
             }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, "Introduzca el ID del pedido a buscar.");
         }
     }//GEN-LAST:event_btnBuscarPedidoActionPerformed
 
@@ -654,7 +657,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             Class[] types = new Class[]{
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            
+
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
@@ -674,8 +677,8 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(190);
         }
     }
-    
-    public void reinicializarTablaBuscar(){
+
+    public void reinicializarTablaBuscar() {
         tablePedidosBuscar.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
                     {null, null, null, null, null, null}
@@ -687,7 +690,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             Class[] types = new Class[]{
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            
+
             public Class getColumnClass(int columnIndex) {
                 return types[columnIndex];
             }
@@ -707,9 +710,9 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             tablePedidosBuscar.getColumnModel().getColumn(1).setPreferredWidth(190);
         }
     }
-    
+
     public void refrescarTabla(int opcion) {
-        
+
         switch (opcion) {
             case 1 -> {
                 modeloTablaPedido = (DefaultTableModel) tablePedidosCrear.getModel();
@@ -726,7 +729,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                 tablePedidosBuscar.setModel(modeloTablaPedido);
             }
         }
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

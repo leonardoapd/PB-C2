@@ -21,7 +21,7 @@ public class ModelGeneral {
 
     private final DbData dbData;
     ArrayList<Producto> tablaProductos = new ArrayList<>();
-    ArrayList<String []> informacionColumnas;
+    ArrayList<String[]> informacionColumnas;
     ArrayList<ArrayList<String>> informacionFilas = new ArrayList<>();
 
     public ModelGeneral() {
@@ -172,7 +172,7 @@ public class ModelGeneral {
             dbData.connectBD();
             informacionFilas = new ArrayList<>();
             String query = "SELECT p.idProducto, p.nombre, p.unidadMedida, pp.cantidad,"
-                    + " pp.precioDeVenta, pp.totalDeVenta, pe.idCliente, pe.idVendedor"
+                    + " pp.precioDeVenta, pp.totalDeVenta, pe.idCliente, pe.idVendedor, pe.estadoPedido"
                     + " FROM tb_productos as p INNER JOIN tb_pedido_producto as pp"
                     + " INNER JOIN tb_pedidos as pe WHERE p.idProducto = pp.idProducto"
                     + " AND pp.idPedido = ? AND pe.idPedido = ?";
@@ -182,14 +182,14 @@ public class ModelGeneral {
             comando.setInt(2, idPedido);
 
             ResultSet resultado = comando.executeQuery();
-            
+
             int filas = 0;
-            while(resultado.next()) {
+            while (resultado.next()) {
                 filas++;
             }
-            
+
             resultado = comando.executeQuery();
-            String [][] informacion = new String[filas][8];
+            String[][] informacion = new String[filas][9];
 
             filas = 0;
             while (resultado.next()) {
@@ -201,6 +201,7 @@ public class ModelGeneral {
                 informacion[filas][5] = resultado.getString(6);
                 informacion[filas][6] = resultado.getString(7);
                 informacion[filas][7] = resultado.getString(8);
+                informacion[filas][8] = resultado.getString(9);
                 filas++;
             }
 
@@ -210,6 +211,22 @@ public class ModelGeneral {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public void actualizarPedido(String estadoPedido, String idPedido) {
+        try {
+            dbData.connectBD();
+            String query = "UPDATE tb_pedidos SET estadoPedido = ? WHERE idPedido =  ?";
+
+            PreparedStatement comando = dbData.getConnect().prepareStatement(query);
+
+            comando.setString(1, estadoPedido);
+            comando.setString(2, idPedido);
+            int resultado = comando.executeUpdate();
+
+            dbData.disconnectBD();
+        } catch (Exception e) {
+        }
     }
 
 }

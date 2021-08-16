@@ -8,6 +8,7 @@ package Controller;
 import Classes.*;
 import Model.*;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -57,22 +58,31 @@ public class ControllerPedidos {
         return tabla;
     }
 
-    public String[] organizarProductos(String [][] tablaProducto) {
+    public String[] organizarProductos(String[][] tablaProducto) {
 
-        
         String[] matrizProducto = new String[3];
-        
+
         for (String[] productoEncontrado : tablaProducto) {
             matrizProducto[0] = productoEncontrado[0];
             matrizProducto[1] = productoEncontrado[1];
             matrizProducto[2] = productoEncontrado[3];
-            
+
         }
         return matrizProducto;
     }
 
     public String buscarCliente(int idCliente) {
         return modeloGeneral.buscarCliente(idCliente);
+    }
+
+    public void crearPedido(String[][] informacionDeProductos, int idPedido, int idCliente,
+            int idVendedor, String estadoPedido) {
+        modeloGeneral.crearPedido(informacionDeProductos, idPedido, idCliente,
+                idVendedor, estadoPedido);
+    }
+
+    public String[][] buscarPedido(int idPedido) {
+        return modeloGeneral.buscarPedido(idPedido);
     }
 
 }

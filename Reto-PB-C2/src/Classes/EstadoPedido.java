@@ -10,5 +10,5 @@ package Classes;
  * @author Leonardo Perdomo
  */
 public enum EstadoPedido {
-    PENDIENTE, PAGADO, CANCELADO, ENTREGADO;
+    PENDIENTE, PAGADO, CANCELADO, ENTREGADO;   
 }

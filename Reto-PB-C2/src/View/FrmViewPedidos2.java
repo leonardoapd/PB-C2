@@ -5,6 +5,7 @@
  */
 package View;
 
+import Classes.EstadoPedido;
 import Classes.Producto;
 import Controller.*;
 import java.awt.AWTException;
@@ -15,7 +16,10 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.ComboBoxModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicLabelUI;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -25,7 +29,7 @@ import javax.swing.table.TableModel;
  * @author Leonardo Perdomo
  */
 public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
-
+    
     private final CardLayout cardLayout;
     private final ControllerPedidos controlPedidos;
     private final ControllerInventario controlInventario;
@@ -36,21 +40,21 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
      * Creates new form FrmViewPedidos2
      */
     public FrmViewPedidos2() {
-
+        
         controlPedidos = new ControllerPedidos();
         controlInventario = new ControllerInventario();
         modeloTablaPedido = new DefaultTableModel();
         tablaPro = new ArrayList<Producto>();
-
+        
         initComponents();
-
+        
         Component[] components = this.getContentPane().getComponents();
         for (Component component : components) {
             if (component instanceof JLabel) {
                 ((JLabel) component).setUI(new BasicLabelUI());
                 ((JLabel) component).setFocusCycleRoot(false);
             }
-
+            
         }
         cardLayout = (CardLayout) (panelCards.getLayout());
         textFieldIdPedidoCrear.setText(controlPedidos.obtenerId());
@@ -69,7 +73,6 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
         panelLateral = new javax.swing.JPanel();
         labelCrear = new javax.swing.JLabel();
         labelBuscar = new javax.swing.JLabel();
-        labelRegistros = new javax.swing.JLabel();
         panelCards = new javax.swing.JPanel();
         panelCrear = new javax.swing.JPanel();
         labelIdPedidoCrear = new javax.swing.JLabel();
@@ -80,25 +83,28 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
         labelEstadoPedidoCrear = new javax.swing.JLabel();
         labelNombreClienteCrear = new javax.swing.JLabel();
         textFieldNombreClienteCrear = new javax.swing.JTextField();
-        textFieldEstadoPedidoCrear = new javax.swing.JTextField();
         btnCrearPedido = new javax.swing.JButton();
         labelTituloCrear = new javax.swing.JLabel();
         textFieldIdPedidoCrear = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePedidosCrear = new javax.swing.JTable();
+        cBEstadoPedidoCrear = new javax.swing.JComboBox<>();
         panelBuscar = new javax.swing.JPanel();
-        labelIdPedidoBuscar = new javax.swing.JLabel();
-        textFieldIDBuscar = new javax.swing.JTextField();
         labelTituloBuscar = new javax.swing.JLabel();
-        btnBuscarPedido = new javax.swing.JButton();
+        btnActualizarPedido = new javax.swing.JButton();
+        cBEstadoPedidoBuscar = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tablePedidoBuscar = new javax.swing.JTable();
-        panelRegistros = new javax.swing.JPanel();
-        labelTipoPersonaRegistros = new javax.swing.JLabel();
-        cBoxTipoPersonaRegistros = new javax.swing.JComboBox<>();
-        labelTituloRegistros = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableRegistros = new javax.swing.JTable();
+        tablePedidosBuscar = new javax.swing.JTable();
+        labelIdClienteBuscar = new javax.swing.JLabel();
+        textFieldNombreClienteBuscar = new javax.swing.JTextField();
+        textFieldIdVendedorBuscar = new javax.swing.JTextField();
+        labelEstadoPedidoBuscar = new javax.swing.JLabel();
+        labelIdVendedorBuscar = new javax.swing.JLabel();
+        textFieldIdPedidoBuscar = new javax.swing.JTextField();
+        textFieldIdClienteBuscar = new javax.swing.JTextField();
+        labelIdPedidoBuscar = new javax.swing.JLabel();
+        labelNombreClienteBuscar = new javax.swing.JLabel();
+        btnBuscarPedido = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -131,38 +137,27 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             }
         });
 
-        labelRegistros.setIcon(new javax.swing.ImageIcon("C:\\Users\\lperd\\Documents\\NetBeansProjects\\PB-C2\\Reto-PB-C2\\src\\Resources\\lista-de-verificacion-24px.png")); // NOI18N
-        labelRegistros.setText("Registros");
-        labelRegistros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        labelRegistros.setPreferredSize(new java.awt.Dimension(150, 42));
-        labelRegistros.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelRegistrosMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelLateralLayout = new javax.swing.GroupLayout(panelLateral);
         panelLateral.setLayout(panelLateralLayout);
         panelLateralLayout.setHorizontalGroup(
             panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLateralLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(labelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLateralLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panelLateralLayout.setVerticalGroup(
             panelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLateralLayout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addGap(220, 220, 220)
                 .addComponent(labelCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(76, 76, 76)
                 .addComponent(labelBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(labelRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(panelLateral);
@@ -197,8 +192,6 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
 
         textFieldNombreClienteCrear.setEditable(false);
         textFieldNombreClienteCrear.setPreferredSize(new java.awt.Dimension(150, 22));
-
-        textFieldEstadoPedidoCrear.setPreferredSize(new java.awt.Dimension(150, 22));
 
         btnCrearPedido.setText("Crear");
         btnCrearPedido.addActionListener(new java.awt.event.ActionListener() {
@@ -243,6 +236,9 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
             tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(190);
         }
 
+        cBEstadoPedidoCrear.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PENDIENTE", "CONFIRMADO", "CANCELADO", "PAGADO", "ENTREGADO" }));
+        cBEstadoPedidoCrear.setToolTipText("");
+
         javax.swing.GroupLayout panelCrearLayout = new javax.swing.GroupLayout(panelCrear);
         panelCrear.setLayout(panelCrearLayout);
         panelCrearLayout.setHorizontalGroup(
@@ -265,7 +261,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(labelEstadoPedidoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(textFieldEstadoPedidoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cBEstadoPedidoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelCrearLayout.createSequentialGroup()
                                 .addComponent(labelIdClienteCrear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -296,7 +292,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                             .addComponent(textFieldIdPedidoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelIdPedidoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelEstadoPedidoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldEstadoPedidoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cBEstadoPedidoCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(labelIdClienteCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,136 +315,157 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
 
         panelCards.add(panelCrear, "panelCrear");
 
-        labelIdPedidoBuscar.setText("ID Pedido:");
-        labelIdPedidoBuscar.setPreferredSize(new java.awt.Dimension(110, 16));
-
-        textFieldIDBuscar.setPreferredSize(new java.awt.Dimension(150, 22));
-
         labelTituloBuscar.setFont(new java.awt.Font("Poor Richard", 0, 36)); // NOI18N
         labelTituloBuscar.setText("Buscar Pedido");
 
-        btnBuscarPedido.setText("Buscar");
+        btnActualizarPedido.setText("Actualizar");
+        btnActualizarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarPedidoActionPerformed(evt);
+            }
+        });
 
-        tablePedidoBuscar.setModel(new javax.swing.table.DefaultTableModel(
+        cBEstadoPedidoBuscar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PENDIENTE", "CONFIRMADO", "CANCELADO", "PAGADO", "ENTREGADO" }));
+
+        tablePedidosBuscar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ID Cliente", "ID Vendedor", "Total "
+                "ID Producto", "Nombre", "Unidad", "Cantidad", "Precio de Venta", "Total Parcial"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(tablePedidoBuscar);
+        tablePedidosBuscar.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tablePedidosBuscar.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablePedidosBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tablePedidosBuscarKeyPressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tablePedidosBuscar);
+        if (tablePedidosBuscar.getColumnModel().getColumnCount() > 0) {
+            tablePedidosBuscar.getColumnModel().getColumn(0).setResizable(false);
+            tablePedidosBuscar.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tablePedidosBuscar.getColumnModel().getColumn(1).setResizable(false);
+            tablePedidosBuscar.getColumnModel().getColumn(1).setPreferredWidth(190);
+        }
+
+        labelIdClienteBuscar.setText("Cod Cliente:");
+        labelIdClienteBuscar.setPreferredSize(new java.awt.Dimension(110, 16));
+
+        textFieldNombreClienteBuscar.setEditable(false);
+        textFieldNombreClienteBuscar.setPreferredSize(new java.awt.Dimension(150, 22));
+
+        textFieldIdVendedorBuscar.setEditable(false);
+        textFieldIdVendedorBuscar.setPreferredSize(new java.awt.Dimension(150, 22));
+
+        labelEstadoPedidoBuscar.setText("Estado del Pedido:");
+        labelEstadoPedidoBuscar.setPreferredSize(new java.awt.Dimension(110, 16));
+
+        labelIdVendedorBuscar.setText("Cod Vendedor:");
+        labelIdVendedorBuscar.setPreferredSize(new java.awt.Dimension(110, 16));
+
+        textFieldIdClienteBuscar.setEditable(false);
+        textFieldIdClienteBuscar.setPreferredSize(new java.awt.Dimension(150, 22));
+        textFieldIdClienteBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textFieldIdClienteBuscarFocusLost(evt);
+            }
+        });
+
+        labelIdPedidoBuscar.setText("ID Pedido:");
+        labelIdPedidoBuscar.setPreferredSize(new java.awt.Dimension(110, 16));
+
+        labelNombreClienteBuscar.setText("Nombre Cliente:");
+        labelNombreClienteBuscar.setPreferredSize(new java.awt.Dimension(110, 16));
+
+        btnBuscarPedido.setText("Buscar Pedido");
+        btnBuscarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBuscarLayout = new javax.swing.GroupLayout(panelBuscar);
         panelBuscar.setLayout(panelBuscarLayout);
         panelBuscarLayout.setHorizontalGroup(
             panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBuscarLayout.createSequentialGroup()
-                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBuscarLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(labelTituloBuscar))
-                    .addGroup(panelBuscarLayout.createSequentialGroup()
-                        .addGap(290, 290, 290)
-                        .addComponent(btnBuscarPedido))
-                    .addGroup(panelBuscarLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelBuscarLayout.createSequentialGroup()
-                                .addComponent(labelIdPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textFieldIDBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnActualizarPedido)
+                    .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelBuscarLayout.createSequentialGroup()
+                            .addComponent(labelIdPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textFieldIdPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(labelEstadoPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(cBEstadoPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelTituloBuscar)
+                        .addGroup(panelBuscarLayout.createSequentialGroup()
+                            .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBuscarLayout.createSequentialGroup()
+                                    .addComponent(labelIdVendedorBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textFieldIdVendedorBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnBuscarPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBuscarLayout.createSequentialGroup()
+                                    .addComponent(labelIdClienteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(textFieldIdClienteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(labelNombreClienteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(18, 18, 18)
+                            .addComponent(textFieldNombreClienteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         panelBuscarLayout.setVerticalGroup(
             panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBuscarLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(labelTituloBuscar)
-                .addGap(33, 33, 33)
-                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelIdPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnBuscarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(textFieldIDBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31)
+                .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBuscarLayout.createSequentialGroup()
+                        .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(textFieldIdPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelIdPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelEstadoPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cBEstadoPedidoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(labelIdClienteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldIdClienteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelIdVendedorBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldIdVendedorBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panelBuscarLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(panelBuscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelNombreClienteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldNombreClienteBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(42, 42, 42)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnActualizarPedido)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         panelCards.add(panelBuscar, "panelBuscar");
-
-        labelTipoPersonaRegistros.setText("Tipo de Persona:");
-        labelTipoPersonaRegistros.setPreferredSize(new java.awt.Dimension(110, 16));
-
-        cBoxTipoPersonaRegistros.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Vendedor", "Proveedor" }));
-        cBoxTipoPersonaRegistros.setSelectedIndex(cBoxTipoPersonaRegistros.getSelectedIndex());
-        cBoxTipoPersonaRegistros.setPreferredSize(new java.awt.Dimension(150, 22));
-        cBoxTipoPersonaRegistros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cBoxTipoPersonaRegistrosActionPerformed(evt);
-            }
-        });
-
-        labelTituloRegistros.setFont(new java.awt.Font("Poor Richard", 0, 36)); // NOI18N
-        labelTituloRegistros.setText("RegistrosTerceros");
-
-        tableRegistros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nombre", "Direccion", "Telefono", "Correo", "Ciudad", "Departamento", "Tipo de Documento", "No. Documento"
-            }
-        ));
-        tableRegistros.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jScrollPane1.setViewportView(tableRegistros);
-
-        javax.swing.GroupLayout panelRegistrosLayout = new javax.swing.GroupLayout(panelRegistros);
-        panelRegistros.setLayout(panelRegistrosLayout);
-        panelRegistrosLayout.setHorizontalGroup(
-            panelRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistrosLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(panelRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTituloRegistros)
-                    .addComponent(labelTipoPersonaRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelRegistrosLayout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(cBoxTipoPersonaRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelRegistrosLayout.setVerticalGroup(
-            panelRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRegistrosLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(labelTituloRegistros)
-                .addGap(27, 27, 27)
-                .addGroup(panelRegistrosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelTipoPersonaRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cBoxTipoPersonaRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
-        panelCards.add(panelRegistros, "panelRegistros");
 
         jSplitPane1.setRightComponent(panelCards);
 
@@ -475,44 +492,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     private void labelBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelBuscarMouseClicked
         cardLayout.show(panelCards, "panelBuscar");
     }//GEN-LAST:event_labelBuscarMouseClicked
-
-
-    private void labelRegistrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegistrosMouseClicked
-        /*
-        cardLayout.show(panelCards, "panelRegistros");
-        cBoxTipoPersonaRegistros.setSelectedIndex(cBoxTipoPersonaRegistros.getSelectedIndex());
-        String persona = cBoxTipoPersonaRegistros.getSelectedItem().toString();
-        switch (persona) {
-            case "Cliente" -> {
-                refrescarTabla(1);
-            }
-            case "Vendedor" -> {
-                refrescarTabla(2);
-            }
-            case "Proveedor" -> {
-                refrescarTabla(3);
-            }
-        }
-         */
-    }//GEN-LAST:event_labelRegistrosMouseClicked
-
-
-    private void cBoxTipoPersonaRegistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBoxTipoPersonaRegistrosActionPerformed
-        /*
-        String persona = cBoxTipoPersonaRegistros.getSelectedItem().toString();
-        switch (persona) {
-            case "Cliente" -> {
-                refrescarTabla(1);
-            }   
-            case "Vendedor" -> {
-                refrescarTabla(2);
-            }
-            case "Proveedor" -> {
-                refrescarTabla(3);
-            }
-        }
-         */
-    }//GEN-LAST:event_cBoxTipoPersonaRegistrosActionPerformed
+    
 
     private void tablePedidosCrearKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablePedidosCrearKeyPressed
         try {
@@ -520,22 +500,22 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                 if (tablePedidosCrear.isEditing()) {
                     tablePedidosCrear.getCellEditor().stopCellEditing();
                 }
-
+                
                 int columna = tablePedidosCrear.getSelectedColumn();
                 int filaSeleccionada = tablePedidosCrear.getSelectedRow();
 
                 //Pregunta si el cursor se encuentra en la columna de ID para agregar los productos
                 if (columna == 0) {
                     String codigo = tablePedidosCrear.getValueAt(filaSeleccionada, 0).toString();
-
+                    
                     try {
                         String[][] productoDevuelto = controlInventario.buscar(Integer.parseInt(codigo));
                         String[] contenido = controlPedidos.organizarProductos(productoDevuelto);
-
+                        
                         for (int i = 0; i < contenido.length; i++) {
                             tablePedidosCrear.setValueAt(contenido[i], filaSeleccionada, i);
                         }
-
+                        
                     } catch (NumberFormatException e) {
                         e.getMessage();
                     }
@@ -548,13 +528,12 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
 
                     //Toolkit.getDefaultToolkit().beep();
                     //System.out.println("TAB Presionado");
-                    
                 } else if (columna == 4) {
                     String cantidad = tablePedidosCrear.getValueAt(filaSeleccionada, 3).toString();
                     String precio = tablePedidosCrear.getValueAt(filaSeleccionada, 4).toString();
                     int total = Integer.parseInt(cantidad) * Integer.parseInt(precio);
                     tablePedidosCrear.setValueAt(Integer.toString(total), filaSeleccionada, 5);
-
+                    
                     if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                         tablePedidosCrear.changeSelection(filaSeleccionada, 3, true, true);
                         filaSeleccionada = tablePedidosCrear.getSelectedRow();
@@ -566,7 +545,7 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                     refrescarTabla(2);
                 }
             }
-
+            
         } catch (NumberFormatException e) {
             e.getMessage();
         }
@@ -574,36 +553,163 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tablePedidosCrearKeyPressed
 
     private void textFieldIdClienteCrearFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldIdClienteCrearFocusLost
-        if(!(textFieldIdClienteCrear.getText().equals(""))) {
-            String idCliente = textFieldIdClienteCrear.getText(); 
+        if (!(textFieldIdClienteCrear.getText().equals(""))) {
+            String idCliente = textFieldIdClienteCrear.getText();
             String nombreCliente = controlPedidos.buscarCliente(Integer.parseInt(idCliente));
             textFieldNombreClienteCrear.setText(nombreCliente);
         }
     }//GEN-LAST:event_textFieldIdClienteCrearFocusLost
 
     private void btnCrearPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPedidoActionPerformed
-        int fila = tablePedidosCrear.getRowCount();
-        int columna = tablePedidosCrear.getColumnCount();
-        fila -= 1;
-        String [][] array_tabla = new String[fila][columna];
         
-        
-        
-        for (int i = 0; i < fila; i++) {
-            for (int j = 0; j < columna; j++) {
-                array_tabla [i][j] = (String) tablePedidosCrear.getValueAt(i, j);
+        try {
+            int fila = tablePedidosCrear.getRowCount();
+            int columna = tablePedidosCrear.getColumnCount();
+            fila -= 1;
+            String[][] array_tabla = new String[fila][columna];
+            
+            for (int i = 0; i < fila; i++) {
+                for (int j = 0; j < columna; j++) {
+                    array_tabla[i][j] = (String) tablePedidosCrear.getValueAt(i, j);
+                }
+                
+            }
+            int idPedido = Integer.parseInt(textFieldIdPedidoCrear.getText());
+            int idCliente = Integer.parseInt(textFieldIdClienteCrear.getText());
+            int idVendedor = Integer.parseInt(textFieldIdVendedorCrear.getText());
+            String estadoPedido = cBEstadoPedidoCrear.getSelectedItem().toString();
+            
+            try {
+                controlPedidos.crearPedido(array_tabla, idPedido, idCliente, idVendedor, estadoPedido);
+                JOptionPane.showConfirmDialog(this, "Se ha creado satisfactoriamente el pedido.");
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
             
+            limpiarCampos();
+            
+            System.out.println("Bien");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showConfirmDialog(this, "Por favor rellene los campos faltantes.");
         }
-        int idPedido = Integer.parseInt(textFieldIdPedidoCrear.getText());
-        int idCliente = Integer.parseInt(textFieldIdClienteCrear.getText());
-        int idVendedor = Integer.parseInt(textFieldIdVendedorCrear.getText());
-        
-        System.out.println("Bien");
     }//GEN-LAST:event_btnCrearPedidoActionPerformed
 
-    public void refrescarTabla(int opcion) {
+    private void btnActualizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPedidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActualizarPedidoActionPerformed
 
+    private void tablePedidosBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablePedidosBuscarKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablePedidosBuscarKeyPressed
+
+    private void textFieldIdClienteBuscarFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textFieldIdClienteBuscarFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldIdClienteBuscarFocusLost
+
+    private void btnBuscarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPedidoActionPerformed
+        // TODO comentar codigo
+        reinicializarTablaBuscar();
+        try {
+            int idPedido = Integer.parseInt(textFieldIdPedidoBuscar.getText());
+            String [][] tabla = controlPedidos.buscarPedido(idPedido);
+            System.out.println("Bien");
+            int columnas = tabla[0].length;
+            textFieldIdClienteBuscar.setText(tabla[0][columnas-2]);
+            textFieldIdVendedorBuscar.setText(tabla[0][columnas-1]);
+            int filas = tabla.length;
+         
+            for (int i = 0; i < filas; i++) {
+                
+                for (int j = 0; j < columnas-2; j++) {
+                    tablePedidosBuscar.setValueAt(tabla[i][j], i, j);
+                    
+                }
+                refrescarTabla(3);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnBuscarPedidoActionPerformed
+
+    /**
+     * Metodo que se encarga de reiniciar los componentes de la vista una vez se
+     * ha creado el pedido. Para reinicializar la tabla, es necesario copiar el
+     * codigo generado por el jFormDesigner
+     */
+    public void limpiarCampos() {
+        textFieldIdPedidoCrear.setText(controlPedidos.obtenerId());
+        textFieldIdClienteCrear.setText("");
+        textFieldIdVendedorCrear.setText("");
+        textFieldNombreClienteCrear.setText("");
+        tablePedidosCrear.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                    {null, null, null, null, null, null}
+                },
+                new String[]{
+                    "ID Producto", "Nombre", "Unidad", "Cantidad", "Precio de Venta", "Total Parcial"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        });
+        tablePedidosCrear.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tablePedidosCrear.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablePedidosCrear.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tablePedidosCrearKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablePedidosCrear);
+        if (tablePedidosCrear.getColumnModel().getColumnCount() > 0) {
+            tablePedidosCrear.getColumnModel().getColumn(0).setResizable(false);
+            tablePedidosCrear.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tablePedidosCrear.getColumnModel().getColumn(1).setResizable(false);
+            tablePedidosCrear.getColumnModel().getColumn(1).setPreferredWidth(190);
+        }
+    }
+    
+    public void reinicializarTablaBuscar(){
+        tablePedidosBuscar.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                    {null, null, null, null, null, null}
+                },
+                new String[]{
+                    "ID Producto", "Nombre", "Unidad", "Cantidad", "Precio de Venta", "Total Parcial"
+                }
+        ) {
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        });
+        tablePedidosBuscar.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tablePedidosBuscar.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablePedidosBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tablePedidosCrearKeyPressed(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tablePedidosBuscar);
+        if (tablePedidosBuscar.getColumnModel().getColumnCount() > 0) {
+            tablePedidosBuscar.getColumnModel().getColumn(0).setResizable(false);
+            tablePedidosBuscar.getColumnModel().getColumn(0).setPreferredWidth(60);
+            tablePedidosBuscar.getColumnModel().getColumn(1).setResizable(false);
+            tablePedidosBuscar.getColumnModel().getColumn(1).setPreferredWidth(190);
+        }
+    }
+    
+    public void refrescarTabla(int opcion) {
+        
         switch (opcion) {
             case 1 -> {
                 modeloTablaPedido = (DefaultTableModel) tablePedidosCrear.getModel();
@@ -614,44 +720,51 @@ public class FrmViewPedidos2 extends javax.swing.JInternalFrame {
                 modeloTablaPedido = (DefaultTableModel) tablePedidosCrear.getModel();
                 tablePedidosCrear.setModel(modeloTablaPedido);
             }
+            case 3 -> {
+                modeloTablaPedido = (DefaultTableModel) tablePedidosBuscar.getModel();
+                modeloTablaPedido.addRow(new String[]{"", ""});
+                tablePedidosBuscar.setModel(modeloTablaPedido);
+            }
         }
-
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActualizarPedido;
     private javax.swing.JButton btnBuscarPedido;
     private javax.swing.JButton btnCrearPedido;
-    private javax.swing.JComboBox<String> cBoxTipoPersonaRegistros;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> cBEstadoPedidoBuscar;
+    private javax.swing.JComboBox<String> cBEstadoPedidoCrear;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel labelBuscar;
     private javax.swing.JLabel labelCrear;
+    private javax.swing.JLabel labelEstadoPedidoBuscar;
     private javax.swing.JLabel labelEstadoPedidoCrear;
+    private javax.swing.JLabel labelIdClienteBuscar;
     private javax.swing.JLabel labelIdClienteCrear;
     private javax.swing.JLabel labelIdPedidoBuscar;
     private javax.swing.JLabel labelIdPedidoCrear;
+    private javax.swing.JLabel labelIdVendedorBuscar;
     private javax.swing.JLabel labelIdVendedorCrear;
+    private javax.swing.JLabel labelNombreClienteBuscar;
     private javax.swing.JLabel labelNombreClienteCrear;
-    private javax.swing.JLabel labelRegistros;
-    private javax.swing.JLabel labelTipoPersonaRegistros;
     private javax.swing.JLabel labelTituloBuscar;
     private javax.swing.JLabel labelTituloCrear;
-    private javax.swing.JLabel labelTituloRegistros;
     private javax.swing.JPanel panelBuscar;
     private javax.swing.JPanel panelCards;
     private javax.swing.JPanel panelCrear;
     private javax.swing.JPanel panelLateral;
-    private javax.swing.JPanel panelRegistros;
-    private javax.swing.JTable tablePedidoBuscar;
+    private javax.swing.JTable tablePedidosBuscar;
     private javax.swing.JTable tablePedidosCrear;
-    private javax.swing.JTable tableRegistros;
-    private javax.swing.JTextField textFieldEstadoPedidoCrear;
-    private javax.swing.JTextField textFieldIDBuscar;
+    private javax.swing.JTextField textFieldIdClienteBuscar;
     private javax.swing.JTextField textFieldIdClienteCrear;
+    private javax.swing.JTextField textFieldIdPedidoBuscar;
     private javax.swing.JTextField textFieldIdPedidoCrear;
+    private javax.swing.JTextField textFieldIdVendedorBuscar;
     private javax.swing.JTextField textFieldIdVendedorCrear;
+    private javax.swing.JTextField textFieldNombreClienteBuscar;
     private javax.swing.JTextField textFieldNombreClienteCrear;
     // End of variables declaration//GEN-END:variables
 }

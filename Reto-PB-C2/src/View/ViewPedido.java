@@ -16,7 +16,7 @@ import javax.swing.JDesktopPane;
 public class ViewPedido extends javax.swing.JFrame {
 
     FrmViewTerceros2 gestionarTerceros;
-    FrmViewProductos gestionarProductos;
+    FrmViewProductos2 gestionarProductos;
     FrmViewGestorInventario gestionarInventario;
     FrmViewVerInventario verInventario;
     FrmViewPedidos2 gestionarPedido;
@@ -26,7 +26,7 @@ public class ViewPedido extends javax.swing.JFrame {
      */
     public ViewPedido() {
         gestionarTerceros = new FrmViewTerceros2();
-        gestionarProductos = new FrmViewProductos();
+        gestionarProductos = new FrmViewProductos2();
         gestionarInventario = new FrmViewGestorInventario();
         verInventario = new FrmViewVerInventario();
         gestionarPedido = new FrmViewPedidos2();

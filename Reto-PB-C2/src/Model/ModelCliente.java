@@ -17,11 +17,11 @@ import java.sql.*;
  */
 public class ModelCliente {
 
-    private final DbData dbData;
+    private final BaseDeDatos dbData;
     ArrayList<Cliente> tablaClientes = new ArrayList<>();
 
     public ModelCliente() {
-        this.dbData = new DbData();
+        this.dbData = new BaseDeDatos();
     }
 
     public boolean crear(Cliente cliente) {

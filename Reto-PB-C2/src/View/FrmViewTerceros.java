@@ -82,6 +82,16 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         radioButtonCCCliente = new javax.swing.JRadioButton();
         radioButtonNITCliente = new javax.swing.JRadioButton();
         radioButtonOtroCliente = new javax.swing.JRadioButton();
+        NombreCliente1 = new javax.swing.JLabel();
+        textFieldNombreCliente1 = new javax.swing.JTextField();
+        textFieldNombreCliente2 = new javax.swing.JTextField();
+        NombreCliente2 = new javax.swing.JLabel();
+        NombreCliente3 = new javax.swing.JLabel();
+        textFieldNombreCliente3 = new javax.swing.JTextField();
+        NombreCliente4 = new javax.swing.JLabel();
+        textFieldNombreCliente4 = new javax.swing.JTextField();
+        textFieldNombreCliente5 = new javax.swing.JTextField();
+        NombreCliente5 = new javax.swing.JLabel();
         panelVendedor = new javax.swing.JPanel();
         NombreVendedor = new javax.swing.JLabel();
         DireccionVendedor = new javax.swing.JLabel();
@@ -240,6 +250,16 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
         buttonGroupTDocCliente.add(radioButtonOtroCliente);
         radioButtonOtroCliente.setText("Otro");
 
+        NombreCliente1.setText("Nombre:");
+
+        NombreCliente2.setText("Nombre:");
+
+        NombreCliente3.setText("Nombre:");
+
+        NombreCliente4.setText("Nombre:");
+
+        NombreCliente5.setText("Nombre:");
+
         javax.swing.GroupLayout panelClientesLayout = new javax.swing.GroupLayout(panelClientes);
         panelClientes.setLayout(panelClientesLayout);
         panelClientesLayout.setHorizontalGroup(
@@ -253,14 +273,24 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
                             .addComponent(DireccionCliente)
                             .addComponent(NombreCliente)
                             .addComponent(CiudadCliente)
-                            .addComponent(TelefonoCliente))
+                            .addComponent(TelefonoCliente)
+                            .addComponent(NombreCliente1)
+                            .addComponent(NombreCliente2)
+                            .addComponent(NombreCliente3)
+                            .addComponent(NombreCliente4)
+                            .addComponent(NombreCliente5))
                         .addGap(14, 14, 14)
                         .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFieldCiudadCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(textFieldTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textFieldTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldNombreCliente3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldNombreCliente4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textFieldNombreCliente5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NroDocumentoCliente)
@@ -303,10 +333,31 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
             .addGroup(panelClientesLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(NombreCliente)
-                        .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(TipoDocCliente))
+                    .addGroup(panelClientesLayout.createSequentialGroup()
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NombreCliente)
+                            .addComponent(textFieldNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TipoDocCliente))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NombreCliente1)
+                            .addComponent(textFieldNombreCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NombreCliente2)
+                            .addComponent(textFieldNombreCliente2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NombreCliente3)
+                            .addComponent(textFieldNombreCliente3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NombreCliente4)
+                            .addComponent(textFieldNombreCliente4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(NombreCliente5)
+                            .addComponent(textFieldNombreCliente5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(radioButtonCCCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(radioButtonNITCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -751,7 +802,7 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedPanelGestor, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                .addComponent(tabbedPanelGestor, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1184,6 +1235,11 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
     private javax.swing.JLabel IdProveedor;
     private javax.swing.JLabel IdVendedor;
     private javax.swing.JLabel NombreCliente;
+    private javax.swing.JLabel NombreCliente1;
+    private javax.swing.JLabel NombreCliente2;
+    private javax.swing.JLabel NombreCliente3;
+    private javax.swing.JLabel NombreCliente4;
+    private javax.swing.JLabel NombreCliente5;
     private javax.swing.JLabel NombreProveedor;
     private javax.swing.JLabel NombreVendedor;
     private javax.swing.JLabel NroDocumentoCliente;
@@ -1249,6 +1305,11 @@ public class FrmViewTerceros extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textFieldIdProveedor;
     private javax.swing.JTextField textFieldIdVendedor;
     private javax.swing.JTextField textFieldNombreCliente;
+    private javax.swing.JTextField textFieldNombreCliente1;
+    private javax.swing.JTextField textFieldNombreCliente2;
+    private javax.swing.JTextField textFieldNombreCliente3;
+    private javax.swing.JTextField textFieldNombreCliente4;
+    private javax.swing.JTextField textFieldNombreCliente5;
     private javax.swing.JTextField textFieldNombreProveedor;
     private javax.swing.JTextField textFieldNombreVendedor;
     private javax.swing.JTextField textFieldNroDocProveedor;

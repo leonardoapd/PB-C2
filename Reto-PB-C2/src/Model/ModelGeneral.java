@@ -19,14 +19,14 @@ import java.sql.*;
  */
 public class ModelGeneral {
 
-    private final DbData dbData;
+    private final BaseDeDatos dbData;
     ArrayList<Producto> tablaProductos = new ArrayList<>();
     ArrayList<String[]> informacionColumnas;
     ArrayList<ArrayList<String>> informacionFilas = new ArrayList<>();
 
     public ModelGeneral() {
         this.informacionColumnas = new ArrayList<>();
-        this.dbData = new DbData();
+        this.dbData = new BaseDeDatos();
     }
 
     public String obtenerId(String nombreDeId, String nombreTablaDB) {

@@ -15,7 +15,7 @@ import java.sql.*;
  *
  * @author Leonardo Perdomo
  */
-public class DbData {
+public class BaseDeDatos {
 
     /* Para conectarse con mySQL */
     private final String driver = "com.mysql.cj.jdbc.Driver";

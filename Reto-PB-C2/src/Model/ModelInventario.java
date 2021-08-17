@@ -19,13 +19,13 @@ import java.sql.ResultSet;
  */
 public class ModelInventario {
 
-    private final DbData dbData;
+    private final BaseDeDatos dbData;
     Inventario inventario;
     ArrayList<Producto> productos = new ArrayList<>();
     ArrayList<String> listaDeProveedores = new ArrayList<>();
 
     public ModelInventario() {
-        this.dbData = new DbData();
+        this.dbData = new BaseDeDatos();
     }
 
     public boolean agregarProducto(Producto producto, int idInventario) throws SQLException {

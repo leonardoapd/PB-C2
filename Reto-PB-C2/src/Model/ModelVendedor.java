@@ -19,11 +19,11 @@ import java.util.ArrayList;
  */
 public class ModelVendedor {
 
-    private final DbData dbData;
+    private final BaseDeDatos dbData;
     ArrayList<Vendedor> tablaVendedores = new ArrayList<>();
 
     public ModelVendedor() {
-        this.dbData = new DbData();
+        this.dbData = new BaseDeDatos();
     }
 
     public boolean crear(Vendedor vendedor) {
